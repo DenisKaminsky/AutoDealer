@@ -10,8 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AutoDealer.Web.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoDealer.Business\AutoDealer.Business.csproj" />
   </ItemGroup>
 
 

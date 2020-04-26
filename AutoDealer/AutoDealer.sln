@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDealer.Web", "AutoDealer.Web\AutoDealer.Web.csproj", "{27154474-3006-450F-B37B-2FFDCC4302B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoDealer.Web", "AutoDealer.Web\AutoDealer.Web.csproj", "{27154474-3006-450F-B37B-2FFDCC4302B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDealer.Business", "AutoDealer.Business\AutoDealer.Business.csproj", "{33E7A2D9-332B-4602-B2E6-0864C3B81BC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDealer.Data", "AutoDealer.Data\AutoDealer.Data.csproj", "{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{27154474-3006-450F-B37B-2FFDCC4302B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27154474-3006-450F-B37B-2FFDCC4302B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27154474-3006-450F-B37B-2FFDCC4302B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E7A2D9-332B-4602-B2E6-0864C3B81BC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E7A2D9-332B-4602-B2E6-0864C3B81BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E7A2D9-332B-4602-B2E6-0864C3B81BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E7A2D9-332B-4602-B2E6-0864C3B81BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

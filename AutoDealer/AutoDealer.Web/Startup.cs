@@ -1,3 +1,5 @@
+using AutoDealer.Business;
+using AutoDealer.Data;
 using AutoDealer.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +22,8 @@ namespace AutoDealer.Web
         {
             services.AddControllers();
             services.AddWebServices();
+            services.AddBusinessServices();
+            services.AddDataServices(Configuration.GetConnectionString("PostgreSQLConnection"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +43,8 @@ namespace AutoDealer.Web
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            app.InitializeMigrations();
         }
     }
 }
