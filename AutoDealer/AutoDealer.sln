@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDealer.Business", "Auto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDealer.Data", "AutoDealer.Data\AutoDealer.Data.csproj", "{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDealer.Miscellaneous", "AutoDealer.Miscellaneous\AutoDealer.Miscellaneous.csproj", "{F13CBFC1-6EEE-411A-9743-3125E53E5CA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E6A6E7F-6E1A-40BF-AB19-67CBD5F7D135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13CBFC1-6EEE-411A-9743-3125E53E5CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13CBFC1-6EEE-411A-9743-3125E53E5CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13CBFC1-6EEE-411A-9743-3125E53E5CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13CBFC1-6EEE-411A-9743-3125E53E5CA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
