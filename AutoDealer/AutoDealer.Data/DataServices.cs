@@ -1,4 +1,5 @@
-﻿using AutoDealer.Data.Repositories;
+﻿using AutoDealer.Data.QueryFiltersProviders;
+using AutoDealer.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +16,10 @@ namespace AutoDealer.Data
                 scan.FromAssemblies(typeof(DataServices).Assembly)
                     .AddClasses(c => c.AssignableTo<BaseGenericRepository>())
                     .AsImplementedInterfaces()
-                    .WithScopedLifetime();
+                    .WithScopedLifetime()
+                    .AddClasses(c => c.AssignableTo(typeof(BaseFiltersProvider<>)))
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime();
             });
         }
     }
