@@ -351,6 +351,7 @@ MigrationBackup/
 
 *.log
 
+.config
 *.Web.xml
 Logs/
 Storage/
