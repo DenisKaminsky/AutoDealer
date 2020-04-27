@@ -2,7 +2,6 @@
 using AutoDealer.Business.Functionality.Factories;
 using AutoDealer.Business.Functionality.UnitOfWork;
 using AutoDealer.Business.Interfaces.UnitOfWork;
-using AutoDealer.Data.Models.BaseModels;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

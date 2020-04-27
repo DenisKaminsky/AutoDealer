@@ -1,6 +1,6 @@
 ﻿namespace AutoDealer.Business.Functionality
 {
-    public class BaseFunctionality
+    public abstract class BaseFunctionality
     {
         protected UnitOfWork.UnitOfWork UnitOfWork { get; }
 

@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using AutoDealer.Web.Middleware;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Functionality.Factories;
+using AutoDealer.Web.Attributes;
 
 namespace AutoDealer.Web
 {
@@ -16,8 +17,8 @@ namespace AutoDealer.Web
     {
         public static void AddWebServices(this IServiceCollection collection)
         {
+            collection.AddScoped<LogFilterAttribute>();
             collection.AddSingleton<ExceptionsHandler>();
-
             collection.AddSingleton<IMapperFactory>(opt => new MapperFactory(
                 new KeyValuePair<string, IMapper>(nameof(BusinessServices), Business.Extensions.MapperExtensions.GetMapper()),
                 new KeyValuePair<string, IMapper>(nameof(WebServices), Extensions.MapperExtensions.GetMapper())));

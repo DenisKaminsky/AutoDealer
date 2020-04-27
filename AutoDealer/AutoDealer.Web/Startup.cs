@@ -23,7 +23,7 @@ namespace AutoDealer.Web
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             services.AddWebServices();
             services.AddBusinessServices();
             services.AddDataServices(Configuration.GetConnectionString("PostgreSQLConnection"));
