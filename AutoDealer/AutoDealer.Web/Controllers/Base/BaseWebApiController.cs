@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Base
 {
-    [ApiController]
     [Route("api/[controller]")]
     [ServiceFilter(typeof(LogFilterAttribute))]
-    public abstract class BaseWebApiController
+    public abstract class BaseWebApiController : ControllerBase
     {
         protected readonly IMapper Mapper;
 

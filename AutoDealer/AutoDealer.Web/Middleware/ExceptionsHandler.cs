@@ -40,7 +40,7 @@ namespace AutoDealer.Web.Middleware
             {
                 case ValidationException validationException:
                     context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                    return context.Response.WriteAsync(JsonConvert.SerializeObject(validationException.Message));
+                    return context.Response.WriteAsync(JsonConvert.SerializeObject(validationException.Errors));
                 default:
                     context.Response.StatusCode = DefaultStatusCode;
                     return context.Response.WriteAsync(DefaultMessage);
