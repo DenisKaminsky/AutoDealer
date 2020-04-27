@@ -7,7 +7,7 @@ namespace AutoDealer.Data.Repositories
 {
     public class GenericWriteRepository : BaseGenericRepository, IGenericWriteRepository
     {
-        protected GenericWriteRepository(DataContext dataContext) : base(dataContext) { }
+        public GenericWriteRepository(DataContext dataContext) : base(dataContext) { }
 
         public async Task AddAsync<T>(T model) where T : BaseModel
         {

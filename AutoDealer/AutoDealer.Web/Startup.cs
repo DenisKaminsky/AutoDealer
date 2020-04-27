@@ -1,3 +1,4 @@
+using System.IO;
 using AutoDealer.Business;
 using AutoDealer.Data;
 using AutoDealer.Web.Extensions;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace AutoDealer.Web
 {
@@ -26,8 +28,10 @@ namespace AutoDealer.Web
             services.AddDataServices(Configuration.GetConnectionString("PostgreSQLConnection"));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile(Path.Combine(Configuration["Logging:LogsFolderName"], "AutoDealer.Web.log"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
