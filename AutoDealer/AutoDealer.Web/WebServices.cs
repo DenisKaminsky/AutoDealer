@@ -6,6 +6,7 @@ using AutoDealer.Business;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using AutoDealer.Web.Middleware;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Functionality.Factories;
 
@@ -15,6 +16,8 @@ namespace AutoDealer.Web
     {
         public static void AddWebServices(this IServiceCollection collection)
         {
+            collection.AddSingleton<ExceptionsHandler>();
+
             collection.AddSingleton<IMapperFactory>(opt => new MapperFactory(
                 new KeyValuePair<string, IMapper>(nameof(BusinessServices), Business.Extensions.MapperExtensions.GetMapper()),
                 new KeyValuePair<string, IMapper>(nameof(WebServices), Extensions.MapperExtensions.GetMapper())));

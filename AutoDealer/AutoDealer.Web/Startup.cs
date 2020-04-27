@@ -2,6 +2,7 @@ using System.IO;
 using AutoDealer.Business;
 using AutoDealer.Data;
 using AutoDealer.Web.Extensions;
+using AutoDealer.Web.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +41,8 @@ namespace AutoDealer.Web
             {
                 app.UseHsts();
             }
-            
+
+            app.UseMiddleware<ExceptionsHandler>();
             app.UseSwaggerMiddleware();
             app.UseHttpsRedirection();
 
