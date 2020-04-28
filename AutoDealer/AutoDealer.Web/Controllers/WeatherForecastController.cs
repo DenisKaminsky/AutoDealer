@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Web.Controllers.Base;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +28,7 @@ namespace AutoDealer.Web.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
-            return StatusCode(StatusCodes.Status201Created, a);
+            return ResponseWithData(StatusCodes.Status201Created, a);
         }
     }
 }

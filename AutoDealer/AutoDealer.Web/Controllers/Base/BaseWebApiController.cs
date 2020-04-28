@@ -15,5 +15,16 @@ namespace AutoDealer.Web.Controllers.Base
         {
             Mapper = mapperFactory.GetMapper(nameof(WebServices));
         }
+
+        protected ObjectResult ResponseWithData(int statusCode, object response)
+        {
+            //write custom object
+            return base.StatusCode(statusCode, response);
+        }
+
+        protected StatusCodeResult Response(int statusCode)
+        {
+            return base.StatusCode(statusCode);
+        }
     }
 }
