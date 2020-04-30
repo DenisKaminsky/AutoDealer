@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Web.ViewModels.Response.Miscellaneous;
+using AutoMapper;
 
 namespace AutoDealer.Web.Extensions
 {
@@ -9,6 +11,9 @@ namespace AutoDealer.Web.Extensions
             return new MapperConfiguration(config =>
             {
 
+                #region Miscellaneous
+                config.CreateMap<CountryModel, CountryViewModel>();
+                #endregion
             }).CreateMapper();
         }
     }

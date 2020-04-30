@@ -17,9 +17,8 @@
 
   <ItemGroup>
     <Folder Include="Functionality\CommandFunctionality\" />
-    <Folder Include="Functionality\QueryFunctionality\" />
     <Folder Include="Interfaces\CommandFunctionality\" />
-    <Folder Include="Interfaces\QueryFunctionality\" />
+    <Folder Include="Models\Commands\" />
   </ItemGroup>
 
 </Project>

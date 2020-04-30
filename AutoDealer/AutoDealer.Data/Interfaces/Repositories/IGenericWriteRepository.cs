@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AutoDealer.Data.Models.Base;
 
-namespace AutoDealer.Data.Interfaces
+namespace AutoDealer.Data.Interfaces.Repositories
 {
     public interface IGenericWriteRepository
     {

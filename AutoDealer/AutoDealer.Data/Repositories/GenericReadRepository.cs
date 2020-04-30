@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoDealer.Data.Extensions;
-using AutoDealer.Data.Interfaces;
+using AutoDealer.Data.Interfaces.Repositories;
 using AutoDealer.Data.Models.Base;
 using Microsoft.EntityFrameworkCore;
 

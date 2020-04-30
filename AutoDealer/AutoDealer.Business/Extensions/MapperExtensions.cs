@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Data.Models.Miscellaneous;
+using AutoMapper;
 
 namespace AutoDealer.Business.Extensions
 {
@@ -8,7 +10,13 @@ namespace AutoDealer.Business.Extensions
         {
             return new MapperConfiguration(config =>
             {
+                #region Commands
 
+                #endregion
+
+                #region Responses
+                config.CreateMap<Country, CountryModel>();
+                #endregion
             }).CreateMapper();
         }
     }

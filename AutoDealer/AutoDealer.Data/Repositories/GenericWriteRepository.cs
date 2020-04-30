@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AutoDealer.Data.Interfaces;
+using AutoDealer.Data.Interfaces.Repositories;
 using AutoDealer.Data.Models.Base;
 using Microsoft.EntityFrameworkCore;
 

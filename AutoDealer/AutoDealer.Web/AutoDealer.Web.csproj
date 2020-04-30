@@ -25,5 +25,9 @@
     <ProjectReference Include="..\AutoDealer.Business\AutoDealer.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Request\" />
+  </ItemGroup>
+
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using AutoDealer.Data.QueryFiltersProviders;
+﻿using AutoDealer.Data.QueryFiltersProviders.Base;
 using AutoDealer.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

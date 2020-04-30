@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoDealer.Miscellaneous.Exceptions;
+using AutoDealer.Web.ViewModels.Base;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -35,16 +39,31 @@ namespace AutoDealer.Web.Middleware
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            context.Response.ContentType = DefaultContentType;
+            int statusCode;
+            var executionErrors = new List<Error>();
             switch (exception)
             {
                 case ValidationException validationException:
-                    context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                    return context.Response.WriteAsync(JsonConvert.SerializeObject(validationException.Errors));
+                    statusCode = StatusCodes.Status400BadRequest;
+                    executionErrors.AddRange(validationException.Errors.Select(x => new Error {ErrorCode = x.PropertyName, ErrorMessage = x.ErrorMessage}));
+                    break;
+                case NotFoundException notFoundException:
+                    statusCode = StatusCodes.Status404NotFound;
+                    executionErrors.Add(new Error { ErrorCode = "NOT_FOUND", ErrorMessage = notFoundException.Message });
+                    break;
                 default:
-                    context.Response.StatusCode = DefaultStatusCode;
-                    return context.Response.WriteAsync(DefaultMessage);
+                    statusCode = DefaultStatusCode;
+                    executionErrors.Add(new Error { ErrorCode = "INTERNAL_SERVER_ERROR", ErrorMessage = DefaultMessage });
+                    break;
             }
+
+            context.Response.ContentType = DefaultContentType;
+            context.Response.StatusCode = statusCode;
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(new StatusResponseWithErrors
+            {
+                IsSuccess = false, 
+                Errors = executionErrors
+            }));
         }
     }
 

@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using AutoDealer.Data.Models.Base;
 
-namespace AutoDealer.Data.QueryFiltersProviders
+namespace AutoDealer.Data.QueryFiltersProviders.Base
 {
     public abstract class BaseFiltersProvider<T> where T : BaseModel
     {

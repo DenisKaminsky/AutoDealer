@@ -1,4 +1,4 @@
-﻿using AutoDealer.Business.Functionality;
+﻿using AutoDealer.Business.Functionality.Base;
 using AutoDealer.Business.Functionality.Factories;
 using AutoDealer.Business.Functionality.UnitOfWork;
 using AutoDealer.Business.Interfaces.UnitOfWork;

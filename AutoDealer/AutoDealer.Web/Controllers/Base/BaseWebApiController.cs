@@ -1,5 +1,6 @@
 ﻿using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Web.Attributes;
+using AutoDealer.Web.ViewModels.Base;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,8 +19,7 @@ namespace AutoDealer.Web.Controllers.Base
 
         protected ObjectResult ResponseWithData(int statusCode, object response)
         {
-            //write custom object
-            return base.StatusCode(statusCode, response);
+            return base.StatusCode(statusCode, new StatusResponseWithData { IsSuccess = true, Data = response });
         }
     }
 }
