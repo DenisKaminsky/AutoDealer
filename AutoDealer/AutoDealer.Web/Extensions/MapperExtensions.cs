@@ -13,6 +13,7 @@ namespace AutoDealer.Web.Extensions
 
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();
+                config.CreateMap<BrandModel, BrandViewModel>();
                 #endregion
             }).CreateMapper();
         }

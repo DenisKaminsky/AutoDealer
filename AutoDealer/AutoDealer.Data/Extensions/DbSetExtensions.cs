@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AutoDealer.Data.Models.Base;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +8,7 @@ namespace AutoDealer.Data.Extensions
     {
         public static IQueryable<T> IncludeRange<T>(this IQueryable<T> set, string[] properties) where T : BaseModel
         {
-            foreach (var item in properties ?? Array.Empty<string>())
-            {
-                set.Include(item);
-            }
+            set = properties.Aggregate(set, (current, propertyPath) => current.Include(propertyPath));
 
             return set;
         }

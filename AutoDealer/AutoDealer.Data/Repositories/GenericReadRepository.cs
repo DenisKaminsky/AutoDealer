@@ -12,7 +12,7 @@ namespace AutoDealer.Data.Repositories
     public class GenericReadRepository : BaseGenericRepository, IGenericReadRepository
     {
         public GenericReadRepository(DataContext context) : base(context) { }
-
+        
         public Task<T[]> GetAllAsync<T>(params string[] propertiesToInclude) where T : BaseModel
         {
             return DbContext.Set<T>()

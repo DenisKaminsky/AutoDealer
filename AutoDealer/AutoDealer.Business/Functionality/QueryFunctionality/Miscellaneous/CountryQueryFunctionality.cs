@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using AutoDealer.Business.Functionality.Base;
 using AutoDealer.Business.Interfaces.Factories;
-using AutoDealer.Business.Interfaces.QueryFunctionality;
+using AutoDealer.Business.Interfaces.QueryFunctionality.Miscellaneous;
 using AutoDealer.Business.Interfaces.UnitOfWork;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Data.Interfaces.QueryFiltersProviders.Miscellaneous;

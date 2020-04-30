@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoDealer.Business.Interfaces.Factories;
-using AutoDealer.Business.Interfaces.QueryFunctionality;
+using AutoDealer.Business.Interfaces.QueryFunctionality.Miscellaneous;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
 using Microsoft.AspNetCore.Http;

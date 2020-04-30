@@ -16,6 +16,7 @@ namespace AutoDealer.Business.Extensions
 
                 #region Responses
                 config.CreateMap<Country, CountryModel>();
+                config.CreateMap<Brand, BrandModel>();
                 #endregion
             }).CreateMapper();
         }

@@ -1,4 +1,5 @@
 ﻿using AutoDealer.Data.QueryFiltersProviders.Base;
+using AutoDealer.Data.RelationsProviders.Base;
 using AutoDealer.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,8 @@ namespace AutoDealer.Data
                     .AsImplementedInterfaces()
                     .WithScopedLifetime()
                     .AddClasses(c => c.AssignableTo(typeof(BaseFiltersProvider<>)))
+                    .AsImplementedInterfaces()
+                    .AddClasses(c => c.AssignableTo<BaseRelationsProvider>())
                     .AsImplementedInterfaces()
                     .WithSingletonLifetime();
             });
