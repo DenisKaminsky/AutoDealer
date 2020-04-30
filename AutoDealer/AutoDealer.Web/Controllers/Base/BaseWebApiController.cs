@@ -21,10 +21,5 @@ namespace AutoDealer.Web.Controllers.Base
             //write custom object
             return base.StatusCode(statusCode, response);
         }
-
-        protected StatusCodeResult Response(int statusCode)
-        {
-            return base.StatusCode(statusCode);
-        }
     }
 }

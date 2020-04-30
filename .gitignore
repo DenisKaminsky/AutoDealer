@@ -355,3 +355,4 @@ MigrationBackup/
 *.Web.xml
 Logs/
 Storage/
+Migrations
