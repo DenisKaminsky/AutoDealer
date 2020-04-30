@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoDealer.Data.Interfaces;
-using AutoDealer.Data.Models.BaseModels;
+using AutoDealer.Data.Models.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.Repositories

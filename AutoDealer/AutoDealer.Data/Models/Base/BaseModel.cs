@@ -1,4 +1,4 @@
-﻿namespace AutoDealer.Data.Models.BaseModels
+﻿namespace AutoDealer.Data.Models.Base
 {
     public class BaseModel
     {

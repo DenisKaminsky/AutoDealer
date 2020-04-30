@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using AutoDealer.Data.Models.BaseModels;
+using AutoDealer.Data.Models.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.Extensions

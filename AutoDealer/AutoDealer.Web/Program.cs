@@ -1,7 +1,5 @@
-using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 
 namespace AutoDealer.Web
 {
@@ -14,14 +12,13 @@ namespace AutoDealer.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .Build();
-
             return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(config)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseKestrel(opts =>
+                {
+                    opts.ListenAnyIP(5002, x => x.UseHttps());
+                    opts.ListenLocalhost(5003, x => x.UseHttps());
+                });
         }
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AutoDealer.Data.Models.BaseModels;
+using AutoDealer.Data.Models.Base;
 
 namespace AutoDealer.Data.Interfaces
 {
