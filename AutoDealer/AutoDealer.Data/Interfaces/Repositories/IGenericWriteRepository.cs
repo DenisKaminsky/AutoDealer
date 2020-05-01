@@ -9,7 +9,7 @@ namespace AutoDealer.Data.Interfaces.Repositories
 
         Task AddRangeAsync<T>(params T[] models) where T : BaseModel;
 
-        Task RemoveByIdAsync<T>(int id) where T : BaseModel;
+        Task<bool> RemoveByIdAsync<T>(int id) where T : BaseModel;
         
         Task RemoveRangeAsync<T>(params T[] items) where T : BaseModel;
 

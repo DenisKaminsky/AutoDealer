@@ -50,7 +50,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// <summary>
         ///     Adds country
         /// </summary>
-        /// <returns>Status code 201</returns>
+        /// <returns>Status code 201.</returns>
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CountryCreateViewModel country)
         {
@@ -62,7 +62,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// <summary>
         ///     Updates country 
         /// </summary>
-        /// <returns>Status code 200 and view model.</returns>
+        /// <returns>Status code 200.</returns>
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] CountryUpdateViewModel country)
         {

@@ -10,6 +10,8 @@ namespace AutoDealer.Business.Validators.Base
         protected BaseValidator(IGenericReadRepository readRepository)
         {
             ReadRepository = readRepository;
+
+            CascadeMode = CascadeMode.StopOnFirstFailure;
         }
     }
 }

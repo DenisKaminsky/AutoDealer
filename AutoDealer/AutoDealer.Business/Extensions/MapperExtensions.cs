@@ -12,13 +12,14 @@ namespace AutoDealer.Business.Extensions
             return new MapperConfiguration(config =>
             {
                 #region Commands
-
+                config.CreateMap<CountryCreateCommand, Country>();
+                config.CreateMap<CountryUpdateCommand, Country>();
+                config.CreateMap<BrandCreateCommand, Brand>();
+                config.CreateMap<BrandUpdateCommand, Brand>();
                 #endregion
 
                 #region Responses
                 config.CreateMap<Country, CountryModel>();
-                config.CreateMap<CountryCreateCommand, Country>();
-                config.CreateMap<CountryUpdateCommand, Country>();
                 config.CreateMap<Brand, BrandModel>();
                 #endregion
             }).CreateMapper();

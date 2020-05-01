@@ -9,14 +9,9 @@ namespace AutoDealer.Business.Extensions
     {
         public static IRuleBuilderOptions<T, TProp> NotEmptyWithMessage<T, TProp>(this IRuleBuilder<T, TProp> options)
         {
-            return options.NotEmpty().WithMessage("field {{PropertyName}} can not be empty");
+            return options.NotEmpty().WithMessage($"Field {{PropertyName}} can not be empty");
         }
-
-        public static IRuleBuilderOptions<T, TProp> NotNullWithMessage<T, TProp>(this IRuleBuilder<T, TProp> options)
-        {
-            return options.NotNull().WithMessage("field {{PropertyName}} can not be empty");
-        }
-
+        
         public static IRuleBuilderOptions<T, string> MaxLengthWithMessage<T>(this IRuleBuilder<T, string> options,int length)
         {
             return options.MaximumLength(length)

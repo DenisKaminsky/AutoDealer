@@ -11,35 +11,35 @@ using FluentValidation;
 
 namespace AutoDealer.Business.Functionality.CommandFunctionality.Miscellaneous
 {
-    public class CountryCommandFunctionality : BaseCommandFunctionality, ICountryCommandFunctionality
+    public class BrandCommandFunctionality : BaseCommandFunctionality, IBrandCommandFunctionality
     {
-        public CountryCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, 
+        public BrandCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, 
             IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
         {
         }
 
-        public async Task AddAsync(CountryCreateCommand country)
+        public async Task AddAsync(BrandCreateCommand brand)
         {
-            await ValidatorFactory.GetValidator<CountryCreateCommand>().ValidateAndThrowAsync(country);
+            await ValidatorFactory.GetValidator<BrandCreateCommand>().ValidateAndThrowAsync(brand);
 
-            await WriteRepository.AddAsync(Mapper.Map<Country>(country));
+            await WriteRepository.AddAsync(Mapper.Map<Brand>(brand));
             await UnitOfWork.CommitAsync();
         }
 
-        public async Task UpdateAsync(CountryUpdateCommand country)
+        public async Task UpdateAsync(BrandUpdateCommand brand)
         {
-            await ValidatorFactory.GetValidator<CountryUpdateCommand>().ValidateAndThrowAsync(country);
+            await ValidatorFactory.GetValidator<BrandUpdateCommand>().ValidateAndThrowAsync(brand);
 
-            await WriteRepository.UpdateAsync(Mapper.Map<Country>(country));
+            await WriteRepository.UpdateAsync(Mapper.Map<Brand>(brand));
             await UnitOfWork.CommitAsync();
         }
 
         public async Task RemoveAsync(int id)
         {
-            var isRemoved = await WriteRepository.RemoveByIdAsync<Country>(id);
+            var isRemoved = await WriteRepository.RemoveByIdAsync<Brand>(id);
 
             if (!isRemoved)
-                throw new NotFoundException("Country was not found!");
+                throw new NotFoundException("Brand was not found!");
 
             await UnitOfWork.CommitAsync();
         }

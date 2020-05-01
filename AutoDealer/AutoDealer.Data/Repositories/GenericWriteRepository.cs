@@ -19,10 +19,15 @@ namespace AutoDealer.Data.Repositories
             await DbContext.Set<T>().AddRangeAsync(models);
         }
 
-        public async Task RemoveByIdAsync<T>(int id) where T : BaseModel
+        public async Task<bool> RemoveByIdAsync<T>(int id) where T : BaseModel
         {
             var model = await DbContext.Set<T>().FirstOrDefaultAsync(item => item.Id == id);
+
+            if (model == null)
+                return false;
+
             DbContext.Set<T>().Remove(model);
+            return true;
         }
 
         public Task RemoveRangeAsync<T>(params T[] items) where T : BaseModel

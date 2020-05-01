@@ -12,11 +12,18 @@ namespace AutoDealer.Web.Extensions
         {
             return new MapperConfiguration(config =>
             {
+                #region System
+                config.CreateMap<string, string>()
+                    .ConstructUsing(str => str != null ? str.Trim() : str);
+                #endregion
+
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();
                 config.CreateMap<CountryCreateViewModel, CountryCreateCommand>();
                 config.CreateMap<CountryUpdateViewModel, CountryUpdateCommand>();
                 config.CreateMap<BrandModel, BrandViewModel>();
+                config.CreateMap<BrandCreateViewModel, BrandCreateCommand>();
+                config.CreateMap<BrandUpdateViewModel, BrandUpdateCommand>();
                 #endregion
             }).CreateMapper();
         }
