@@ -10,6 +10,7 @@ namespace AutoDealer.Data
         #region Miscellaneous
         public DbSet<Country> Countries { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
         #endregion
 
         public DataContext(DbContextOptions options) : base(options) { }

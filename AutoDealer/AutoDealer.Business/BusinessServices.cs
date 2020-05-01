@@ -12,8 +12,8 @@ namespace AutoDealer.Business
         public static void AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<IValidatorFactory, FluentValidatorsFactory>();
-           
+            services.AddScoped<IValidatorFactory, FluentValidatorsFactory>();
+
             services.Scan(scan =>
             {
                 scan.FromAssemblies(typeof(BusinessServices).Assembly)

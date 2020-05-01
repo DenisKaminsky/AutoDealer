@@ -15,10 +15,4 @@
     <ProjectReference Include="..\AutoDealer.Data\AutoDealer.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Functionality\CommandFunctionality\" />
-    <Folder Include="Interfaces\CommandFunctionality\" />
-    <Folder Include="Models\Commands\" />
-  </ItemGroup>
-
 </Project>

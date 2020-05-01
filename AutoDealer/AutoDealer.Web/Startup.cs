@@ -2,7 +2,6 @@ using System.IO;
 using AutoDealer.Business;
 using AutoDealer.Data;
 using AutoDealer.Web.Extensions;
-using AutoDealer.Web.Filters;
 using AutoDealer.Web.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +23,7 @@ namespace AutoDealer.Web
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(x => x.Filters.Add<FluentValidationFilter>()).AddFluentValidation();
+            services.AddControllers();
             services.AddWebServices();
             services.AddBusinessServices();
             services.AddDataServices(Configuration.GetConnectionString("PostgreSQLConnection"));

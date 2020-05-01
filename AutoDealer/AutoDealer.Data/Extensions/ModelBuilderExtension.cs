@@ -13,6 +13,7 @@ namespace AutoDealer.Data.Extensions
             #region Miscellaneous
             modelBuilder.SeedBrands();
             modelBuilder.SeedCountries();
+            modelBuilder.SeedSuppliers();
             #endregion
         }
 
@@ -23,6 +24,7 @@ namespace AutoDealer.Data.Extensions
             #region Miscellaneous
             modelBuilder.ConfigureBrand();
             modelBuilder.ConfigureCountry();
+            modelBuilder.ConfigureSupplier();
             #endregion
         }
     }

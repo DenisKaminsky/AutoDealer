@@ -7,7 +7,7 @@ namespace AutoDealer.Web.Extensions
         public static void UseSwaggerMiddleware(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/V1/swagger.json", "AutoDealer API V1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/V1/swagger.json", "AutoDealer V1"));
         }
     }
 }

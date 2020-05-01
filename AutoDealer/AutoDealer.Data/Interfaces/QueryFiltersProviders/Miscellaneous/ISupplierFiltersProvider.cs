@@ -5,9 +5,8 @@ using AutoDealer.Data.Models.Miscellaneous;
 
 namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Miscellaneous
 {
-    public interface ICountryFiltersProvider : IBaseFiltersProvider<Country>
+    public interface ISupplierFiltersProvider : IBaseFiltersProvider<Supplier>
     {
-        Expression<Func<Country, bool>> ByName(string name);
-        Expression<Func<Country, bool>> OthersWithName(int id, string name);
+        Expression<Func<Supplier, bool>> ByBrandId(int id);
     }
 }

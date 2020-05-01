@@ -14,7 +14,7 @@ namespace AutoDealer.Data.ModelsConfigurations.Miscellaneous
 
             modelBuilder.Entity<Country>()
                 .Property(x => x.Name)
-                .HasMaxLength(CountyConstraints.NameMaxLength)
+                .HasMaxLength(CountryConstraints.NameMaxLength)
                 .IsRequired();
         }
     }
