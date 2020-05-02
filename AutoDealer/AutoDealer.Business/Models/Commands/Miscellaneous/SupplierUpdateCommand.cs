@@ -1,6 +1,8 @@
-﻿namespace AutoDealer.Business.Models.Commands.Miscellaneous
+﻿using AutoDealer.Business.Interfaces.Models;
+
+namespace AutoDealer.Business.Models.Commands.Miscellaneous
 {
-    public class SupplierUpdateCommand: BaseModel
+    public class SupplierUpdateCommand: BaseModel, IUpdateCommand
     {
         public string CompanyName { get; }
 

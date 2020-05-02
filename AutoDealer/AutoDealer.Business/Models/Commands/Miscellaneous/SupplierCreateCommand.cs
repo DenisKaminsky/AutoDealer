@@ -1,6 +1,8 @@
-﻿namespace AutoDealer.Business.Models.Commands.Miscellaneous
+﻿using AutoDealer.Business.Interfaces.Models;
+
+namespace AutoDealer.Business.Models.Commands.Miscellaneous
 {
-    public class SupplierCreateCommand
+    public class SupplierCreateCommand : ICreateCommand
     {
         public string CompanyName { get; }
 

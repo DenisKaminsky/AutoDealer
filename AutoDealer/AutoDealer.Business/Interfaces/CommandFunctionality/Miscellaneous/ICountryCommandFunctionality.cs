@@ -1,14 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using AutoDealer.Business.Interfaces.CommandFunctionality.Base;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 
 namespace AutoDealer.Business.Interfaces.CommandFunctionality.Miscellaneous
 {
     public interface ICountryCommandFunctionality
+        : IBaseGenericCreateUpdateDeleteCommandFunctionality<CountryCreateCommand, CountryUpdateCommand>
     {
-        Task AddAsync(CountryCreateCommand country);
-
-        Task UpdateAsync(CountryUpdateCommand country);
-
-        Task RemoveAsync(int id);
     }
 }

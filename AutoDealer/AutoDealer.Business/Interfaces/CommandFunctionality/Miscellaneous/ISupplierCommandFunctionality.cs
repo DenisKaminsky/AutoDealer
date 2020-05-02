@@ -1,12 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using AutoDealer.Business.Interfaces.CommandFunctionality.Base;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 
 namespace AutoDealer.Business.Interfaces.CommandFunctionality.Miscellaneous
 {
-    public interface ISupplierCommandFunctionality
+    public interface ISupplierCommandFunctionality 
+        : IBaseGenericCreateUpdateDeleteCommandFunctionality<SupplierCreateCommand, SupplierUpdateCommand>
     {
-        Task AddAsync(SupplierCreateCommand supplier);
-        Task UpdateAsync(SupplierUpdateCommand supplier);
-        Task RemoveAsync(int id);
     }
 }

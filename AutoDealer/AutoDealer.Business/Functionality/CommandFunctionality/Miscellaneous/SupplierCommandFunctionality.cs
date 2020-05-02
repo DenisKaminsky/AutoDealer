@@ -7,12 +7,11 @@ using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Data.Interfaces.QueryFiltersProviders.Miscellaneous;
 using AutoDealer.Data.Interfaces.Repositories;
 using AutoDealer.Data.Models.Miscellaneous;
-using AutoDealer.Miscellaneous.Exceptions;
 using FluentValidation;
 
 namespace AutoDealer.Business.Functionality.CommandFunctionality.Miscellaneous
 {
-    public class SupplierCommandFunctionality : BaseCommandFunctionality, ISupplierCommandFunctionality
+    public class SupplierCommandFunctionality : BaseGenericCreateUpdateDeleteCommandFunctionality<SupplierCreateCommand, SupplierUpdateCommand, Supplier>, ISupplierCommandFunctionality
     {
         private readonly IBrandFiltersProvider _brandFiltersProvider;
         private readonly IGenericReadRepository _genericReadRepository;
@@ -24,7 +23,7 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Miscellaneous
             _brandFiltersProvider = brandFiltersProvider;
         }
 
-        public async Task AddAsync(SupplierCreateCommand supplier)
+        public override async Task AddAsync(SupplierCreateCommand supplier)
         {
             await ValidatorFactory.GetValidator<SupplierCreateCommand>().ValidateAndThrowAsync(supplier);
 
@@ -32,24 +31,6 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Miscellaneous
             brand.Supplier = Mapper.Map<Supplier>(supplier);
 
             await WriteRepository.UpdateAsync(brand);
-            await UnitOfWork.CommitAsync();
-        }
-        
-        public async Task UpdateAsync(SupplierUpdateCommand supplier)
-        {
-            await ValidatorFactory.GetValidator<SupplierUpdateCommand>().ValidateAndThrowAsync(supplier);
-
-            await WriteRepository.UpdateAsync(Mapper.Map<Supplier>(supplier));
-            await UnitOfWork.CommitAsync();
-        }
-
-        public async Task RemoveAsync(int id)
-        {
-            var isRemoved = await WriteRepository.RemoveByIdAsync<Supplier>(id);
-
-            if (!isRemoved)
-                throw new NotFoundException("Supplier was not found!");
-
             await UnitOfWork.CommitAsync();
         }
     }

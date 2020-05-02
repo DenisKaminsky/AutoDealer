@@ -1,6 +1,8 @@
-﻿namespace AutoDealer.Business.Models.Commands.Miscellaneous
+﻿using AutoDealer.Business.Interfaces.Models;
+
+namespace AutoDealer.Business.Models.Commands.Miscellaneous
 {
-    public class CountryUpdateCommand : BaseModel
+    public class CountryUpdateCommand : BaseModel, IUpdateCommand
     {
         public string Name { get; }
 

@@ -1,14 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using AutoDealer.Business.Interfaces.CommandFunctionality.Base;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 
 namespace AutoDealer.Business.Interfaces.CommandFunctionality.Miscellaneous
 {
-    public interface IBrandCommandFunctionality
+    public interface IBrandCommandFunctionality 
+        : IBaseGenericCreateUpdateDeleteCommandFunctionality<BrandCreateCommand, BrandUpdateCommand>
     {
-        Task AddAsync(BrandCreateCommand brand);
-
-        Task UpdateAsync(BrandUpdateCommand brand);
-
-        Task RemoveAsync(int id);
     }
 }

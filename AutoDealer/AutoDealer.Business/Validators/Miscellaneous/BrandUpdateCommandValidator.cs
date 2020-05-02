@@ -30,11 +30,24 @@ namespace AutoDealer.Business.Validators.Miscellaneous
             RuleFor(x => x.CountryId)
                 .NotEmptyWithMessage()
                 .MustExistsWithMessageAsync(CountryExists);
+
+            RuleFor(x => x.SupplierId)
+                .MustExistsWithMessageAsync(SupplierExists);
         }
 
         private async Task<bool> BrandExists(int id, CancellationToken cancellationToken)
         {
             return await Task.Run(() => ReadRepository.ValidateExists(_filtersProvider.ById(id)), cancellationToken);
+        }
+
+        private async Task<bool> SupplierExists(int? id, CancellationToken cancellationToken)
+        {
+            if (id.HasValue)
+            {
+                return await Task.Run(() => ReadRepository.ValidateExists(_filtersProvider.ById(id.Value)), cancellationToken);
+            }
+
+            return true;
         }
 
         private async Task<bool> NameDoesNotExist(BrandUpdateCommand command, CancellationToken cancellationToken)

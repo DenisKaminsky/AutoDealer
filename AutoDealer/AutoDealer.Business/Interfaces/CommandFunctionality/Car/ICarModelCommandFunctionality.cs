@@ -1,14 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using AutoDealer.Business.Interfaces.CommandFunctionality.Base;
 using AutoDealer.Business.Models.Commands.Car;
 
 namespace AutoDealer.Business.Interfaces.CommandFunctionality.Car
 {
-    public interface ICarModelCommandFunctionality
+    public interface ICarModelCommandFunctionality 
+        : IBaseGenericCreateUpdateDeleteCommandFunctionality<CarModelCreateCommand, CarModelUpdateCommand>
     {
-        Task AddAsync(CarModelCreateCommand carModel);
-
-        Task UpdateAsync(CarModelUpdateCommand carModel);
-
-        Task RemoveAsync(int id);
     }
 }

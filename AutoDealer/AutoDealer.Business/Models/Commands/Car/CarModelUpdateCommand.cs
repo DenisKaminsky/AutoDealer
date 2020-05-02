@@ -1,6 +1,8 @@
-﻿namespace AutoDealer.Business.Models.Commands.Car
+﻿using AutoDealer.Business.Interfaces.Models;
+
+namespace AutoDealer.Business.Models.Commands.Car
 {
-    public class CarModelUpdateCommand : BaseModel
+    public class CarModelUpdateCommand : BaseModel, IUpdateCommand
     {
         public string Name { get; }
         public int BrandId { get; }
