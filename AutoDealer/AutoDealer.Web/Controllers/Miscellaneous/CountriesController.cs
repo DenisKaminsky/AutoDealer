@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoDealer.Business.Interfaces.CommandFunctionality;
+using AutoDealer.Business.Interfaces.CommandFunctionality.Miscellaneous;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.Miscellaneous;
 using AutoDealer.Business.Models.Commands.Miscellaneous;

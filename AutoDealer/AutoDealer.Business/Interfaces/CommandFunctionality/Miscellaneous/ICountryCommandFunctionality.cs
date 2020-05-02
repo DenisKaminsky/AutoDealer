@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 
-namespace AutoDealer.Business.Interfaces.CommandFunctionality
+namespace AutoDealer.Business.Interfaces.CommandFunctionality.Miscellaneous
 {
     public interface ICountryCommandFunctionality
     {

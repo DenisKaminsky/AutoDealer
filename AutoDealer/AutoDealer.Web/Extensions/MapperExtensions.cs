@@ -1,6 +1,10 @@
-﻿using AutoDealer.Business.Models.Commands.Miscellaneous;
+﻿using AutoDealer.Business.Models.Commands.Car;
+using AutoDealer.Business.Models.Commands.Miscellaneous;
+using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
+using AutoDealer.Web.ViewModels.Response.Car;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
 using AutoMapper;
 
@@ -15,6 +19,12 @@ namespace AutoDealer.Web.Extensions
                 #region System
                 config.CreateMap<string, string>()
                     .ConstructUsing(str => str != null ? str.Trim() : str);
+                #endregion
+
+                #region Car
+                config.CreateMap<CarModelModel, CarModelViewModel>();
+                config.CreateMap<CarModelCreateViewModel, CarModelCreateCommand>();
+                config.CreateMap<CarModelUpdateViewModel, CarModelUpdateCommand>();
                 #endregion
 
                 #region Miscellaneous
