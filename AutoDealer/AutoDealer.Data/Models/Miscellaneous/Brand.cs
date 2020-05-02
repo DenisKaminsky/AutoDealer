@@ -1,4 +1,6 @@
-﻿using AutoDealer.Data.Models.Base;
+﻿using System.Collections.Generic;
+using AutoDealer.Data.Models.Base;
+using AutoDealer.Data.Models.Car;
 
 namespace AutoDealer.Data.Models.Miscellaneous
 {
@@ -13,5 +15,7 @@ namespace AutoDealer.Data.Models.Miscellaneous
         public int? SupplierId { get; set; }
 
         public Supplier Supplier { get; set; }
+
+        public IEnumerable<CarModel> CarModels { get; set; }
     }
 }

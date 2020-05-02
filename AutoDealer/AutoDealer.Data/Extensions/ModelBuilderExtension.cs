@@ -1,4 +1,8 @@
-﻿using AutoDealer.Data.ModelsConfigurations.Miscellaneous;
+﻿using AutoDealer.Data.ModelsConfigurations.Car;
+using AutoDealer.Data.ModelsConfigurations.Car.Relations;
+using AutoDealer.Data.ModelsConfigurations.Miscellaneous;
+using AutoDealer.Data.Seeds.Car;
+using AutoDealer.Data.Seeds.Car.Relations;
 using AutoDealer.Data.Seeds.Miscellaneous;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +12,11 @@ namespace AutoDealer.Data.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-
+            #region Car
+            modelBuilder.SeedCarModels();
+            modelBuilder.SeedCarBodyTypes();
+            modelBuilder.SeedModelSupportsBodyType();
+            #endregion
 
             #region Miscellaneous
             modelBuilder.SeedBrands();
@@ -19,7 +27,11 @@ namespace AutoDealer.Data.Extensions
 
         public static void ConfigureModels(this ModelBuilder modelBuilder)
         {
-
+            #region Car
+            modelBuilder.ConfigureCarModel();
+            modelBuilder.ConfigureCarBodyType();
+            modelBuilder.ConfigureModelSupportsBodyType();
+            #endregion
 
             #region Miscellaneous
             modelBuilder.ConfigureBrand();

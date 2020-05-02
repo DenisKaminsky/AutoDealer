@@ -21,7 +21,7 @@ namespace AutoDealer.Data.ModelsConfigurations.Miscellaneous
                 .HasOne(p => p.Supplier)
                 .WithOne(s => s.Brand)
                 .HasForeignKey<Brand>(b => b.SupplierId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

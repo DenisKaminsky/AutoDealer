@@ -1,4 +1,6 @@
 ﻿using AutoDealer.Data.Extensions;
+using AutoDealer.Data.Models.Car;
+using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,6 +8,11 @@ namespace AutoDealer.Data
 {
     public class DataContext : DbContext
     {
+        #region Car
+        public DbSet<CarModel> CarModels { get; set; }
+        public DbSet<CarBodyType> CarBodyTypes { get; set; }
+        public DbSet<ModelSupportsBodyType> ModelsSupportBodyTypes { get; set; }
+        #endregion
 
         #region Miscellaneous
         public DbSet<Country> Countries { get; set; }
