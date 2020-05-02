@@ -7,7 +7,6 @@ using AutoDealer.Data.Interfaces.QueryFiltersProviders.Miscellaneous;
 using AutoDealer.Data.Interfaces.Repositories;
 using AutoDealer.Data.Models.Miscellaneous;
 using AutoDealer.Miscellaneous.Constraints.Miscellaneous;
-using FluentValidation;
 
 namespace AutoDealer.Business.Validators.Miscellaneous
 {
@@ -26,18 +25,17 @@ namespace AutoDealer.Business.Validators.Miscellaneous
 
             RuleFor(x => x.CountryId)
                 .NotEmptyWithMessage()
-                .MustExistsWithMessageAsync(IsValidId);
+                .MustExistsWithMessageAsync(CountryExists);
         }
 
         private async Task<bool> NameDoesNotExist(string name, CancellationToken cancellationToken)
         {
-            var brand = await ReadRepository.GetSingleAsync(_filtersProvider.ByName(name));
-            return brand == null;
+            return await Task.Run(() => !ReadRepository.ValidateExists(_filtersProvider.ByName(name)), cancellationToken);
         }
 
-        private async Task<bool> IsValidId(int id, CancellationToken cancellationToken)
+        private async Task<bool> CountryExists(int id, CancellationToken cancellationToken)
         {
-            return await Task.Run(() => ReadRepository.ValidateIdExists<Country>(id), cancellationToken);
+            return await Task.Run(() => ReadRepository.ValidateExists<Country>(x => x.Id == id), cancellationToken);
         }
     }
 }

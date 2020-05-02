@@ -15,7 +15,7 @@ namespace AutoDealer.Business.Extensions
         public static IRuleBuilderOptions<T, string> MaxLengthWithMessage<T>(this IRuleBuilder<T, string> options,int length)
         {
             return options.MaximumLength(length)
-                .WithMessage($"The value of the field {{PropertyName}} can not be more than {length}");
+                .WithMessage($"The length of the field {{PropertyName}} can not be more than {length} characters");
         }
 
         public static IRuleBuilderOptions<T, int> IsPositiveWithMessage<T>(this IRuleBuilder<T, int> options)

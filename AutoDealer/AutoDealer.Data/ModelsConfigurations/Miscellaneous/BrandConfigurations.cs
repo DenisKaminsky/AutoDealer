@@ -16,6 +16,12 @@ namespace AutoDealer.Data.ModelsConfigurations.Miscellaneous
                 .Property(x => x.Name)
                 .HasMaxLength(BrandConstraints.NameMaxLength)
                 .IsRequired();
+
+            modelBuilder.Entity<Brand>()
+                .HasOne(p => p.Supplier)
+                .WithOne(s => s.Brand)
+                .HasForeignKey<Brand>(b => b.SupplierId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

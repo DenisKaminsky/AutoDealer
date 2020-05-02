@@ -1,19 +1,19 @@
-﻿using AutoDealer.Data.Models.Base;
+﻿using AutoDealer.Web.ViewModels.Base;
 
-namespace AutoDealer.Data.Models.Miscellaneous
+namespace AutoDealer.Web.ViewModels.Response.Miscellaneous
 {
-    public class Supplier : BaseModel
+    public class SupplierViewModel : BaseViewModel
     {
         public string CompanyName { get; set; }
 
         public string Ein { get; set; }
-        
+
         public string Phone { get; set; }
 
         public string Email { get; set; }
 
         public string Address { get; set; }
-        
-        public Brand Brand { get; set; }
+
+        public BrandViewModel Brand { get; set; }
     }
 }

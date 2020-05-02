@@ -13,7 +13,7 @@ namespace AutoDealer.Data.Interfaces.Repositories
 
         Task<T[]> GetAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel;
 
-        bool ValidateIdExists<T>(int id) where T : BaseModel;
+        bool ValidateExists<T>(Expression<Func<T, bool>> filter) where T : BaseModel;
 
         Task<int[]> GetAllIdsAsync<T>() where T : BaseModel;
     }

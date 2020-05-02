@@ -16,11 +16,16 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CountryUpdateCommand, Country>();
                 config.CreateMap<BrandCreateCommand, Brand>();
                 config.CreateMap<BrandUpdateCommand, Brand>();
+                config.CreateMap<SupplierCreateCommand, Supplier>();
+                    //.ForMember(dest => dest.Brand, opt => opt.MapFrom(src => new Brand { Id = src.BrandId }));
+                    config.CreateMap<SupplierUpdateCommand, Supplier>();
+                    //.ForMember(dest => dest.Brand, opt => opt.MapFrom(src => new Brand { Id = src.BrandId }));
                 #endregion
 
                 #region Responses
                 config.CreateMap<Country, CountryModel>();
                 config.CreateMap<Brand, BrandModel>();
+                config.CreateMap<Supplier, SupplierModel>();
                 #endregion
             }).CreateMapper();
         }

@@ -8,5 +8,7 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Miscellaneous
     public interface ISupplierFiltersProvider : IBaseFiltersProvider<Supplier>
     {
         Expression<Func<Supplier, bool>> ByBrandId(int id);
+
+        Expression<Func<Supplier, bool>> ByEin(string ein);
     }
 }

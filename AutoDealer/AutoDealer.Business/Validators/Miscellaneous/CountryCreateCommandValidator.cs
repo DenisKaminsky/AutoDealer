@@ -25,8 +25,7 @@ namespace AutoDealer.Business.Validators.Miscellaneous
 
         private async Task<bool> NameDoesNotExist(string name, CancellationToken cancellationToken)
         {
-            var country = await ReadRepository.GetSingleAsync(_filtersProvider.ByName(name));
-            return country == null;
+            return await Task.Run(() => !ReadRepository.ValidateExists(_filtersProvider.ByName(name)),cancellationToken);
         }
     }
 }

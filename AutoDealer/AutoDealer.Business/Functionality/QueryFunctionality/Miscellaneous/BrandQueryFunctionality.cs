@@ -31,6 +31,12 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Miscellaneous
             return Mapper.Map<IEnumerable<BrandModel>>(brands);
         }
 
+        public async Task<IEnumerable<BrandModel>> GetWithSupplierAsync()
+        {
+            var brands = await ReadRepository.GetAsync(_filtersProvider.WithSupplier(), _relationsProvider.JoinCountry);
+            return Mapper.Map<IEnumerable<BrandModel>>(brands);
+        }
+
         public async Task<IEnumerable<BrandModel>> GetByCountryIdAsync(int countryId)
         {
             var brands = await ReadRepository.GetAsync(_filtersProvider.ByCountryId(countryId), _relationsProvider.JoinCountry);

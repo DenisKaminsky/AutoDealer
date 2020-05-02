@@ -17,7 +17,11 @@ namespace AutoDealer.Business.Validators.Miscellaneous
         public BrandUpdateCommandValidator(IGenericReadRepository readRepository, IBrandFiltersProvider filtersProvider) : base(readRepository)
         {
             _filtersProvider = filtersProvider;
-            
+
+            RuleFor(x => x.Id)
+                .NotEmptyWithMessage()
+                .MustExistsWithMessageAsync(BrandExists);
+
             RuleFor(x => x.Name)
                 .NotEmptyWithMessage()
                 .MaxLengthWithMessage(BrandConstraints.NameMaxLength)
@@ -25,18 +29,22 @@ namespace AutoDealer.Business.Validators.Miscellaneous
             
             RuleFor(x => x.CountryId)
                 .NotEmptyWithMessage()
-                .MustExistsWithMessageAsync(IsValidId);
+                .MustExistsWithMessageAsync(CountryExists);
+        }
+
+        private async Task<bool> BrandExists(int id, CancellationToken cancellationToken)
+        {
+            return await Task.Run(() => ReadRepository.ValidateExists(_filtersProvider.ById(id)), cancellationToken);
         }
 
         private async Task<bool> NameDoesNotExist(BrandUpdateCommand command, CancellationToken cancellationToken)
         {
-            var brand = await ReadRepository.GetSingleAsync(_filtersProvider.OthersWithName(command.Id, command.Name));
-            return brand == null;
+            return await Task.Run(() => !ReadRepository.ValidateExists(_filtersProvider.OthersWithName(command.Id, command.Name)), cancellationToken);
         }
 
-        private async Task<bool> IsValidId(int id, CancellationToken cancellationToken)
+        private async Task<bool> CountryExists(int id, CancellationToken cancellationToken)
         {
-            return await Task.Run(() => ReadRepository.ValidateIdExists<Country>(id), cancellationToken);
+            return await Task.Run(() => ReadRepository.ValidateExists<Country>(x => x.Id == id), cancellationToken);
         }
     }
 }

@@ -10,7 +10,12 @@ namespace AutoDealer.Data.QueryFiltersProviders.Miscellaneous
     {
         public Expression<Func<Supplier, bool>> ByBrandId(int id)
         {
-            return item => item.BrandId == id;
+            return item => item.Brand.Id == id;
+        }
+
+        public Expression<Func<Supplier, bool>> ByEin(string ein)
+        {
+            return item => item.Ein == ein;
         }
     }
 }

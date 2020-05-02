@@ -9,6 +9,8 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Miscellaneous
     {
         Expression<Func<Brand, bool>> ByCountryId(int id);
 
+        Expression<Func<Brand, bool>> WithSupplier();
+
         Expression<Func<Brand, bool>> ByName(string name);
 
         Expression<Func<Brand, bool>> OthersWithName(int id, string name);

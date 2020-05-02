@@ -28,11 +28,11 @@ namespace AutoDealer.Data.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(filter);
         }
-
-        public bool ValidateIdExists<T>(int id) where T : BaseModel
+        
+        public bool ValidateExists<T>(Expression<Func<T, bool>> filter) where T : BaseModel
         {
             return DbContext.Set<T>()
-                .Any(x => x.Id == id);
+                .Any(filter);
         }
 
         public Task<int[]> GetAllIdsAsync<T>() where T : BaseModel

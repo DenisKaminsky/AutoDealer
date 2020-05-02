@@ -24,6 +24,9 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<BrandModel, BrandViewModel>();
                 config.CreateMap<BrandCreateViewModel, BrandCreateCommand>();
                 config.CreateMap<BrandUpdateViewModel, BrandUpdateCommand>();
+                config.CreateMap<SupplierModel, SupplierViewModel>();
+                config.CreateMap<SupplierCreateViewModel, SupplierCreateCommand>();
+                config.CreateMap<SupplierUpdateViewModel, SupplierUpdateCommand>();
                 #endregion
             }).CreateMapper();
         }

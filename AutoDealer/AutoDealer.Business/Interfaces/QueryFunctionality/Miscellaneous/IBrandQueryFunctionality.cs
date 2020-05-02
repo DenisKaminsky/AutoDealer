@@ -7,6 +7,7 @@ namespace AutoDealer.Business.Interfaces.QueryFunctionality.Miscellaneous
     public interface IBrandQueryFunctionality
     {
         Task<IEnumerable<BrandModel>> GetAllAsync();
+        Task<IEnumerable<BrandModel>> GetWithSupplierAsync();
         Task<IEnumerable<BrandModel>> GetByCountryIdAsync(int countryId);
         Task<BrandModel> GetByIdAsync(int id);
     }

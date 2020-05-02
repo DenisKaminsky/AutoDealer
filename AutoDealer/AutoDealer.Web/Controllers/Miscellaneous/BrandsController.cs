@@ -36,6 +36,17 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         }
 
         /// <summary>
+        ///     Gets brands, that has supplier.
+        /// </summary>
+        /// <returns>Status code 200 and view models.</returns>
+        [HttpGet("WithSupplier")]
+        public async Task<IActionResult> GetWithSupplier()
+        {
+            var brands = await _brandQueryFunctionality.GetWithSupplierAsync();
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<BrandViewModel>>(brands));
+        }
+
+        /// <summary>
         ///     Gets brand by id.
         /// </summary>
         /// <param name="id"></param>
