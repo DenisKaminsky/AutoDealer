@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using AutoDealer.Business.Functionality.Base;
+using AutoDealer.Business.Functionality.CommandFunctionality.Base;
 using AutoDealer.Business.Interfaces.CommandFunctionality.Car;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.UnitOfWork;

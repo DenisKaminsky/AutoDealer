@@ -1,8 +1,9 @@
-﻿using AutoDealer.Business.Interfaces.Factories;
+﻿using AutoDealer.Business.Functionality.Base;
+using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.UnitOfWork;
 using AutoDealer.Data.Interfaces.Repositories;
 
-namespace AutoDealer.Business.Functionality.Base
+namespace AutoDealer.Business.Functionality.QueryFunctionality.Base
 {
     public abstract class BaseQueryFunctionality : BaseFunctionality
     {

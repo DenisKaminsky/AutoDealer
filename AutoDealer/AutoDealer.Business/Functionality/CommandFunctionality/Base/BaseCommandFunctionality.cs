@@ -1,9 +1,10 @@
-﻿using AutoDealer.Business.Interfaces.Factories;
+﻿using AutoDealer.Business.Functionality.Base;
+using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.UnitOfWork;
 using AutoDealer.Data.Interfaces.Repositories;
 using FluentValidation;
 
-namespace AutoDealer.Business.Functionality.Base
+namespace AutoDealer.Business.Functionality.CommandFunctionality.Base
 {
     public abstract class BaseCommandFunctionality : BaseFunctionality
     {
