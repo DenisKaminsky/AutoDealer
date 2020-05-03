@@ -22,6 +22,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<BrandUpdateCommand, Brand>();
                 config.CreateMap<SupplierCreateCommand, Supplier>();
                 config.CreateMap<SupplierUpdateCommand, Supplier>();
+                config.CreateMap<ColorCodeCreateCommand, ColorCode>();
 
                 config.CreateMap<CarModelCreateCommand, CarModel>();
                 config.CreateMap<CarModelUpdateCommand, CarModel>();

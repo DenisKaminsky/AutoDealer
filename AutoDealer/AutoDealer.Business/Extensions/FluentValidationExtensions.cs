@@ -47,6 +47,12 @@ namespace AutoDealer.Business.Extensions
                 .WithMessage($"The value of the field {{PropertyName}} has invalid EIN format");
         }
 
+        public static IRuleBuilderOptions<T, string> IsValidHexColorCodeWithMessage<T>(this IRuleBuilder<T, string> options)
+        {
+            return options.Matches(@"^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")
+                .WithMessage($"The value of the field {{PropertyName}} has invalid HEX color code format");
+        }
+
         public static IRuleBuilderOptions<T, TProp> MustExistsWithMessageAsync<T, TProp>(this IRuleBuilder<T, TProp> options, Func<TProp, CancellationToken, Task<bool>> condition)
         {
             return options.MustAsync(condition).WithMessage($"The {{PropertyName}} you have entered does not exist");

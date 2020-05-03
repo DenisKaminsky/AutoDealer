@@ -44,6 +44,8 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<SupplierCreateViewModel, SupplierCreateCommand>();
                 config.CreateMap<SupplierUpdateViewModel, SupplierUpdateCommand>();
                 config.CreateMap<ColorCodeModel, ColorCodeViewModel>();
+                config.CreateMap<ColorCodeCreateViewModel, ColorCodeCreateCommand>();
+
                 #endregion
             }).CreateMapper();
         }
