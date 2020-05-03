@@ -12,5 +12,6 @@ namespace AutoDealer.Data.Models.Car
         public Brand Brand { get; set; }
         public int Price { get; set; }
         public IEnumerable<ModelSupportsBodyType> SupportedBodyTypes { get; set; }
+        public IEnumerable<ModelSupportsColor> SupportedColors { get; set; }
     }
 }

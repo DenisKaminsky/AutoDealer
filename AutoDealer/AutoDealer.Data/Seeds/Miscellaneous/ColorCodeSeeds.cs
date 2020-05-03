@@ -17,7 +17,8 @@ namespace AutoDealer.Data.Seeds.Miscellaneous
                 new ColorCode {Id = 5, Name = "Green", HexValue = "00CC00"},
                 new ColorCode {Id = 6, Name = "Gray", HexValue = "A0A0A0"},
                 new ColorCode {Id = 7, Name = "Yellow", HexValue = "FFFF00"},
-                new ColorCode {Id = 8, Name = "Brown", HexValue = "994C00"}
+                new ColorCode {Id = 8, Name = "Brown", HexValue = "994C00"},
+                new ColorCode {Id = 9, Name = "Purple", HexValue = "6600CC"}
             };
 
             modelBuilder.Entity<ColorCode>().HasData(colorCodes);
