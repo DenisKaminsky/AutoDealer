@@ -30,6 +30,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarBodyTypeAssignCommand, ModelSupportsBodyType>();
                 config.CreateMap<CarColorAssignmentCommand, ModelSupportsColor>();
                 config.CreateMap<CarEngineTypeCreateCommand, CarEngineType>();
+                config.CreateMap<GearboxCreateCommand, Gearbox>();
                 #endregion
 
                 #region Responses
@@ -44,6 +45,7 @@ namespace AutoDealer.Business.Extensions
                     .ForCtorParam("id", opt => opt.MapFrom(src => src.BodyType.Id))
                     .ForCtorParam("name", opt => opt.MapFrom(src => src.BodyType.Name));
                 config.CreateMap<CarEngineType, CarEngineTypeModel>();
+                config.CreateMap<Gearbox, GearboxModel>();
                 #endregion
             }).CreateMapper();
         }

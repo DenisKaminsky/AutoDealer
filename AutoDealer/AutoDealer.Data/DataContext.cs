@@ -14,6 +14,7 @@ namespace AutoDealer.Data
         public DbSet<ModelSupportsBodyType> ModelsSupportBodyTypes { get; set; }
         public DbSet<ModelSupportsColor> ModelsSupportColors { get; set; }
         public DbSet<CarEngineType> CarEngineTypes { get; set; }
+        public DbSet<Gearbox> Gearboxes { get; set; }
         #endregion
 
         #region Miscellaneous
