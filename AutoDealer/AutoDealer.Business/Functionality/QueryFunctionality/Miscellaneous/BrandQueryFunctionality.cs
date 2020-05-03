@@ -48,7 +48,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Miscellaneous
             var brand = await ReadRepository.GetSingleAsync(_filtersProvider.ById(id), _relationsProvider.JoinCountry);
 
             if (brand == null)
-                throw new NotFoundException("Brand was not found!");
+                throw new NotFoundException("Item was not found!");
 
             return Mapper.Map<BrandModel>(brand);
         }

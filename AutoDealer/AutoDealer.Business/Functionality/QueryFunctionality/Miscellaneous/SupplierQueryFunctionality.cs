@@ -36,7 +36,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Miscellaneous
             var supplier = await ReadRepository.GetSingleAsync(_filtersProvider.ById(id), _relationsProvider.JoinBrandAndCountry);
 
             if (supplier == null)
-                throw new NotFoundException("Supplier was not found!");
+                throw new NotFoundException("Item was not found!");
 
             return Mapper.Map<SupplierModel>(supplier);
         }
@@ -46,7 +46,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Miscellaneous
             var supplier = await ReadRepository.GetSingleAsync(_filtersProvider.ByBrandId(id), _relationsProvider.JoinBrandAndCountry);
 
             if (supplier == null)
-                throw new NotFoundException("Supplier was not found!");
+                throw new NotFoundException("Item was not found!");
 
             return Mapper.Map<SupplierModel>(supplier);
         }
