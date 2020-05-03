@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Miscellaneous
 {
-    public class SuppliersController : BaseWebApiController
+    public class SupplierController : BaseWebApiController
     {
         private readonly ISupplierQueryFunctionality _supplierQueryFunctionality;
         private readonly ISupplierCommandFunctionality _supplierCommandFunctionality;
 
-        public SuppliersController(IMapperFactory mapperFactory, ISupplierQueryFunctionality supplierQueryFunctionality, ISupplierCommandFunctionality supplierCommandFunctionality) : base(mapperFactory)
+        public SupplierController(IMapperFactory mapperFactory, ISupplierQueryFunctionality supplierQueryFunctionality, ISupplierCommandFunctionality supplierCommandFunctionality) : base(mapperFactory)
         {
             _supplierQueryFunctionality = supplierQueryFunctionality;
             _supplierCommandFunctionality = supplierCommandFunctionality;

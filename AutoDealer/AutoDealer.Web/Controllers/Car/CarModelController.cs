@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Car
 {
-    public class CarModelsController : BaseWebApiController
+    public class CarModelController : BaseWebApiController
     {
         private readonly ICarModelQueryFunctionality _carModelQueryFunctionality;
         private readonly ICarModelCommandFunctionality _carModelCommandFunctionality;
 
-        public CarModelsController(IMapperFactory mapperFactory, ICarModelQueryFunctionality carModelQueryFunctionality, 
+        public CarModelController(IMapperFactory mapperFactory, ICarModelQueryFunctionality carModelQueryFunctionality, 
             ICarModelCommandFunctionality carModelCommandFunctionality) : base(mapperFactory)
         {
             _carModelQueryFunctionality = carModelQueryFunctionality;

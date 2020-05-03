@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Miscellaneous
 {
-    public class CountriesController: BaseWebApiController
+    public class CountryController: BaseWebApiController
     {
         private readonly ICountryQueryFunctionality _countryQueryFunctionality;
         private readonly ICountryCommandFunctionality _countryCommandFunctionality;
 
-        public CountriesController(IMapperFactory mapperFactory, ICountryQueryFunctionality countryQueryFunctionality,
+        public CountryController(IMapperFactory mapperFactory, ICountryQueryFunctionality countryQueryFunctionality,
             ICountryCommandFunctionality countryCommandFunctionality) : base(mapperFactory)
         {
             _countryQueryFunctionality = countryQueryFunctionality;

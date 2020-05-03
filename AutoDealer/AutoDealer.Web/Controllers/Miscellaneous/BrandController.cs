@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Miscellaneous
 {
-    public class BrandsController : BaseWebApiController
+    public class BrandController : BaseWebApiController
     {
         private readonly IBrandQueryFunctionality _brandQueryFunctionality;
         private readonly IBrandCommandFunctionality _brandCommandFunctionality;
 
-        public BrandsController(IMapperFactory mapperFactory, IBrandQueryFunctionality brandQueryFunctionality, 
+        public BrandController(IMapperFactory mapperFactory, IBrandQueryFunctionality brandQueryFunctionality, 
             IBrandCommandFunctionality brandCommandFunctionality) : base(mapperFactory)
         {
             _brandQueryFunctionality = brandQueryFunctionality;
