@@ -11,9 +11,9 @@ namespace AutoDealer.Business.Validators.Car
 {
     public class CarEngineTypeCreateCommandValidator : BaseValidator<CarEngineTypeCreateCommand>
     {
-        private readonly ICarEngineTypeQueryFiltersProvider _filtersProvider;
+        private readonly ICarEngineTypeFiltersProvider _filtersProvider;
 
-        public CarEngineTypeCreateCommandValidator(IGenericReadRepository readRepository, ICarEngineTypeQueryFiltersProvider filtersProvider) : base(readRepository)
+        public CarEngineTypeCreateCommandValidator(IGenericReadRepository readRepository, ICarEngineTypeFiltersProvider filtersProvider) : base(readRepository)
         {
             _filtersProvider = filtersProvider;
 

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.QueryFiltersProviders.Car
 {
-    public class CarEngineTypeQueryFiltersProvider : BaseFiltersProvider<CarEngineType>, ICarEngineTypeQueryFiltersProvider
+    public class CarEngineTypeFiltersProvider : BaseFiltersProvider<CarEngineType>, ICarEngineTypeFiltersProvider
     {
         public Expression<Func<CarEngineType, bool>> ByName(string name)
         {

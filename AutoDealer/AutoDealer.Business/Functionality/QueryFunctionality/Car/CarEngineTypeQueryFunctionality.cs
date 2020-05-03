@@ -12,7 +12,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Car
     public class CarEngineTypeQueryFunctionality : BaseGenericQueryFunctionality<CarEngineTypeModel, CarEngineType>, ICarEngineTypeQueryFunctionality
     {
         public CarEngineTypeQueryFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, 
-            IGenericReadRepository readRepository, ICarEngineTypeQueryFiltersProvider filtersProvider) : base(unitOfWork, mapperFactory, readRepository, filtersProvider)
+            IGenericReadRepository readRepository, ICarEngineTypeFiltersProvider filtersProvider) : base(unitOfWork, mapperFactory, readRepository, filtersProvider)
         {
         }
     }

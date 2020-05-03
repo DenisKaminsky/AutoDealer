@@ -5,7 +5,7 @@ using AutoDealer.Data.Models.Car;
 
 namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Car
 {
-    public interface ICarEngineTypeQueryFiltersProvider : IBaseFiltersProvider<CarEngineType>
+    public interface ICarEngineTypeFiltersProvider : IBaseFiltersProvider<CarEngineType>
     {
         Expression<Func<CarEngineType, bool>> ByName(string name);
     }
