@@ -33,6 +33,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<Country, CountryModel>();
                 config.CreateMap<Brand, BrandModel>();
                 config.CreateMap<Supplier, SupplierModel>();
+                config.CreateMap<ColorCode, ColorCodeModel>();
 
                 config.CreateMap<CarModel, CarModelModel>();
                 config.CreateMap<CarBodyType, CarBodyTypeModel>();

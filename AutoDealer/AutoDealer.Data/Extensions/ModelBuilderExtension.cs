@@ -22,6 +22,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.SeedBrands();
             modelBuilder.SeedCountries();
             modelBuilder.SeedSuppliers();
+            modelBuilder.SeedColorCodes();
             #endregion
         }
 
@@ -37,6 +38,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureBrand();
             modelBuilder.ConfigureCountry();
             modelBuilder.ConfigureSupplier();
+            modelBuilder.ConfigureColorCode();
             #endregion
         }
     }
