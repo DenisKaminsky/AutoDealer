@@ -10,7 +10,8 @@ namespace AutoDealer.Data.Seeds.Car
         {
             var carEngines = new[]
             {
-                new CarEngine { Id = 1, Name = "DB 11 I", TypeId = 1, Power = 510, Volume = 4 }
+                new CarEngine { Id = 1, Name = "DB 11 I", TypeId = 1, Power = 510, Volume = 4.2f },
+                new CarEngine { Id = 2, Name = "DB 11 II", TypeId = 1, Power = 510, Volume = 4.8f }
             };
 
             modelBuilder.Entity<CarEngine>().HasData(carEngines);

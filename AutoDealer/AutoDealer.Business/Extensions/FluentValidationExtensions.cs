@@ -29,6 +29,17 @@ namespace AutoDealer.Business.Extensions
                 .WithMessage($"The value of the field {{PropertyName}} should be positive ");
         }
 
+        public static IRuleBuilderOptions<T, float> IsPositiveWithMessage<T>(this IRuleBuilder<T, float> options)
+        {
+            return options.GreaterThan(0).WithMessage($"The value of the field {{PropertyName}} should be positive ");
+        }
+
+        public static IRuleBuilderOptions<T, float> IsPositiveOrZeroWithMessage<T>(this IRuleBuilder<T, float> options)
+        {
+            return options.GreaterThanOrEqualTo(0)
+                .WithMessage($"The value of the field {{PropertyName}} should be positive ");
+        }
+
         public static IRuleBuilderOptions<T, string> IsValidEmailWithMessage<T>(this IRuleBuilder<T, string> options)
         {
             return options.EmailAddress()
