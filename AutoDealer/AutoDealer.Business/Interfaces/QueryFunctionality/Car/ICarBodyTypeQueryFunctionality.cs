@@ -5,8 +5,8 @@ using AutoDealer.Business.Models.Responses.Car;
 
 namespace AutoDealer.Business.Interfaces.QueryFunctionality.Car
 {
-    public interface ICarModelQueryFunctionality : IGenericQueryFunctionality<CarModelModel>
+    public interface ICarBodyTypeQueryFunctionality : IGenericQueryFunctionality<CarBodyTypeModel>
     {
-        Task<IEnumerable<CarModelModel>> GetByBrandIdAsync(int id);
+        Task<IEnumerable<CarBodyTypeWithPriceModel>> GetByModelIdAsync(int id);
     }
 }

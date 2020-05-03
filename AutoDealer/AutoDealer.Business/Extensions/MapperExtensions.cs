@@ -3,6 +3,7 @@ using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Data.Models.Car;
+using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
 using AutoMapper;
 
@@ -24,6 +25,8 @@ namespace AutoDealer.Business.Extensions
 
                 config.CreateMap<CarModelCreateCommand, CarModel>();
                 config.CreateMap<CarModelUpdateCommand, CarModel>();
+                config.CreateMap<CarBodyTypeCreateCommand, CarBodyType>();
+                config.CreateMap<CarBodyTypeAssignCommand, ModelSupportsBodyType>();
                 #endregion
 
                 #region Responses
@@ -32,6 +35,10 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<Supplier, SupplierModel>();
 
                 config.CreateMap<CarModel, CarModelModel>();
+                config.CreateMap<CarBodyType, CarBodyTypeModel>();
+                config.CreateMap<ModelSupportsBodyType, CarBodyTypeWithPriceModel>()
+                    .ForCtorParam("id", opt => opt.MapFrom(src => src.BodyType.Id))
+                    .ForCtorParam("name", opt => opt.MapFrom(src => src.BodyType.Name));
                 #endregion
             }).CreateMapper();
         }
