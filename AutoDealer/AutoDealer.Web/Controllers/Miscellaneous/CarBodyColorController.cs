@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Miscellaneous
 {
-    public class ColorCodeController : BaseWebApiController
+    public class CarBodyColorController : BaseWebApiController
     {
         private readonly IColorCodeQueryFunctionality _queryFunctionality;
         private readonly IColorCodeCommandFunctionality _commandFunctionality;
 
-        public ColorCodeController(IMapperFactory mapperFactory, IColorCodeQueryFunctionality queryFunctionality, 
+        public CarBodyColorController(IMapperFactory mapperFactory, IColorCodeQueryFunctionality queryFunctionality, 
             IColorCodeCommandFunctionality commandFunctionality) : base(mapperFactory)
         {
             _queryFunctionality = queryFunctionality;
