@@ -31,6 +31,8 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<CarBodyTypeCreateViewModel, CarBodyTypeCreateCommand>();
                 config.CreateMap<CarBodyTypeAssignViewModel, CarBodyTypeAssignCommand>();
                 config.CreateMap<CarBodyTypeUnassignViewModel, CarBodyTypeUnassignCommand>();
+
+                config.CreateMap<CarColorAssignmentViewModel, CarColorAssignmentCommand>();
                 #endregion
 
                 #region Miscellaneous

@@ -4,7 +4,7 @@ using AutoDealer.Data.Models.Car.Relations;
 
 namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Car
 {
-    public interface ICarModelBodyColorFiltersProvider
+    public interface IModelSupportsColorFiltersProvider
     {
         Expression<Func<ModelSupportsColor, bool>> ByModelId(int id);
         Expression<Func<ModelSupportsColor, bool>> ByColorId(int id);

@@ -6,7 +6,7 @@ using AutoDealer.Data.QueryFiltersProviders.Base;
 
 namespace AutoDealer.Data.QueryFiltersProviders.Car
 {
-    public class ModelSupportsColorFiltersProvider : BaseFiltersProvider<ModelSupportsColor>, ICarModelBodyColorFiltersProvider
+    public class ModelSupportsColorFiltersProvider : BaseFiltersProvider<ModelSupportsColor>, IModelSupportsColorFiltersProvider
     {
         public Expression<Func<ModelSupportsColor, bool>> ByModelId(int id)
         {

@@ -5,6 +5,8 @@ using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Validators.Base;
 using AutoDealer.Data.Interfaces.QueryFiltersProviders.Car;
 using AutoDealer.Data.Interfaces.Repositories;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace AutoDealer.Business.Validators.Car
 {
@@ -12,11 +14,13 @@ namespace AutoDealer.Business.Validators.Car
     {
         private readonly ICarModelFiltersProvider _modelFiltersProvider;
         private readonly ICarBodyTypeFiltersProvider _bodyTypeFiltersProvider;
+        private readonly IModelSupportsBodyTypeFiltersProvider _modelBodyTypeFiltersProvider;
 
-        public CarBodyTypeAssignCommandValidator(IGenericReadRepository readRepository, ICarModelFiltersProvider modelFiltersProvider, ICarBodyTypeFiltersProvider bodyTypeFiltersProvider) : base(readRepository)
+        public CarBodyTypeAssignCommandValidator(IGenericReadRepository readRepository, ICarModelFiltersProvider modelFiltersProvider, ICarBodyTypeFiltersProvider bodyTypeFiltersProvider, IModelSupportsBodyTypeFiltersProvider modelBodyTypeFiltersProvider) : base(readRepository)
         {
             _modelFiltersProvider = modelFiltersProvider;
             _bodyTypeFiltersProvider = bodyTypeFiltersProvider;
+            _modelBodyTypeFiltersProvider = modelBodyTypeFiltersProvider;
 
             RuleFor(x => x.ModelId)
                 .NotEmptyWithMessage()
@@ -28,6 +32,18 @@ namespace AutoDealer.Business.Validators.Car
 
             RuleFor(x => x.Price)
                 .IsPositiveOrZeroWithMessage();
+        }
+
+        protected override bool PreValidate(ValidationContext<CarBodyTypeAssignCommand> context, ValidationResult result)
+        {
+            var isExists = ReadRepository.ValidateExists(_modelBodyTypeFiltersProvider.ByModelIdAndBodyTypeId(context.InstanceToValidate.ModelId, context.InstanceToValidate.BodyTypeId));
+
+            if (isExists)
+            {
+                result.Errors.Add(new ValidationFailure("", "Body Type is already assigned!"));
+                return false;
+            }
+            return true;
         }
 
         private async Task<bool> ModelExists(int id, CancellationToken cancellationToken)

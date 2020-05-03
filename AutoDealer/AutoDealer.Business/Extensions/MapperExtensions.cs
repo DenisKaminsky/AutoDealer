@@ -28,6 +28,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarModelUpdateCommand, CarModel>();
                 config.CreateMap<CarBodyTypeCreateCommand, CarBodyType>();
                 config.CreateMap<CarBodyTypeAssignCommand, ModelSupportsBodyType>();
+                config.CreateMap<CarColorAssignmentCommand, ModelSupportsColor>();
                 #endregion
 
                 #region Responses
