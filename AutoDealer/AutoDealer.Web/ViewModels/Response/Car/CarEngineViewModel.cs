@@ -7,7 +7,6 @@ namespace AutoDealer.Web.ViewModels.Response.Car
         public string Name { get; set; }
         public int Volume { get; set; }
         public int Power { get; set; }
-        public int Price { get; set; }
         public CarEngineTypeViewModel Type { get; set; }
     }
 }

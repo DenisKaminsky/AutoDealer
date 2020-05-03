@@ -32,10 +32,7 @@ namespace AutoDealer.Business.Validators.Car
 
             RuleFor(x => x.Power)
                 .IsPositiveOrZeroWithMessage();
-
-            RuleFor(x => x.Price)
-                .IsPositiveOrZeroWithMessage();
-
+            
             RuleFor(x => x.TypeId)
                 .NotEmptyWithMessage()
                 .MustExistsWithMessageAsync(EngineTypeExists);

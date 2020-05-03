@@ -7,15 +7,13 @@ namespace AutoDealer.Business.Models.Commands.Car
         public string Name { get; }
         public int Volume { get; }
         public int Power { get; }
-        public int Price { get; }
         public int TypeId { get; }
 
-        public CarEngineCreateCommand(string name, int volume, int power, int price, int typeId)
+        public CarEngineCreateCommand(string name, int volume, int power, int typeId)
         {
             Name = name;
             Volume = volume;
             Power = power;
-            Price = price;
             TypeId = typeId;
         }
     }

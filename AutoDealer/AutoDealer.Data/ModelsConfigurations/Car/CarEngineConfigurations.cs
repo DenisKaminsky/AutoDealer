@@ -18,9 +18,6 @@ namespace AutoDealer.Data.ModelsConfigurations.Car
 
             modelBuilder.Entity<CarEngine>()
                 .HasCheckConstraint("CK_CarEngine_Power", $"\"{nameof(CarEngine.Power)}\" >= 0");
-
-            modelBuilder.Entity<CarEngine>()
-                .HasCheckConstraint("CK_CarEngine_Price", $"\"{nameof(CarModel.Price)}\" >= 0");
         }
     }
 }
