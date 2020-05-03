@@ -19,6 +19,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.SeedModelsSupportColors();
             modelBuilder.SeedCarEngineTypes();
             modelBuilder.SeedGearboxes();
+            modelBuilder.SeedCarEngines();
             #endregion
 
             #region Miscellaneous
@@ -38,6 +39,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureModelSupportsColor();
             modelBuilder.ConfigureCarEngineType();
             modelBuilder.ConfigureGearbox();
+            modelBuilder.ConfigureCarEngine();
             #endregion
 
             #region Miscellaneous
