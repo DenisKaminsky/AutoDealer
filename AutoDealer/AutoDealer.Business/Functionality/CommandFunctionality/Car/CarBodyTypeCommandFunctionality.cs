@@ -33,8 +33,6 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Car
             if (!isRemoved)
                 throw new NotFoundException("Item was not found!");
 
-            var itemsToRemove = await _readRepository.GetAsync(_filtersProvider.ByBodyTypeId(id));
-            await WriteRepository.RemoveRangeAsync(itemsToRemove);
             await UnitOfWork.CommitAsync();
         }
 
