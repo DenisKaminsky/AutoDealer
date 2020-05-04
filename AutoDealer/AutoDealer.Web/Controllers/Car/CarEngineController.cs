@@ -35,6 +35,17 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
+        ///     Gets all supported engine-gearbox pairs.
+        /// </summary>
+        /// <returns>Status code 200 and view models.</returns>
+        [HttpGet("WithGearbox")]
+        public async Task<IActionResult> GetAllEngineGearboxPairs()
+        {
+            var pairs = await _queryFunctionality.GetAllEngineGearboxPairsAsync();
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<CarEngineGearboxViewModel>>(pairs));
+        }
+
+        /// <summary>
         ///     Gets engine by id.
         /// </summary>
         /// <param name="id"></param>
@@ -44,6 +55,18 @@ namespace AutoDealer.Web.Controllers.Car
         {
             var engine = await _queryFunctionality.GetByIdAsync(id);
             return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<CarEngineViewModel>(engine));
+        }
+
+        /// <summary>
+        ///     Gets supported engine-gearbox pairs by model id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 200 and view models.</returns>
+        [HttpGet("ByModel/{id}")]
+        public async Task<IActionResult> GetEngineGearboxPairsByModelId(int id)
+        {
+            var pairs = await _queryFunctionality.GetEngineGearboxPairsByModelIdAsync(id);
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<CarModelEngineGearboxViewModel>>(pairs));
         }
 
         /// <summary>

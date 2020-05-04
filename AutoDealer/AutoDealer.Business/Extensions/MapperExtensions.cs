@@ -49,6 +49,8 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarEngineType, CarEngineTypeModel>();
                 config.CreateMap<Gearbox, GearboxModel>();
                 config.CreateMap<CarEngine, CarEngineModel>();
+                config.CreateMap<EngineSupportsGearbox, CarEngineWithGearboxModel>();
+
                 #endregion
             }).CreateMapper();
         }
