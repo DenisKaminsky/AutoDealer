@@ -41,7 +41,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Car
         public async Task<IEnumerable<CarEngineWithGearboxModel>> GetAllEngineGearboxPairsAsync()
         {
             var items = await ReadRepository.GetAllAsync<EngineSupportsGearbox>(_engineGearboxRelationsProvider.JoinGearboxAndEngine);
-            var result = items.GroupBy(x => x.ModelId).Select(x => x.First());
+            var result = items.GroupBy(x => new { x.ModelId, x.EngineId }).Select(x => x.First());
             return Mapper.Map<IEnumerable<CarEngineWithGearboxModel>>(result);
         }
 

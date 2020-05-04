@@ -20,6 +20,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.SeedCarEngineTypes();
             modelBuilder.SeedGearboxes();
             modelBuilder.SeedCarEngines();
+            modelBuilder.SeedEnginesSupportGearboxes();
             #endregion
 
             #region Miscellaneous
