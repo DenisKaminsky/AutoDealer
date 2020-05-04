@@ -1,4 +1,6 @@
-﻿using AutoDealer.Data.Models.Base;
+﻿using System.Collections.Generic;
+using AutoDealer.Data.Models.Base;
+using AutoDealer.Data.Models.Car.Relations;
 
 namespace AutoDealer.Data.Models.Car
 {
@@ -9,5 +11,6 @@ namespace AutoDealer.Data.Models.Car
         public int Power { get; set; }
         public int TypeId { get; set; }
         public CarEngineType Type { get; set; }
+        public IEnumerable<EngineSupportsGearbox> SupportedGearboxes { get; set; }
     }
 }
