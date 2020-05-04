@@ -104,5 +104,27 @@ namespace AutoDealer.Web.Controllers.Car
             await _commandFunctionality.RemoveAsync(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
+
+        /// <summary>
+        ///     Assigns engine-gearbox pair to model
+        /// </summary>
+        /// <returns>Status code 200.</returns>
+        [HttpPost("Assign")]
+        public async Task<IActionResult> Assign([FromBody] CarEngineGearboxAssignViewModel assignViewModel)
+        {
+            await _commandFunctionality.AssignAsync(Mapper.Map<CarEngineGearboxAssignCommand>(assignViewModel));
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
+        ///     Unassigns engine-gearbox pair from model
+        /// </summary>
+        /// <returns>Status code 204.</returns>
+        [HttpDelete("Unassign")]
+        public async Task<IActionResult> Unassign([FromBody] CarEngineGearboxUnassignViewModel unassignViewModel)
+        {
+            await _commandFunctionality.UnassignAsync(Mapper.Map<CarEngineGearboxUnassignCommand>(unassignViewModel));
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 }

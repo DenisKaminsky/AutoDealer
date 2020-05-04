@@ -33,6 +33,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<GearboxCreateCommand, Gearbox>();
                 config.CreateMap<CarEngineCreateCommand, CarEngine>();
                 config.CreateMap<CarEngineUpdateCommand, CarEngine>();
+                config.CreateMap<CarEngineGearboxAssignCommand, EngineSupportsGearbox>();
                 #endregion
 
                 #region Responses

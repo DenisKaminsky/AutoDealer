@@ -12,5 +12,10 @@ namespace AutoDealer.Data.QueryFiltersProviders.Car
         {
             return item => item.ModelId == id;
         }
+
+        public Expression<Func<EngineSupportsGearbox, bool>> ByModelEngineGearbox(int modelId, int engineId, int gearboxId)
+        {
+            return item => item.ModelId == modelId && item.EngineId == engineId && item.GearboxId == gearboxId;
+        }
     }
 }

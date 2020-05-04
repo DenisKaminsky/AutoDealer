@@ -38,7 +38,7 @@ namespace AutoDealer.Business.Validators.Car
 
             if (isExists)
             {
-                result.Errors.Add(new ValidationFailure("", "Color is already assigned!"));
+                result.Errors.Add(new ValidationFailure("", "Item is already assigned!"));
                 return false;
             }
             return true;
