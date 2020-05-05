@@ -42,6 +42,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureGearbox();
             modelBuilder.ConfigureCarEngine();
             modelBuilder.ConfigureEngineSupportsGearbox();
+            modelBuilder.ConfigureCarComplectation();
             #endregion
 
             #region Miscellaneous

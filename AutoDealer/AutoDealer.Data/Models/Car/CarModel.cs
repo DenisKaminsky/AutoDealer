@@ -14,5 +14,6 @@ namespace AutoDealer.Data.Models.Car
         public IEnumerable<ModelSupportsBodyType> SupportedBodyTypes { get; set; }
         public IEnumerable<ModelSupportsColor> SupportedColors { get; set; }
         public IEnumerable<EngineSupportsGearbox> SupportedEngineGearboxes { get; set; }
+        public IEnumerable<CarComplectation> SupportedComplectations { get; set; }
     }
 }
