@@ -59,6 +59,18 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
+        ///     Gets car complectation options by complectation id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 200 and view models.</returns>
+        [HttpGet("ByComplectation/{id}")]
+        public async Task<IActionResult> GetOptionsByComplectationId(int id)
+        {
+            var items = await _queryFunctionality.GetOptionsByComplectationIdAsync(id);
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<CarComplectationOptionViewModel>>(items));
+        }
+
+        /// <summary>
         ///     Adds car complectation
         /// </summary>
         /// <returns>Status code 201.</returns>
@@ -66,6 +78,17 @@ namespace AutoDealer.Web.Controllers.Car
         public async Task<IActionResult> Add([FromBody] CarComplectationCreateViewModel item)
         {
             await _commandFunctionality.AddAsync(Mapper.Map<CarComplectationCreateCommand>(item));
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
+        ///     Adds options to complectation
+        /// </summary>
+        /// <returns>Status code 201.</returns>
+        [HttpPost("Options")]
+        public async Task<IActionResult> AddOptions([FromBody] CarComplectationOptionsAssignViewModel assignViewModel)
+        {
+            await _commandFunctionality.AddOptionsAsync(Mapper.Map<CarComplectationOptionsAssignCommand>(assignViewModel));
             return StatusCode(StatusCodes.Status201Created);
         }
 
@@ -78,6 +101,18 @@ namespace AutoDealer.Web.Controllers.Car
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+
+        /// <summary>
+        ///     Removes complectation by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 204.</returns>
+        [HttpDelete("Options/{id}")]
+        public async Task<IActionResult> RemoveComplectation(int id)
+        {
+            await _commandFunctionality.RemoveOptionAsync(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
     }

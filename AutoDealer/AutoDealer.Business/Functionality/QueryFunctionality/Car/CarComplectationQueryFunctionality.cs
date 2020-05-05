@@ -13,18 +13,29 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Car
 {
     public class CarComplectationQueryFunctionality : BaseGenericQueryFunctionality<CarComplectationModel, CarComplectation>, ICarComplectationQueryFunctionality
     {
-        private readonly ICarComplectationFiltersProvider _filtersProvider;
+        private readonly ICarComplectationFiltersProvider _complectationFiltersProvider;
+        private readonly ICarComplectationOptionFiltersProvider _complectationOptionFiltersProvider;
 
-        public CarComplectationQueryFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericReadRepository readRepository, ICarComplectationFiltersProvider filtersProvider) : base(unitOfWork, mapperFactory, readRepository, filtersProvider)
+        public CarComplectationQueryFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericReadRepository readRepository, 
+            ICarComplectationFiltersProvider complectationFiltersProvider, ICarComplectationOptionFiltersProvider complectationOptionFiltersProvider) 
+            : base(unitOfWork, mapperFactory, readRepository, complectationFiltersProvider)
         {
-            _filtersProvider = filtersProvider;
+            _complectationFiltersProvider = complectationFiltersProvider;
+            _complectationOptionFiltersProvider = complectationOptionFiltersProvider;
         }
 
         public async Task<IEnumerable<CarComplectationModel>> GetByModelIdAsync(int id)
         {
-            var items = await ReadRepository.GetAsync(_filtersProvider.ByModelId(id));
+            var items = await ReadRepository.GetAsync(_complectationFiltersProvider.ByModelId(id));
 
             return Mapper.Map<IEnumerable<CarComplectationModel>>(items);
+        }
+
+        public async Task<IEnumerable<CarComplectationOptionModel>> GetOptionsByComplectationIdAsync(int id)
+        {
+            var items = await ReadRepository.GetAsync(_complectationOptionFiltersProvider.ByComplectationId(id));
+
+            return Mapper.Map<IEnumerable<CarComplectationOptionModel>>(items);
         }
     }
 }

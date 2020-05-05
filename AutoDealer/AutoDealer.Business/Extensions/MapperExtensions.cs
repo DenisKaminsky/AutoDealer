@@ -1,4 +1,6 @@
-﻿using AutoDealer.Business.Models.Commands.Car;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
@@ -53,6 +55,10 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarEngine, CarEngineModel>();
                 config.CreateMap<EngineSupportsGearbox, CarEngineWithGearboxModel>();
                 config.CreateMap<CarComplectation, CarComplectationModel>();
+                config.CreateMap<CarComplectationOption, CarComplectationOptionModel>();
+                config.CreateMap<CarComplectationOptionsAssignCommand, IEnumerable<CarComplectationOption>>()
+                    .ConstructUsing(src => src.Options
+                        .Select(x => new CarComplectationOption{ ComplectationId = src.ComplectationId, Name = x }));
                 #endregion
             }).CreateMapper();
         }

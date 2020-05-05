@@ -51,6 +51,9 @@ namespace AutoDealer.Web.Extensions
 
                 config.CreateMap<CarComplectationModel, CarComplectationViewModel>();
                 config.CreateMap<CarComplectationCreateViewModel, CarComplectationCreateCommand>();
+
+                config.CreateMap<CarComplectationOptionModel, CarComplectationOptionViewModel>();
+                config.CreateMap<CarComplectationOptionsAssignViewModel, CarComplectationOptionsAssignCommand>();
                 #endregion
 
                 #region Miscellaneous

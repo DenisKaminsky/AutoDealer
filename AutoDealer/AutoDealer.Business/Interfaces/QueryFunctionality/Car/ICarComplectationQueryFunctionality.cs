@@ -8,5 +8,6 @@ namespace AutoDealer.Business.Interfaces.QueryFunctionality.Car
     public interface ICarComplectationQueryFunctionality : IGenericQueryFunctionality<CarComplectationModel>
     {
         Task<IEnumerable<CarComplectationModel>> GetByModelIdAsync(int id);
+        Task<IEnumerable<CarComplectationOptionModel>> GetOptionsByComplectationIdAsync(int id);
     }
 }
