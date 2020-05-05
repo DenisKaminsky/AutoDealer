@@ -2,6 +2,6 @@
 {
     public static class CarComplectationConstraints 
     {
-        public const int NameMaxLength = 35;
+        public const int NameMaxLength = 50;
     }
 }

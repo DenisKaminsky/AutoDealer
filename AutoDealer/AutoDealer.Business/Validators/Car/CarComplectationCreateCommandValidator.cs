@@ -12,17 +12,14 @@ namespace AutoDealer.Business.Validators.Car
     public class CarComplectationCreateCommandValidator : BaseValidator<CarComplectationCreateCommand>
     {
         private readonly ICarModelFiltersProvider _modelFiltersProvider;
-        private readonly ICarComplectationFiltersProvider _complectationFiltersProvider;
 
-        public CarComplectationCreateCommandValidator(IGenericReadRepository readRepository, ICarModelFiltersProvider modelFiltersProvider, ICarComplectationFiltersProvider complectationFiltersProvider) : base(readRepository)
+        public CarComplectationCreateCommandValidator(IGenericReadRepository readRepository, ICarModelFiltersProvider modelFiltersProvider) : base(readRepository)
         {
             _modelFiltersProvider = modelFiltersProvider;
-            _complectationFiltersProvider = complectationFiltersProvider;
 
             RuleFor(x => x.Name)
                 .NotEmptyWithMessage()
-                .MaxLengthWithMessage(CarComplectationConstraints.NameMaxLength)
-                .MustNotExistWithMessageAsync(NameDoesNotExist);
+                .MaxLengthWithMessage(CarComplectationConstraints.NameMaxLength);
 
             RuleFor(x => x.Price)
                 .IsPositiveOrZeroWithMessage();
@@ -31,12 +28,7 @@ namespace AutoDealer.Business.Validators.Car
                 .NotEmptyWithMessage()
                 .MustExistsWithMessageAsync(ModelExists);
         }
-
-        private async Task<bool> NameDoesNotExist(string name, CancellationToken cancellationToken)
-        {
-            return await Task.Run(() => !ReadRepository.ValidateExists(_complectationFiltersProvider.ByName(name)), cancellationToken);
-        }
-
+        
         private async Task<bool> ModelExists(int id, CancellationToken cancellationToken)
         {
             return await Task.Run(() => ReadRepository.ValidateExists(_modelFiltersProvider.ById(id)), cancellationToken);
