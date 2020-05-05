@@ -34,6 +34,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarEngineCreateCommand, CarEngine>();
                 config.CreateMap<CarEngineUpdateCommand, CarEngine>();
                 config.CreateMap<CarEngineGearboxAssignCommand, EngineSupportsGearbox>();
+                config.CreateMap<CarComplectationCreateCommand, CarComplectation>();
                 #endregion
 
                 #region Responses
@@ -51,7 +52,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<Gearbox, GearboxModel>();
                 config.CreateMap<CarEngine, CarEngineModel>();
                 config.CreateMap<EngineSupportsGearbox, CarEngineWithGearboxModel>();
-
+                config.CreateMap<CarComplectation, CarComplectationModel>();
                 #endregion
             }).CreateMapper();
         }

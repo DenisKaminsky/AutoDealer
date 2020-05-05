@@ -48,6 +48,9 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<CarEngineWithGearboxModel, CarModelEngineGearboxViewModel>();
                 config.CreateMap<CarEngineGearboxAssignViewModel, CarEngineGearboxAssignCommand>();
                 config.CreateMap<CarEngineGearboxUnassignViewModel, CarEngineGearboxUnassignCommand>();
+
+                config.CreateMap<CarComplectationModel, CarComplectationViewModel>();
+                config.CreateMap<CarComplectationCreateViewModel, CarComplectationCreateCommand>();
                 #endregion
 
                 #region Miscellaneous

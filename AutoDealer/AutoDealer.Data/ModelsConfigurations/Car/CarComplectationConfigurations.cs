@@ -13,7 +13,7 @@ namespace AutoDealer.Data.ModelsConfigurations.Car
                 .HasMaxLength(CarComplectationConstraints.NameMaxLength)
                 .IsRequired();
 
-            modelBuilder.Entity<CarEngine>()
+            modelBuilder.Entity<CarComplectation>()
                 .HasCheckConstraint("CK_CarComplectation_Price", $"\"{nameof(CarComplectation.Price)}\" >= 0");
         }
     }

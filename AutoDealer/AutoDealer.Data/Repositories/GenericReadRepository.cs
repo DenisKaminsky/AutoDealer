@@ -17,6 +17,7 @@ namespace AutoDealer.Data.Repositories
         {
             return DbContext.Set<T>()
                 .IncludeRange(propertiesToInclude)
+                .OrderBy(x => x.Id)
                 .AsNoTracking()
                 .ToArrayAsync();
         }
@@ -47,6 +48,7 @@ namespace AutoDealer.Data.Repositories
             return DbContext.Set<T>()
                 .IncludeRange(propertiesToInclude)
                 .Where(filter)
+                .OrderBy(x => x.Id)
                 .AsNoTracking()
                 .ToArrayAsync();
         }
