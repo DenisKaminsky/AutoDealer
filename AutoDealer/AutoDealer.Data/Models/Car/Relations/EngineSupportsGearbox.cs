@@ -1,4 +1,5 @@
-﻿using AutoDealer.Data.Models.Base;
+﻿using System.Collections.Generic;
+using AutoDealer.Data.Models.Base;
 
 namespace AutoDealer.Data.Models.Car.Relations
 {
@@ -11,5 +12,6 @@ namespace AutoDealer.Data.Models.Car.Relations
         public int GearboxId { get; set; }
         public Gearbox Gearbox { get; set; }
         public int Price { get; set; }
+        public IEnumerable<CarStock> CarsInStock { get; set; }
     }
 }

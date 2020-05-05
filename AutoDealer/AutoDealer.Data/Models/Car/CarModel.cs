@@ -15,5 +15,6 @@ namespace AutoDealer.Data.Models.Car
         public IEnumerable<ModelSupportsColor> SupportedColors { get; set; }
         public IEnumerable<EngineSupportsGearbox> SupportedEngineGearboxes { get; set; }
         public IEnumerable<CarComplectation> SupportedComplectations { get; set; }
+        public IEnumerable<CarStock> CarsInStock { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.SeedCarEngines();
             modelBuilder.SeedEnginesSupportGearboxes();
             modelBuilder.SeedCarComplectations();
+            modelBuilder.SeedCarsStock();
             #endregion
 
             #region Miscellaneous
@@ -45,6 +46,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureEngineSupportsGearbox();
             modelBuilder.ConfigureCarComplectation();
             modelBuilder.ConfigureCarComplectationOption();
+            modelBuilder.ConfigureCarStock();
             #endregion
 
             #region Miscellaneous

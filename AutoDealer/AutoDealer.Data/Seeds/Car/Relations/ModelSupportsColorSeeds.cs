@@ -18,7 +18,7 @@ namespace AutoDealer.Data.Seeds.Car.Relations
                 new ModelSupportsColor { Id = 6, ModelId = 2, ColorId = 4 },
                 new ModelSupportsColor { Id = 7, ModelId = 2, ColorId = 6 },
                 new ModelSupportsColor { Id = 8, ModelId = 3, ColorId = 1 },
-                new ModelSupportsColor { Id = 9, ModelId = 3, ColorId = 1 },
+                new ModelSupportsColor { Id = 9, ModelId = 3, ColorId = 4 },
                 new ModelSupportsColor { Id = 10, ModelId = 4, ColorId = 1 },
                 new ModelSupportsColor { Id = 11, ModelId = 4, ColorId = 2 },
                 new ModelSupportsColor { Id = 12, ModelId = 4, ColorId = 4 },
