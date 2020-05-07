@@ -23,6 +23,7 @@ namespace AutoDealer.Web.Extensions
 
                 #region Car
                 config.CreateMap<CarModelModel, CarModelViewModel>();
+                config.CreateMap<CarModelCarStockModel, CarModelCarStockViewModel>();
                 config.CreateMap<CarModelCreateViewModel, CarModelCreateCommand>();
                 config.CreateMap<CarModelUpdateViewModel, CarModelUpdateCommand>();
 
@@ -50,10 +51,15 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<CarEngineGearboxUnassignViewModel, CarEngineGearboxUnassignCommand>();
 
                 config.CreateMap<CarComplectationModel, CarComplectationViewModel>();
+                config.CreateMap<CarComplectationCarStockModel, CarComplectationCarStockViewModel>();
                 config.CreateMap<CarComplectationCreateViewModel, CarComplectationCreateCommand>();
 
                 config.CreateMap<CarComplectationOptionModel, CarComplectationOptionViewModel>();
                 config.CreateMap<CarComplectationOptionsAssignViewModel, CarComplectationOptionsAssignCommand>();
+
+                config.CreateMap<CarStockModel, CarStockViewModel>();
+                config.CreateMap<CarStockCreateViewModel, CarStockCreateCommand>();
+                config.CreateMap<CarStockUpdateViewModel, CarStockUpdateCommand>();
                 #endregion
 
                 #region Miscellaneous

@@ -37,6 +37,9 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarEngineUpdateCommand, CarEngine>();
                 config.CreateMap<CarEngineGearboxAssignCommand, EngineSupportsGearbox>();
                 config.CreateMap<CarComplectationCreateCommand, CarComplectation>();
+                config.CreateMap<CarComplectationOptionsAssignCommand, IEnumerable<CarComplectationOption>>()
+                    .ConstructUsing(src => src.Options
+                        .Select(x => new CarComplectationOption { ComplectationId = src.ComplectationId, Name = x }));
                 #endregion
 
                 #region Responses
@@ -46,6 +49,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<ColorCode, ColorCodeModel>();
 
                 config.CreateMap<CarModel, CarModelModel>();
+                config.CreateMap<CarModel, CarModelCarStockModel>();
                 config.CreateMap<CarBodyType, CarBodyTypeModel>();
                 config.CreateMap<ModelSupportsBodyType, CarBodyTypeWithPriceModel>()
                     .ForCtorParam("id", opt => opt.MapFrom(src => src.BodyType.Id))
@@ -55,10 +59,13 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarEngine, CarEngineModel>();
                 config.CreateMap<EngineSupportsGearbox, CarEngineWithGearboxModel>();
                 config.CreateMap<CarComplectation, CarComplectationModel>();
+                config.CreateMap<CarComplectation, CarComplectationCarStockModel>();
                 config.CreateMap<CarComplectationOption, CarComplectationOptionModel>();
-                config.CreateMap<CarComplectationOptionsAssignCommand, IEnumerable<CarComplectationOption>>()
-                    .ConstructUsing(src => src.Options
-                        .Select(x => new CarComplectationOption{ ComplectationId = src.ComplectationId, Name = x }));
+                config.CreateMap<CarStock, CarStockModel>()
+                    .ForCtorParam("gearbox", opt => opt.MapFrom(src => src.EngineGearbox.Gearbox))
+                    .ForCtorParam("engine", opt => opt.MapFrom(src => src.EngineGearbox.Engine));
+                config.CreateMap<CarStockCreateCommand, CarStock>();
+                config.CreateMap<CarStockUpdateCommand, CarStock>();
                 #endregion
             }).CreateMapper();
         }

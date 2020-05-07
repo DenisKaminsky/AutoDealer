@@ -8,7 +8,7 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Car
     public interface ICarComplectationFiltersProvider : IBaseFiltersProvider<CarComplectation>
     {
         Expression<Func<CarComplectation, bool>> ByModelId(int id);
-
+        Expression<Func<CarComplectation, bool>> ByModelIdAndComplectationId(int modelId, int complectationId);
         Expression<Func<CarComplectation, bool>> ByName(string name);
     }
 }

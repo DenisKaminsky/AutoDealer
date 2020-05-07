@@ -14,6 +14,11 @@ namespace AutoDealer.Data.QueryFiltersProviders.Car
             return item => item.ModelId == id;
         }
 
+        public Expression<Func<CarComplectation, bool>> ByModelIdAndComplectationId(int modelId, int complectationId)
+        {
+            return item => item.ModelId == modelId && item.Id == complectationId;
+        }
+
         public Expression<Func<CarComplectation, bool>> ByName(string name)
         {
             return item => EF.Functions.ILike(item.Name, name);
