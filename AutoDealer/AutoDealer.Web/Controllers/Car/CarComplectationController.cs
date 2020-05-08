@@ -4,9 +4,11 @@ using AutoDealer.Business.Interfaces.CommandFunctionality.Car;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.Car;
 using AutoDealer.Business.Models.Commands.Car;
+using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Response.Car;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +30,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -79,6 +82,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarComplectationCreateViewModel item)
         {
@@ -91,6 +95,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Options")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AddOptions([FromBody] CarComplectationOptionsAssignViewModel assignViewModel)
         {
@@ -104,6 +109,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
@@ -117,6 +123,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("Options/{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> RemoveComplectation(int id)
         {

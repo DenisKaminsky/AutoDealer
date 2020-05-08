@@ -2,10 +2,13 @@
 using AutoDealer.Web.Attributes;
 using AutoDealer.Web.ViewModels.Base;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.Base
 {
+
+    [Authorize]
     [Route("api/[controller]")]
     [ServiceFilter(typeof(LogFilterAttribute))]
     public abstract class BaseWebApiController : ControllerBase

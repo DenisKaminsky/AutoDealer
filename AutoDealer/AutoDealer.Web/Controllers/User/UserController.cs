@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.User;
+using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.ViewModels.Response.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +25,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -35,6 +38,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("Active")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Director))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllActive()
         {
@@ -48,6 +52,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
@@ -61,6 +66,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("Active/{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Director))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetActiveById(int id)
         {

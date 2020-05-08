@@ -5,10 +5,12 @@ using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.Miscellaneous;
 using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
+using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,6 +71,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] ColorCodeCreateViewModel color)
         {
@@ -82,6 +85,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
@@ -94,6 +98,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPost("Assign")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Assign([FromBody] CarColorAssignmentViewModel assignViewModel)
         {
@@ -106,6 +111,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 204.</returns>
         [HttpDelete("Unassign")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Unassign([FromBody] CarColorAssignmentViewModel unassignViewModel)
         {

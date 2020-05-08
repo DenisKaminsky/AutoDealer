@@ -3,6 +3,7 @@ using AutoDealer.Business.Interfaces.CommandFunctionality.User;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.User;
 using AutoDealer.Business.Models.Commands.User;
+using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.Interfaces;
 using AutoDealer.Web.ViewModels.Request.User;
@@ -30,6 +31,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 201</returns>
         [HttpPost("SignIn")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SignIn([FromBody] LogInVewModel logInViewModel)
         {
@@ -47,8 +49,8 @@ namespace AutoDealer.Web.Controllers.User
         ///     Log out users from system
         /// </summary>
         /// <returns>Status code 201</returns>
-        [Authorize]
         [HttpPost("SignOut")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SignOut()
         {
@@ -61,6 +63,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Register")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] UserCreateViewModel item)
         {
@@ -73,6 +76,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPut("Update")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] UserUpdateViewModel item)
         {
@@ -85,6 +89,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPut("ActiveStatus")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateActiveStatus([FromBody] UserUpdateActiveStatusViewModel item)
         {
@@ -97,6 +102,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPut("ResetPassword")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ResetPassword([FromBody] UserResetPasswordViewModel item)
         {
@@ -110,6 +116,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
