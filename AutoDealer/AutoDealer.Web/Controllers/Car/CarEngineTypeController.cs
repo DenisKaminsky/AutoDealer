@@ -28,6 +28,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var engineTypes = await _queryFunctionality.GetAllAsync();
@@ -40,6 +41,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var carEngineType = await _queryFunctionality.GetByIdAsync(id);
@@ -51,6 +53,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarEngineTypeCreateViewModel engineType)
         {
             await _commandFunctionality.AddAsync(Mapper.Map<CarEngineTypeCreateCommand>(engineType));
@@ -63,6 +66,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);

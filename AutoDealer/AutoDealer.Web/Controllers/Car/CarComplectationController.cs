@@ -28,6 +28,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var items = await _queryFunctionality.GetAllAsync();
@@ -40,6 +41,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var item = await _queryFunctionality.GetByIdAsync(id);
@@ -52,6 +54,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByModel/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByBrandId(int id)
         {
             var items = await _queryFunctionality.GetByModelIdAsync(id);
@@ -64,6 +67,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByComplectation/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetOptionsByComplectationId(int id)
         {
             var items = await _queryFunctionality.GetOptionsByComplectationIdAsync(id);
@@ -75,6 +79,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarComplectationCreateViewModel item)
         {
             await _commandFunctionality.AddAsync(Mapper.Map<CarComplectationCreateCommand>(item));
@@ -86,6 +91,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Options")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AddOptions([FromBody] CarComplectationOptionsAssignViewModel assignViewModel)
         {
             await _commandFunctionality.AddOptionsAsync(Mapper.Map<CarComplectationOptionsAssignCommand>(assignViewModel));
@@ -98,6 +104,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);
@@ -110,6 +117,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("Options/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> RemoveComplectation(int id)
         {
             await _commandFunctionality.RemoveOptionAsync(id);

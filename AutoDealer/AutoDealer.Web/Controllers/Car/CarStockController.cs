@@ -27,7 +27,8 @@ namespace AutoDealer.Web.Controllers.Car
         ///     Gets all cars in stock.
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
-        [HttpGet()]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var items = await _queryFunctionality.GetAllInStockAsync();
@@ -40,6 +41,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var item = await _queryFunctionality.GetInStockByIdAsync(id);
@@ -51,6 +53,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarStockCreateViewModel item)
         {
             await _commandFunctionality.AddAsync(Mapper.Map<CarStockCreateCommand>(item));
@@ -62,6 +65,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] CarStockUpdateViewModel item)
         {
             await _commandFunctionality.UpdateAsync(Mapper.Map<CarStockUpdateCommand>(item));
@@ -74,6 +78,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);

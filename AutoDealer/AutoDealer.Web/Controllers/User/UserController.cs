@@ -23,6 +23,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var items = await _queryFunctionality.GetAllAsync();
@@ -34,6 +35,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("Active")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllActive()
         {
             var items = await _queryFunctionality.GetAllActiveAsync();
@@ -46,6 +48,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var item = await _queryFunctionality.GetByIdAsync(id);
@@ -58,6 +61,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("Active/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetActiveById(int id)
         {
             var item = await _queryFunctionality.GetActiveByIdAsync(id);

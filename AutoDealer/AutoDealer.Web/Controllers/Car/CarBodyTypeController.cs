@@ -28,6 +28,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var bodyTypes = await _queryFunctionality.GetAllAsync();
@@ -40,6 +41,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var bodyType = await _queryFunctionality.GetByIdAsync(id);
@@ -52,6 +54,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByModel/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByBrandId(int id)
         {
             var bodyTypes = await _queryFunctionality.GetByModelIdAsync(id);
@@ -63,6 +66,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarBodyTypeCreateViewModel bodyType)
         {
             await _commandFunctionality.AddAsync(Mapper.Map<CarBodyTypeCreateCommand>(bodyType));
@@ -75,6 +79,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);
@@ -86,6 +91,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPost("Assign")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Assign([FromBody] CarBodyTypeAssignViewModel assignViewModel)
         {
             await _commandFunctionality.AssignAsync(Mapper.Map<CarBodyTypeAssignCommand>(assignViewModel));
@@ -97,6 +103,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 204.</returns>
         [HttpDelete("Unassign")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Unassign([FromBody] CarBodyTypeUnassignViewModel unassignViewModel)
         {
             await _commandFunctionality.UnassignAsync(Mapper.Map<CarBodyTypeUnassignCommand>(unassignViewModel));

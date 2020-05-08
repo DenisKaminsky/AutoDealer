@@ -29,6 +29,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var countries = await _countryQueryFunctionality.GetAllAsync();
@@ -41,6 +42,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var country = await _countryQueryFunctionality.GetByIdAsync(id);
@@ -52,6 +54,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CountryCreateViewModel country)
         {
             await _countryCommandFunctionality.AddAsync(Mapper.Map<CountryCreateCommand>(country));
@@ -64,6 +67,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] CountryUpdateViewModel country)
         {
             await _countryCommandFunctionality.UpdateAsync(Mapper.Map<CountryUpdateCommand>(country));
@@ -77,6 +81,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _countryCommandFunctionality.RemoveAsync(id);

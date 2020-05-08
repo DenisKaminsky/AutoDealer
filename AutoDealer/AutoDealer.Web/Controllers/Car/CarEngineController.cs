@@ -28,6 +28,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var engines = await _queryFunctionality.GetAllAsync();
@@ -39,6 +40,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("WithGearbox")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllEngineGearboxPairs()
         {
             var pairs = await _queryFunctionality.GetAllEngineGearboxPairsAsync();
@@ -51,6 +53,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var engine = await _queryFunctionality.GetByIdAsync(id);
@@ -63,6 +66,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByModel/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetEngineGearboxPairsByModelId(int id)
         {
             var pairs = await _queryFunctionality.GetEngineGearboxPairsByModelIdAsync(id);
@@ -74,6 +78,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarEngineCreateViewModel engine)
         {
             await _commandFunctionality.AddAsync(Mapper.Map<CarEngineCreateCommand>(engine));
@@ -86,6 +91,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] CarEngineUpdateViewModel engine)
         {
             await _commandFunctionality.UpdateAsync(Mapper.Map<CarEngineUpdateCommand>(engine));
@@ -99,6 +105,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);
@@ -110,6 +117,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPost("Assign")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Assign([FromBody] CarEngineGearboxAssignViewModel assignViewModel)
         {
             await _commandFunctionality.AssignAsync(Mapper.Map<CarEngineGearboxAssignCommand>(assignViewModel));
@@ -121,6 +129,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 204.</returns>
         [HttpDelete("Unassign")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Unassign([FromBody] CarEngineGearboxUnassignViewModel unassignViewModel)
         {
             await _commandFunctionality.UnassignAsync(Mapper.Map<CarEngineGearboxUnassignCommand>(unassignViewModel));

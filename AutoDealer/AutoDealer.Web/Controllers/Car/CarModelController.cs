@@ -29,6 +29,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var carModels = await _carModelQueryFunctionality.GetAllAsync();
@@ -41,6 +42,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var carModel = await _carModelQueryFunctionality.GetByIdAsync(id);
@@ -53,6 +55,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByBrand/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByBrandId(int id)
         {
             var carModels = await _carModelQueryFunctionality.GetByBrandIdAsync(id);
@@ -64,6 +67,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarModelCreateViewModel carModel)
         {
             await _carModelCommandFunctionality.AddAsync(Mapper.Map<CarModelCreateCommand>(carModel));
@@ -76,6 +80,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// </summary>
         /// <returns>Status code 200.</returns>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] CarModelUpdateViewModel carModel)
         {
             await _carModelCommandFunctionality.UpdateAsync(Mapper.Map<CarModelUpdateCommand>(carModel));
@@ -89,6 +94,7 @@ namespace AutoDealer.Web.Controllers.Car
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _carModelCommandFunctionality.RemoveAsync(id);
