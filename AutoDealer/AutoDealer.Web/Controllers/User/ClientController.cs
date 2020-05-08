@@ -75,8 +75,8 @@ namespace AutoDealer.Web.Controllers.User
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] ClientCreateViewModel item)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<ClientCreateCommand>(item));
-            return StatusCode(StatusCodes.Status201Created);
+            var clientId = await _commandFunctionality.AddAsync(Mapper.Map<ClientCreateCommand>(item));
+            return ResponseWithData(StatusCodes.Status201Created, clientId);
         }
 
         /// <summary>

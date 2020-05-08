@@ -23,7 +23,7 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Miscellaneous
             _brandFiltersProvider = brandFiltersProvider;
         }
 
-        public override async Task AddAsync(SupplierCreateCommand supplier)
+        public override async Task<int> AddAsync(SupplierCreateCommand supplier)
         {
             await ValidatorFactory.GetValidator<SupplierCreateCommand>().ValidateAndThrowAsync(supplier);
 
@@ -32,6 +32,8 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Miscellaneous
 
             await WriteRepository.UpdateAsync(brand);
             await UnitOfWork.CommitAsync();
+
+            return brand.Supplier.Id;
         }
     }
 }

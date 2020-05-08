@@ -6,7 +6,7 @@ namespace AutoDealer.Business.Interfaces.CommandFunctionality.Base
     public interface IBaseGenericCreateDeleteCommandFunctionality<in TCreateCommand>
         where TCreateCommand : ICreateCommand
     {
-        Task AddAsync(TCreateCommand createCommand);
+        Task<int> AddAsync(TCreateCommand createCommand);
 
         Task RemoveAsync(int id);
     }

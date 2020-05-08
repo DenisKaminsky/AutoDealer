@@ -18,12 +18,15 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Base
         {
         }
 
-        public virtual async Task AddAsync(TCreateCommand createCommand)
+        public virtual async Task<int> AddAsync(TCreateCommand createCommand)
         {
             await ValidatorFactory.GetValidator<TCreateCommand>().ValidateAndThrowAsync(createCommand);
 
-            await WriteRepository.AddAsync(Mapper.Map<TDataModel>(createCommand));
+            var item = Mapper.Map<TDataModel>(createCommand);
+            await WriteRepository.AddAsync(item);
             await UnitOfWork.CommitAsync();
+
+            return item.Id;
         }
         
         public virtual async Task RemoveAsync(int id)
