@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
+using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.User;
@@ -71,6 +73,9 @@ namespace AutoDealer.Business.Extensions
 
                 config.CreateMap<User, UserModel>();
                 config.CreateMap<UserRole, UserRoleModel>();
+                config.CreateMap<UserCreateCommand, User>()
+                    .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
                 #endregion
             }).CreateMapper();
         }

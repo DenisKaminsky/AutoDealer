@@ -1,13 +1,15 @@
 ﻿using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
+using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
+using AutoDealer.Web.ViewModels.Request.User;
 using AutoDealer.Web.ViewModels.Response.Car;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
-using AutoDealer.Web.ViewModels.User;
+using AutoDealer.Web.ViewModels.Response.User;
 using AutoMapper;
 
 namespace AutoDealer.Web.Extensions
@@ -67,6 +69,10 @@ namespace AutoDealer.Web.Extensions
                 #region User
                 config.CreateMap<UserModel, UserViewModel>();
                 config.CreateMap<UserRoleModel, UserRoleViewModel>();
+                config.CreateMap<UserCreateViewModel, UserCreateCommand>();
+                config.CreateMap<UserUpdateViewModel, UserUpdateCommand>();
+                config.CreateMap<UserUpdateActiveStatusViewModel, UserUpdateActiveStatusCommand>();
+                config.CreateMap<UserResetPasswordViewModel, UserResetPasswordCommand>();
                 #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();

@@ -29,7 +29,7 @@ namespace AutoDealer.Data.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(filter);
         }
-        
+
         public bool ValidateExists<T>(Expression<Func<T, bool>> filter) where T : BaseModel
         {
             return DbContext.Set<T>()

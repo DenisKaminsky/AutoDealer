@@ -1,6 +1,6 @@
 ﻿using AutoDealer.Web.ViewModels.Base;
 
-namespace AutoDealer.Web.ViewModels.User
+namespace AutoDealer.Web.ViewModels.Response.User
 {
     public class UserRoleViewModel : BaseViewModel
     {
