@@ -64,6 +64,12 @@ namespace AutoDealer.Business.Extensions
                 .WithMessage($"The value of the field {{PropertyName}} has invalid HEX color code format");
         }
 
+        public static IRuleBuilderOptions<T, string> IsValidMD5HashWithMessage<T>(this IRuleBuilder<T, string> options)
+        {
+            return options.Matches(@"^[a-f0-9]{32}$")
+                .WithMessage($"The value of the field {{PropertyName}} has invalid MD5 hash format");
+        }
+
         public static IRuleBuilderOptions<T, TProp> MustExistsWithMessageAsync<T, TProp>(this IRuleBuilder<T, TProp> options, Func<TProp, CancellationToken, Task<bool>> condition)
         {
             return options.MustAsync(condition).WithMessage($"The {{PropertyName}} you have entered does not exist");

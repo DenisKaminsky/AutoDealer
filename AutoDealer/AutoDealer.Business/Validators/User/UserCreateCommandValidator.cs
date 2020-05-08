@@ -35,7 +35,8 @@ namespace AutoDealer.Business.Validators.User
 
             RuleFor(x => x.PasswordHash)
                 .NotEmptyWithMessage()
-                .MaxLengthWithMessage(UserConstraints.PasswordHashLength);
+                .MaxLengthWithMessage(UserConstraints.PasswordHashLength)
+                .IsValidMD5HashWithMessage();
 
             RuleFor(x => x.Phone)
                 .NotEmptyWithMessage()

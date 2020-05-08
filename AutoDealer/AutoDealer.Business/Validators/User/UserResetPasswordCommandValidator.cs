@@ -23,7 +23,8 @@ namespace AutoDealer.Business.Validators.User
 
             RuleFor(x => x.NewPasswordHash)
                 .NotEmptyWithMessage()
-                .MaxLengthWithMessage(UserConstraints.PasswordHashLength);
+                .MaxLengthWithMessage(UserConstraints.PasswordHashLength)
+                .IsValidMD5HashWithMessage();
         }
 
         private async Task<bool> UserExists(int id, CancellationToken cancellationToken)

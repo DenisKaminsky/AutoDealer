@@ -4,7 +4,7 @@ using AutoDealer.Business.Models.Commands.User;
 
 namespace AutoDealer.Business.Interfaces.CommandFunctionality.User
 {
-    public interface IUserCommandFunctionality : IBaseGenericCreateDeleteCommandFunctionality<UserCreateCommand>
+    public interface IAccountCommandFunctionality : IBaseGenericCreateDeleteCommandFunctionality<UserCreateCommand>
     {
         Task UpdateAsync(UserUpdateCommand command);
         Task UpdateActiveStatusAsync(UserUpdateActiveStatusCommand command);

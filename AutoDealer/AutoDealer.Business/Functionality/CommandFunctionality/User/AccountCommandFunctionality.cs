@@ -10,12 +10,12 @@ using FluentValidation;
 
 namespace AutoDealer.Business.Functionality.CommandFunctionality.User
 {
-    public class UserCommandFunctionality : BaseGenericCreateDeleteCommandFunctionality<UserCreateCommand, Data.Models.User.User>, IUserCommandFunctionality
+    public class AccountCommandFunctionality : BaseGenericCreateDeleteCommandFunctionality<UserCreateCommand, Data.Models.User.User>, IAccountCommandFunctionality
     {
         private readonly IGenericReadRepository _readRepository;
         private readonly IUserFiltersProvider _userFiltersProvider;
 
-        public UserCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory, IGenericReadRepository readRepository, IUserFiltersProvider userFiltersProvider) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
+        public AccountCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory, IGenericReadRepository readRepository, IUserFiltersProvider userFiltersProvider) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
         {
             _readRepository = readRepository;
             _userFiltersProvider = userFiltersProvider;

@@ -47,12 +47,12 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.User
 
         public async Task<UserModel> GetActiveByIdAsync(int id)
         {
-            var brand = await ReadRepository.GetSingleAsync(_filtersProvider.ActiveById(id), _relationsProvider.JoinRole);
+            var user = await ReadRepository.GetSingleAsync(_filtersProvider.ActiveById(id), _relationsProvider.JoinRole);
 
-            if (brand == null)
+            if (user == null)
                 throw new NotFoundException("Item was not found!");
 
-            return Mapper.Map<UserModel>(brand);
+            return Mapper.Map<UserModel>(user);
         }
     }
 }

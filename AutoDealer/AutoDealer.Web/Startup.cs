@@ -27,6 +27,7 @@ namespace AutoDealer.Web
             services.AddWebServices();
             services.AddBusinessServices();
             services.AddDataServices(Configuration.GetConnectionString("PostgreSQLConnection"));
+            services.AddCookieAuthentication();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -46,7 +47,14 @@ namespace AutoDealer.Web
             app.UseSwaggerMiddleware();
             app.UseHttpsRedirection();
 
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+            app.UseCookiePolicy();
             app.UseRouting();
+
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
             

@@ -18,6 +18,11 @@ namespace AutoDealer.Data.QueryFiltersProviders.User
             return item => item.IsActive && item.Id == id;
         }
 
+        public Expression<Func<Models.User.User, bool>> ActiveByEmail(string email)
+        {
+            return item => item.IsActive && EF.Functions.ILike(item.Email, email);
+        }
+
         public Expression<Func<Models.User.User, bool>> ByEmail(string email)
         {
             return item => EF.Functions.ILike(item.Email, email);

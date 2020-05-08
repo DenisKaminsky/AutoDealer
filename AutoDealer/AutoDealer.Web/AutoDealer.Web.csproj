@@ -8,6 +8,7 @@
   	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <WarningLevel>3</WarningLevel>
+    <DocumentationFile>obj\Debug\netcoreapp3.1\AutoDealer.Web.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

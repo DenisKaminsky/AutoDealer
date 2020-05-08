@@ -73,6 +73,7 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<UserUpdateViewModel, UserUpdateCommand>();
                 config.CreateMap<UserUpdateActiveStatusViewModel, UserUpdateActiveStatusCommand>();
                 config.CreateMap<UserResetPasswordViewModel, UserResetPasswordCommand>();
+                config.CreateMap<LogInVewModel, LogInInfo>();
                 #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();
