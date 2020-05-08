@@ -1,9 +1,11 @@
 ﻿using AutoDealer.Data.ModelsConfigurations.Car;
 using AutoDealer.Data.ModelsConfigurations.Car.Relations;
 using AutoDealer.Data.ModelsConfigurations.Miscellaneous;
+using AutoDealer.Data.ModelsConfigurations.User;
 using AutoDealer.Data.Seeds.Car;
 using AutoDealer.Data.Seeds.Car.Relations;
 using AutoDealer.Data.Seeds.Miscellaneous;
+using AutoDealer.Data.Seeds.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.Extensions
@@ -23,6 +25,11 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.SeedEnginesSupportGearboxes();
             modelBuilder.SeedCarComplectations();
             modelBuilder.SeedCarsStock();
+            #endregion
+
+            #region User
+            modelBuilder.SeedUserRoles();
+            modelBuilder.SeedUsers();
             #endregion
 
             #region Miscellaneous
@@ -47,6 +54,11 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureCarComplectation();
             modelBuilder.ConfigureCarComplectationOption();
             modelBuilder.ConfigureCarStock();
+            #endregion
+
+            #region User
+            modelBuilder.ConfigureUser();
+            modelBuilder.ConfigureUserRole();
             #endregion
 
             #region Miscellaneous

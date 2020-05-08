@@ -2,6 +2,7 @@
 using AutoDealer.Data.Models.Car;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
+using AutoDealer.Data.Models.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data
@@ -20,6 +21,11 @@ namespace AutoDealer.Data
         public DbSet<CarComplectation> CarComplectations { get; set; }
         public DbSet<CarComplectationOption> CarComplectationOptions { get; set; }
         public DbSet<CarStock> CarsStock { get; set; }
+        #endregion
+
+        #region User
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         #endregion
 
         #region Miscellaneous
