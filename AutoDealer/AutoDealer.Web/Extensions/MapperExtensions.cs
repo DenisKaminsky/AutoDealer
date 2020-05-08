@@ -2,10 +2,12 @@
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
 using AutoDealer.Web.ViewModels.Response.Car;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
+using AutoDealer.Web.ViewModels.User;
 using AutoMapper;
 
 namespace AutoDealer.Web.Extensions
@@ -62,6 +64,10 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<CarStockUpdateViewModel, CarStockUpdateCommand>();
                 #endregion
 
+                #region User
+                config.CreateMap<UserModel, UserViewModel>();
+                config.CreateMap<UserRoleModel, UserRoleViewModel>();
+                #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();
                 config.CreateMap<CountryCreateViewModel, CountryCreateCommand>();

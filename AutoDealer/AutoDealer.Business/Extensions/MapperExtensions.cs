@@ -4,9 +4,11 @@ using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Data.Models.Car;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
+using AutoDealer.Data.Models.User;
 using AutoMapper;
 
 namespace AutoDealer.Business.Extensions
@@ -66,6 +68,9 @@ namespace AutoDealer.Business.Extensions
                     .ForCtorParam("engine", opt => opt.MapFrom(src => src.EngineGearbox.Engine));
                 config.CreateMap<CarStockCreateCommand, CarStock>();
                 config.CreateMap<CarStockUpdateCommand, CarStock>();
+
+                config.CreateMap<User, UserModel>();
+                config.CreateMap<UserRole, UserRoleModel>();
                 #endregion
             }).CreateMapper();
         }
