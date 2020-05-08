@@ -18,6 +18,12 @@ namespace AutoDealer.Business.Extensions
                 .WithMessage($"The length of the field {{PropertyName}} can not be more than {length} characters");
         }
 
+        public static IRuleBuilderOptions<T, string> MinLengthWithMessage<T>(this IRuleBuilder<T, string> options, int length)
+        {
+            return options.MinimumLength(length)
+                .WithMessage($"The length of the field {{PropertyName}} can not be less than {length} characters");
+        }
+
         public static IRuleBuilderOptions<T, int> IsPositiveWithMessage<T>(this IRuleBuilder<T, int> options)
         {
             return options.GreaterThan(0).WithMessage($"The value of the field {{PropertyName}} should be positive ");

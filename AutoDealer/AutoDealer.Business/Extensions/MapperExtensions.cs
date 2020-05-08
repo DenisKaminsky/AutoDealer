@@ -77,6 +77,10 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
                     .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
                 config.CreateMap<User, UserSignInModel>();
+
+                config.CreateMap<Client, ClientModel>();
+                config.CreateMap<ClientCreateCommand, Client>();
+                config.CreateMap<ClientUpdateCommand, Client>();
                 #endregion
             }).CreateMapper();
         }

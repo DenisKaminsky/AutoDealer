@@ -50,6 +50,7 @@ namespace AutoDealer.Business.Validators.User
                 .NotEmptyWithMessage()
                 .MustExistsWithMessageAsync(RoleExists);
         }
+
         private async Task<bool> EmailDoesNotExists(string email, CancellationToken cancellationToken)
         {
             return await Task.Run(() => !ReadRepository.ValidateExists(_userFiltersProvider.ByEmail(email)), cancellationToken);

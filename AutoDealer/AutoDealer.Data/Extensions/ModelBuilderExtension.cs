@@ -59,6 +59,7 @@ namespace AutoDealer.Data.Extensions
             #region User
             modelBuilder.ConfigureUser();
             modelBuilder.ConfigureUserRole();
+            modelBuilder.ConfigureClient();
             #endregion
 
             #region Miscellaneous

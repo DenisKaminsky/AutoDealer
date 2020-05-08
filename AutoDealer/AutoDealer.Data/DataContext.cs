@@ -26,6 +26,7 @@ namespace AutoDealer.Data
         #region User
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Client> Clients { get; set; }
         #endregion
 
         #region Miscellaneous

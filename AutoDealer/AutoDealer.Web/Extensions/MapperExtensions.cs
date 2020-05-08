@@ -69,11 +69,19 @@ namespace AutoDealer.Web.Extensions
                 #region User
                 config.CreateMap<UserModel, UserViewModel>();
                 config.CreateMap<UserRoleModel, UserRoleViewModel>();
-                config.CreateMap<UserCreateViewModel, UserCreateCommand>();
-                config.CreateMap<UserUpdateViewModel, UserUpdateCommand>();
+                config.CreateMap<UserCreateViewModel, UserCreateCommand>()
+                    .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
+                config.CreateMap<UserUpdateViewModel, UserUpdateCommand>()
+                    .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
                 config.CreateMap<UserUpdateActiveStatusViewModel, UserUpdateActiveStatusCommand>();
                 config.CreateMap<UserResetPasswordViewModel, UserResetPasswordCommand>();
                 config.CreateMap<LogInVewModel, LogInInfo>();
+
+                config.CreateMap<ClientModel, ClientViewModel>();
+                config.CreateMap<ClientCreateViewModel, ClientCreateCommand>()
+                    .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
+                config.CreateMap<ClientUpdateViewModel, ClientUpdateCommand>()
+                    .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
                 #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();
