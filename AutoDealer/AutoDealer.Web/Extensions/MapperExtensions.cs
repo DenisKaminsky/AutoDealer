@@ -80,6 +80,7 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<UserUpdateActiveStatusViewModel, UserUpdateActiveStatusCommand>();
                 config.CreateMap<UserResetPasswordViewModel, UserResetPasswordCommand>();
                 config.CreateMap<LogInVewModel, LogInInfo>();
+                config.CreateMap<UserContactInfo, UserContactInfoViewModel>();
 
                 config.CreateMap<ClientModel, ClientViewModel>();
                 config.CreateMap<ClientCreateViewModel, ClientCreateCommand>()
@@ -97,6 +98,10 @@ namespace AutoDealer.Web.Extensions
 
                 config.CreateMap<WorkModel, WorkViewModel>();
                 config.CreateMap<WorkCreateViewModel, WorkCreateCommand>();
+
+                config.CreateMap<WorkOrderModel, WorkOrderViewModel>();
+                config.CreateMap<WorkOrderCreateViewModel, WorkOrderCreateCommand>();
+                config.CreateMap<WorkOrderCreateAdminViewModel, WorkOrderCreateCommand>();
                 #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();

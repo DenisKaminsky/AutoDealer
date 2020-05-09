@@ -8,7 +8,7 @@ namespace AutoDealer.Data.Models.WorkOrder
     public class WorkOrder : BaseModel
     {
         public DateTime CreatedDate { get; set; }
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
         public int WorkerId { get; set; }
         public User.User Worker { get; set; }
         public int StatusId { get; set; }

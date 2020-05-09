@@ -14,6 +14,8 @@ using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
 using AutoDealer.Data.Models.User;
 using AutoDealer.Data.Models.WorkOrder;
+using AutoDealer.Data.Models.WorkOrder.Relations;
+using AutoDealer.Miscellaneous.Enums;
 using AutoMapper;
 
 namespace AutoDealer.Business.Extensions
@@ -80,6 +82,7 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
                     .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
                 config.CreateMap<User, UserSignInModel>();
+                config.CreateMap<User, UserContactInfo>();
 
                 config.CreateMap<Client, ClientModel>();
                 config.CreateMap<ClientCreateCommand, Client>();
@@ -92,6 +95,14 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<WorkOrderStatus, WorkOrderStatusModel>();
                 config.CreateMap<Work, WorkModel>();
                 config.CreateMap<WorkCreateCommand, Work>();
+
+                config.CreateMap<WorkOrder, WorkOrderModel>()
+                    .ForCtorParam("works", opt => opt.MapFrom(src => src.Works.Select(x => x.Work)));
+                config.CreateMap<WorkOrderCreateCommand, WorkOrder>()
+                    .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int) WorkOrderStatuses.InProgress))
+                    .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
+
                 #endregion
             }).CreateMapper();
         }

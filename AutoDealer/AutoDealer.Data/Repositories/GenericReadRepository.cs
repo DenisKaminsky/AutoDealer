@@ -21,26 +21,21 @@ namespace AutoDealer.Data.Repositories
                 .AsNoTracking()
                 .ToArrayAsync();
         }
-        
+
+        public Task<IQueryable<T>> GetAllQueryableAsync<T>(params string[] propertiesToInclude) where T : BaseModel
+        {
+            return Task.Run(() => DbContext.Set<T>()
+                .IncludeRange(propertiesToInclude)
+                .OrderBy(x => x.Id)
+                .AsNoTracking());
+        }
+
         public Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel
         {
             return DbContext.Set<T>()
                 .IncludeRange(propertiesToInclude)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(filter);
-        }
-
-        public bool ValidateExists<T>(Expression<Func<T, bool>> filter) where T : BaseModel
-        {
-            return DbContext.Set<T>()
-                .Any(filter);
-        }
-
-        public Task<int[]> GetAllIdsAsync<T>() where T : BaseModel
-        {
-            return DbContext.Set<T>()
-                .Select(x => x.Id)
-                .ToArrayAsync();
         }
 
         public Task<T[]> GetAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel
@@ -51,6 +46,21 @@ namespace AutoDealer.Data.Repositories
                 .OrderBy(x => x.Id)
                 .AsNoTracking()
                 .ToArrayAsync();
+        }
+
+        public Task<IQueryable<T>> GetQueryableAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel
+        {
+            return Task.Run(() => DbContext.Set<T>()
+                .IncludeRange(propertiesToInclude)
+                .Where(filter)
+                .OrderBy(x => x.Id)
+                .AsNoTracking());
+        }
+        
+        public bool ValidateExists<T>(Expression<Func<T, bool>> filter) where T : BaseModel
+        {
+            return DbContext.Set<T>()
+                .Any(filter);
         }
     }
 }

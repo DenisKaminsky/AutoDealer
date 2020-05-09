@@ -8,6 +8,11 @@ namespace AutoDealer.Data.QueryFiltersProviders.User
 {
     public class UserFiltersProvider : BaseFiltersProvider<Models.User.User>, IUserFiltersProvider
     {
+        public Expression<Func<Models.User.User, bool>> ActiveByIdAndRoleId(int id, int roleId)
+        {
+            return item => item.IsActive && item.Id == id && item.RoleId == roleId;
+        }
+
         public Expression<Func<Models.User.User, bool>> Active()
         {
             return item => item.IsActive;

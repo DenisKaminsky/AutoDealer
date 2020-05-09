@@ -10,5 +10,6 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.User
         Expression<Func<Models.User.User, bool>> ActiveById(int id);
         Expression<Func<Models.User.User, bool>> ByEmail(string email);
         Expression<Func<Models.User.User, bool>> ActiveByEmail(string email);
+        Expression<Func<Models.User.User, bool>> ActiveByIdAndRoleId(int id, int roleId);
     }
 }
