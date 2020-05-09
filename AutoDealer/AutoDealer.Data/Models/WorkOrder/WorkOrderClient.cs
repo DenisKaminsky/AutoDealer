@@ -1,4 +1,5 @@
-﻿using AutoDealer.Data.Models.Base;
+﻿using System.Collections.Generic;
+using AutoDealer.Data.Models.Base;
 
 namespace AutoDealer.Data.Models.WorkOrder
 {
@@ -7,5 +8,6 @@ namespace AutoDealer.Data.Models.WorkOrder
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
+        public IEnumerable<WorkOrder> WorkOrders { get; set; }
     }
 }

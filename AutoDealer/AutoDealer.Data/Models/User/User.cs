@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoDealer.Data.Models.Base;
 
 namespace AutoDealer.Data.Models.User
@@ -17,5 +18,6 @@ namespace AutoDealer.Data.Models.User
         public bool IsActive { get; set; }
         public int RoleId { get; set; }
         public UserRole Role { get; set; }
+        public IEnumerable<WorkOrder.WorkOrder> WorkOrders { get; set; }
     }
 }
