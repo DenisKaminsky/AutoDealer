@@ -34,8 +34,9 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.SeedUsers();
             #endregion
 
-            #region MyRegion
+            #region WorkOrder
             modelBuilder.SeedWorkOrderStatuses();
+            modelBuilder.SeedWorks();
             #endregion
 
             #region Miscellaneous
@@ -71,6 +72,7 @@ namespace AutoDealer.Data.Extensions
             #region WorkOrder
             modelBuilder.ConfigureWorkOrderClient();
             modelBuilder.ConfigureWorkOrderStatus();
+            modelBuilder.ConfigureWork();
             #endregion
 
             #region Miscellaneous
