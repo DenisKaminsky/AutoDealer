@@ -3,6 +3,7 @@ using AutoDealer.Data.Models.Car;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
 using AutoDealer.Data.Models.User;
+using AutoDealer.Data.Models.WorkOrder;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data
@@ -27,6 +28,10 @@ namespace AutoDealer.Data
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Client> Clients { get; set; }
+        #endregion
+
+        #region WorkOrder
+        public DbSet<WorkOrderClient> WorkOrderClients { get; set; }
         #endregion
 
         #region Miscellaneous

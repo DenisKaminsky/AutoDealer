@@ -2,6 +2,7 @@
 using AutoDealer.Data.ModelsConfigurations.Car.Relations;
 using AutoDealer.Data.ModelsConfigurations.Miscellaneous;
 using AutoDealer.Data.ModelsConfigurations.User;
+using AutoDealer.Data.ModelsConfigurations.WokOrder;
 using AutoDealer.Data.Seeds.Car;
 using AutoDealer.Data.Seeds.Car.Relations;
 using AutoDealer.Data.Seeds.Miscellaneous;
@@ -60,6 +61,10 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureUser();
             modelBuilder.ConfigureUserRole();
             modelBuilder.ConfigureClient();
+            #endregion
+
+            #region WorkOrder
+            modelBuilder.ConfigureWorkOrderClient();
             #endregion
 
             #region Miscellaneous

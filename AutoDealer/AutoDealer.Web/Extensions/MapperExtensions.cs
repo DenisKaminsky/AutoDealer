@@ -1,15 +1,19 @@
 ﻿using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Commands.User;
+using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.User;
+using AutoDealer.Business.Models.Responses.WorkOrder;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
 using AutoDealer.Web.ViewModels.Request.User;
+using AutoDealer.Web.ViewModels.Request.WorkOrder;
 using AutoDealer.Web.ViewModels.Response.Car;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
 using AutoDealer.Web.ViewModels.Response.User;
+using AutoDealer.Web.ViewModels.Response.WorkOrder;
 using AutoMapper;
 
 namespace AutoDealer.Web.Extensions
@@ -82,6 +86,13 @@ namespace AutoDealer.Web.Extensions
                     .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
                 config.CreateMap<ClientUpdateViewModel, ClientUpdateCommand>()
                     .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
+                #endregion
+
+                #region WorkOrder
+                config.CreateMap<WorkOrderClientModel, WorkOrderClientViewModel>();
+                config.CreateMap<WorkOrderClientCreateViewModel, WorkOrderClientCreateCommand>();
+                config.CreateMap<WorkOrderClientUpdateViewModel, WorkOrderClientUpdateCommand>();
+
                 #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();

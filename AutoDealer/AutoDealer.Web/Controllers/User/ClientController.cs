@@ -44,7 +44,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager) + "," + nameof(UserRoles.Director))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
@@ -58,7 +58,7 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="passportId"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByPassportId/{passportId}")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager) + "," + nameof(UserRoles.Director))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByPassportId(string passportId)
         {

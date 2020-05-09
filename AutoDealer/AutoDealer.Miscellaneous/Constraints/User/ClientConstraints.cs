@@ -1,6 +1,6 @@
 ﻿namespace AutoDealer.Miscellaneous.Constraints.User
 {
-    public class ClientConstraints
+    public static class ClientConstraints
     {
         public const int FirstNameMaxLength = 25;
         public const int LastNameMaxLength = 30;

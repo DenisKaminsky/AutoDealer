@@ -4,13 +4,16 @@ using System.Linq;
 using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Commands.User;
+using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.User;
+using AutoDealer.Business.Models.Responses.WorkOrder;
 using AutoDealer.Data.Models.Car;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
 using AutoDealer.Data.Models.User;
+using AutoDealer.Data.Models.WorkOrder;
 using AutoMapper;
 
 namespace AutoDealer.Business.Extensions
@@ -81,6 +84,10 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<Client, ClientModel>();
                 config.CreateMap<ClientCreateCommand, Client>();
                 config.CreateMap<ClientUpdateCommand, Client>();
+
+                config.CreateMap<WorkOrderClient, WorkOrderClientModel>();
+                config.CreateMap<WorkOrderClientCreateCommand, WorkOrderClient>();
+                config.CreateMap<WorkOrderClientUpdateCommand, WorkOrderClient>();
                 #endregion
             }).CreateMapper();
         }
