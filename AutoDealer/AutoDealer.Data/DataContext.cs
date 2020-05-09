@@ -32,6 +32,7 @@ namespace AutoDealer.Data
 
         #region WorkOrder
         public DbSet<WorkOrderClient> WorkOrderClients { get; set; }
+        public DbSet<WorkOrderStatus> WorkOrderStatuses { get; set; }
         #endregion
 
         #region Miscellaneous

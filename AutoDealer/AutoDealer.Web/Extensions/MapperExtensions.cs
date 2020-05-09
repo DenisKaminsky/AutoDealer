@@ -93,6 +93,7 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<WorkOrderClientCreateViewModel, WorkOrderClientCreateCommand>();
                 config.CreateMap<WorkOrderClientUpdateViewModel, WorkOrderClientUpdateCommand>();
 
+                config.CreateMap<WorkOrderStatusModel, WorkOrderStatusViewModel>();
                 #endregion
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();

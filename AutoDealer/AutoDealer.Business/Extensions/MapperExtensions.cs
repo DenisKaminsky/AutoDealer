@@ -88,6 +88,8 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<WorkOrderClient, WorkOrderClientModel>();
                 config.CreateMap<WorkOrderClientCreateCommand, WorkOrderClient>();
                 config.CreateMap<WorkOrderClientUpdateCommand, WorkOrderClient>();
+
+                config.CreateMap<WorkOrderStatus, WorkOrderStatusModel>();
                 #endregion
             }).CreateMapper();
         }

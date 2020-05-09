@@ -7,6 +7,7 @@ using AutoDealer.Data.Seeds.Car;
 using AutoDealer.Data.Seeds.Car.Relations;
 using AutoDealer.Data.Seeds.Miscellaneous;
 using AutoDealer.Data.Seeds.User;
+using AutoDealer.Data.Seeds.WorkOrder;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.Extensions
@@ -31,6 +32,10 @@ namespace AutoDealer.Data.Extensions
             #region User
             modelBuilder.SeedUserRoles();
             modelBuilder.SeedUsers();
+            #endregion
+
+            #region MyRegion
+            modelBuilder.SeedWorkOrderStatuses();
             #endregion
 
             #region Miscellaneous
@@ -65,6 +70,7 @@ namespace AutoDealer.Data.Extensions
 
             #region WorkOrder
             modelBuilder.ConfigureWorkOrderClient();
+            modelBuilder.ConfigureWorkOrderStatus();
             #endregion
 
             #region Miscellaneous
