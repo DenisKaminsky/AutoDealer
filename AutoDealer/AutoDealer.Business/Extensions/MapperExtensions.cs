@@ -7,11 +7,13 @@ using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Business.Models.Responses.Order;
 using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Business.Models.Responses.WorkOrder;
 using AutoDealer.Data.Models.Car;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
+using AutoDealer.Data.Models.Order;
 using AutoDealer.Data.Models.User;
 using AutoDealer.Data.Models.WorkOrder;
 using AutoDealer.Data.Models.WorkOrder.Relations;
@@ -103,6 +105,7 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int) WorkOrderStatuses.InProgress))
                     .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
 
+                config.CreateMap<OrderStatus, OrderStatusModel>();
                 #endregion
             }).CreateMapper();
         }

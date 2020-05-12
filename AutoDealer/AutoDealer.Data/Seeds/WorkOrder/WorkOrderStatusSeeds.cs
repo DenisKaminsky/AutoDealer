@@ -10,13 +10,13 @@ namespace AutoDealer.Data.Seeds.WorkOrder
     {
         public static void SeedWorkOrderStatuses(this ModelBuilder modelBuilder)
         {
-            var roles = Enum.GetValues(typeof(WorkOrderStatuses)).Cast<WorkOrderStatuses>()
+            var statuses = Enum.GetValues(typeof(WorkOrderStatuses)).Cast<WorkOrderStatuses>()
                 .Select(x => new WorkOrderStatus { Id = (int)x, Name = x.ToString() }).ToArray();
 
-            modelBuilder.Entity<WorkOrderStatus>().HasData(roles);
+            modelBuilder.Entity<WorkOrderStatus>().HasData(statuses);
 
             modelBuilder.HasSequence<int>("WorkOrderStatuses_Seq", schema: "public")
-                .StartsAt(roles.Max(x => x.Id) + 1)
+                .StartsAt(statuses.Max(x => x.Id) + 1)
                 .IncrementsBy(1);
 
             modelBuilder.Entity<WorkOrderStatus>()

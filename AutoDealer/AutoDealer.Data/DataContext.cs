@@ -2,6 +2,7 @@
 using AutoDealer.Data.Models.Car;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
+using AutoDealer.Data.Models.Order;
 using AutoDealer.Data.Models.User;
 using AutoDealer.Data.Models.WorkOrder;
 using AutoDealer.Data.Models.WorkOrder.Relations;
@@ -36,6 +37,10 @@ namespace AutoDealer.Data
         public DbSet<WorkOrderStatus> WorkOrderStatuses { get; set; }
         public DbSet<Work> Works { get; set; }
         public DbSet<WorkOrderHasWorks> WorkOrderHasWorks { get; set; }
+        #endregion
+
+        #region Order
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
         #endregion
 
         #region Miscellaneous

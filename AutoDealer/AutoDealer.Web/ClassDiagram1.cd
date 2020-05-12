@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AutoDealer.Web.Controllers.Car.CarBodyColorController">
+    <Position X="9" Y="5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQIAAARAAAAAAAAAAAAABAAAAQIAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\Car\CarBodyColorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.Miscellaneous.BrandController">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAYAAAAQAgAAAAAAAIAABAAAAAAAAAAAAgAAAAAAAIg=</HashCode>
+      <FileName>Controllers\Miscellaneous\BrandController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.Miscellaneous.CountryController">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAQAAAAAAAAAABEAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\Miscellaneous\CountryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.Miscellaneous.SupplierController">
+    <Position X="4" Y="4.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAYgAAAAgAAACAAAAAAABAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\Miscellaneous\SupplierController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.User.AccountController">
+    <Position X="1.75" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAYAACCAAAAAAAAAAAAABgAAAAAAAAAAAAEAAAAAABE=</HashCode>
+      <FileName>Controllers\User\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.User.ClientController">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQYAAAAAAAAAAACAAAAABAAAAQAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\User\ClientController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.User.UserController">
+    <Position X="13.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\User\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.WorkOrder.WorkController">
+    <Position X="13.75" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQIAAAAAAAAAAAAAAAAABAAAAQAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\WorkOrder\WorkController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.WorkOrder.WorkOrderClientController">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQYAAAAAAAAAAAAAAAAABAAAAQAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Controllers\WorkOrder\WorkOrderClientController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.WorkOrder.WorkOrderController">
+    <Position X="9.25" Y="0.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AUIAAAAAAAAAAAIAAAAABAAAAQAAAAAAAgAAACAAAIA=</HashCode>
+      <FileName>Controllers\WorkOrder\WorkOrderController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AutoDealer.Web.Controllers.Base.BaseWebApiController">
+    <Position X="11.5" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACCAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Base\BaseWebApiController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

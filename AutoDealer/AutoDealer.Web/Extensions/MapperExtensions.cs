@@ -4,6 +4,7 @@ using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
+using AutoDealer.Business.Models.Responses.Order;
 using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Business.Models.Responses.WorkOrder;
 using AutoDealer.Web.ViewModels.Request.Car;
@@ -12,6 +13,7 @@ using AutoDealer.Web.ViewModels.Request.User;
 using AutoDealer.Web.ViewModels.Request.WorkOrder;
 using AutoDealer.Web.ViewModels.Response.Car;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
+using AutoDealer.Web.ViewModels.Response.Order;
 using AutoDealer.Web.ViewModels.Response.User;
 using AutoDealer.Web.ViewModels.Response.WorkOrder;
 using AutoMapper;
@@ -103,6 +105,11 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<WorkOrderCreateViewModel, WorkOrderCreateCommand>();
                 config.CreateMap<WorkOrderCreateAdminViewModel, WorkOrderCreateCommand>();
                 #endregion
+
+                #region Order
+                config.CreateMap<OrderStatusModel, OrderStatusViewModel>();
+                #endregion
+
                 #region Miscellaneous
                 config.CreateMap<CountryModel, CountryViewModel>();
                 config.CreateMap<CountryCreateViewModel, CountryCreateCommand>();

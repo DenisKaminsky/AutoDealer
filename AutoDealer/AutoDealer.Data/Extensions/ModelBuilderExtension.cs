@@ -1,12 +1,14 @@
 ﻿using AutoDealer.Data.ModelsConfigurations.Car;
 using AutoDealer.Data.ModelsConfigurations.Car.Relations;
 using AutoDealer.Data.ModelsConfigurations.Miscellaneous;
+using AutoDealer.Data.ModelsConfigurations.Order;
 using AutoDealer.Data.ModelsConfigurations.User;
 using AutoDealer.Data.ModelsConfigurations.WokOrder;
 using AutoDealer.Data.ModelsConfigurations.WokOrder.Relations;
 using AutoDealer.Data.Seeds.Car;
 using AutoDealer.Data.Seeds.Car.Relations;
 using AutoDealer.Data.Seeds.Miscellaneous;
+using AutoDealer.Data.Seeds.Order;
 using AutoDealer.Data.Seeds.User;
 using AutoDealer.Data.Seeds.WorkOrder;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +40,10 @@ namespace AutoDealer.Data.Extensions
             #region WorkOrder
             modelBuilder.SeedWorkOrderStatuses();
             modelBuilder.SeedWorks();
+            #endregion
+
+            #region Order
+            modelBuilder.SeedOrderStatuses();
             #endregion
 
             #region Miscellaneous
@@ -76,6 +82,10 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureWork();
             modelBuilder.ConfigureWorkOrder();
             modelBuilder.ConfigureWorkOrderHasWorks();
+            #endregion
+
+            #region Order
+            modelBuilder.ConfigureOrderStatus();
             #endregion
 
             #region Miscellaneous
