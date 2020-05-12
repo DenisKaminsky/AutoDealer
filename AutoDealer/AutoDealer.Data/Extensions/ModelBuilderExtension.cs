@@ -44,6 +44,7 @@ namespace AutoDealer.Data.Extensions
 
             #region Order
             modelBuilder.SeedOrderStatuses();
+            modelBuilder.SeedDeliveryRequestStatus();
             #endregion
 
             #region Miscellaneous
@@ -86,6 +87,7 @@ namespace AutoDealer.Data.Extensions
 
             #region Order
             modelBuilder.ConfigureOrderStatus();
+            modelBuilder.ConfigureDeliveryRequestStatus();
             #endregion
 
             #region Miscellaneous

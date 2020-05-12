@@ -106,6 +106,7 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
 
                 config.CreateMap<OrderStatus, OrderStatusModel>();
+                config.CreateMap<DeliveryRequestStatus, DeliveryRequestStatusModel>();
                 #endregion
             }).CreateMapper();
         }
