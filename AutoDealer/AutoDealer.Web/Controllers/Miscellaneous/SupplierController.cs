@@ -70,7 +70,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         ///     Adds supplier
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost]
+        [HttpPost("Create")]
         [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] SupplierCreateViewModel supplier)
@@ -83,7 +83,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         ///     Updates supplier 
         /// </summary>
         /// <returns>Status code 200.</returns>
-        [HttpPut]
+        [HttpPut("Update")]
         [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] SupplierUpdateViewModel supplier)
@@ -97,7 +97,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)

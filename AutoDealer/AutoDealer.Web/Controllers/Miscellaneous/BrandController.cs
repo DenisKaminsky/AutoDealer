@@ -80,7 +80,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         ///     Adds brand
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost]
+        [HttpPost("Create")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] BrandCreateViewModel brand)
@@ -88,13 +88,12 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
             await _brandCommandFunctionality.AddAsync(Mapper.Map<BrandCreateCommand>(brand));
             return StatusCode(StatusCodes.Status201Created);
         }
-
-
+        
         /// <summary>
         ///     Updates brand 
         /// </summary>
         /// <returns>Status code 200.</returns>
-        [HttpPut]
+        [HttpPut("Update")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] BrandUpdateViewModel brand)
@@ -109,7 +108,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)

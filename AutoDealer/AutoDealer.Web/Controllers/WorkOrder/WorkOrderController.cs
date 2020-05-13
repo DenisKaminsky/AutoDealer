@@ -86,7 +86,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         ///     Adds work order (admin only)
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost("Admin")]
+        [HttpPost("Create/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkOrderCreateAdminViewModel item)
@@ -99,7 +99,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         ///     Adds work order (for serviceMan).
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost]
+        [HttpPost("Create")]
         [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.ServiceMan))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkOrderCreateViewModel item)
@@ -136,7 +136,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status code 204.</returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
