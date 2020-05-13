@@ -42,10 +42,10 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Gets work orders, created by current authorized user.
+        ///     Gets work orders, created by current user.
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
-        [HttpGet("ByCurrentUser")]
+        [HttpGet("ByUser/Current")]
         [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.ServiceMan))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByCurrentUser()
@@ -55,12 +55,12 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Gets work orders by user id (admin only).
+        ///     Gets work orders by user id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByUser/{id}")]
-        [Authorize(nameof(UserRoles.Admin))]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByUserId(int id)
         {
@@ -96,7 +96,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Adds work order by current authorized user.
+        ///     Adds work order (for serviceMan).
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost]

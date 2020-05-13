@@ -107,6 +107,8 @@ namespace AutoDealer.Business.Extensions
 
                 config.CreateMap<OrderStatus, OrderStatusModel>();
                 config.CreateMap<DeliveryRequestStatus, DeliveryRequestStatusModel>();
+                config.CreateMap<DeliveryRequest, DeliveryRequestModel>()
+                    .ForCtorParam("supplierId", opt => opt.MapFrom(src => src.Car.Model.Brand.SupplierId));
                 #endregion
             }).CreateMapper();
         }

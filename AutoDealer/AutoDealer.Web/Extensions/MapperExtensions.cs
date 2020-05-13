@@ -109,6 +109,7 @@ namespace AutoDealer.Web.Extensions
                 #region Order
                 config.CreateMap<OrderStatusModel, OrderStatusViewModel>();
                 config.CreateMap<DeliveryRequestStatusModel, DeliveryRequestStatusViewModel>();
+                config.CreateMap<DeliveryRequestModel, DeliveryRequestViewModel>();
                 #endregion
 
                 #region Miscellaneous

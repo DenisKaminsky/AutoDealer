@@ -42,6 +42,7 @@ namespace AutoDealer.Data
         #region Order
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<DeliveryRequestStatus> DeliveryRequestStatuses { get; set; }
+        public DbSet<DeliveryRequest> DeliveryRequests { get; set; }
         #endregion
 
         #region Miscellaneous
