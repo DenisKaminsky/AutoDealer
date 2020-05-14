@@ -7,6 +7,5 @@ namespace AutoDealer.Data.Models.Car
         public int CarId { get; set; }
         public CarStock Car { get; set; }
         public string FileName { get; set; }
-        public int FileSize { get; set; }
     }
 }

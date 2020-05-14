@@ -3,7 +3,6 @@ using AutoDealer.Miscellaneous.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoDealer.Miscellaneous.FileSystem
@@ -27,7 +26,7 @@ namespace AutoDealer.Miscellaneous.FileSystem
                 Directory.CreateDirectory(directoryPath);
             }
 
-            var fileName = $"{Guid.NewGuid()}.{file.FileName.Split('.').Last()}";
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
             var fullName = Path.Combine(directoryPath, fileName);
 
             await using (var stream = File.Create(fullName))
@@ -40,13 +39,17 @@ namespace AutoDealer.Miscellaneous.FileSystem
         }
 
         public Task<byte[]> LoadAsync(string fileName, FileDestinations type)
-        {        
+        {    
+            return File.ReadAllBytesAsync(Path.Combine(_folders[type], fileName));
+        }
+
+        public Task DeleteAsync(string fileName, FileDestinations type)
+        {
             var filePath = Path.Combine(_folders[type], fileName);
 
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException("File was not found!");
+            File.Delete(filePath);
 
-            return File.ReadAllBytesAsync(Path.Combine(_folders[type], fileName));
+            return Task.CompletedTask;
         }
 
         public void RollBack()

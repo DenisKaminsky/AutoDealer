@@ -93,6 +93,19 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         }
 
         /// <summary>
+        ///     Adds supplier photo
+        /// </summary>
+        /// <returns>Status code 201 and photo id.</returns>
+        [HttpPost("Photo/Add")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> AddPhoto(SupplierPhotoCreateViewModel item)
+        {
+            var itemId = await _supplierCommandFunctionality.AddPhotoAsync(Mapper.Map<SupplierPhotoCreateCommand>(item));
+            return ResponseWithData(StatusCodes.Status201Created, itemId);
+        }
+
+        /// <summary>
         ///     Updates supplier 
         /// </summary>
         /// <returns>Status code 200.</returns>
@@ -116,6 +129,20 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         public async Task<IActionResult> Remove(int id)
         {
             await _supplierCommandFunctionality.RemoveAsync(id);
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+
+        /// <summary>
+        ///     Removes supplier photo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 204.</returns>
+        [HttpDelete("Photo/Delete/{id}")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> RemovePhoto(int id)
+        {
+            await _supplierCommandFunctionality.RemovePhotoAsync(id);
             return StatusCode(StatusCodes.Status204NoContent);
         }
     }

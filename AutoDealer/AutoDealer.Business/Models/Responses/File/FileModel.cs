@@ -3,13 +3,11 @@
     public class FileModel : BaseModel
     {
         public string FileName { get; }
-        public int FileSize { get; }
         public byte[] Content { get; }
 
-        public FileModel(int id, string fileName, int fileSize, byte[] content) : base(id)
+        public FileModel(int id, string fileName, byte[] content) : base(id)
         {
             FileName = fileName;
-            FileSize = fileSize;
             Content = content;
         }
     }

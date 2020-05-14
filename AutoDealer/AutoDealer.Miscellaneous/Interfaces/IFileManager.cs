@@ -9,6 +9,8 @@ namespace AutoDealer.Miscellaneous.Interfaces
 
         Task<byte[]> LoadAsync(string fileName, FileDestinations type);
 
+        Task DeleteAsync(string fileName, FileDestinations type);
+
         void RollBack();
     }
 }

@@ -2,8 +2,8 @@
 {
     public enum SupportedPhotoExtensions
     {
-        JPEG,
-        JPG,
-        PNG
+        Jpeg,
+        Jpg,
+        Png
     }
 }

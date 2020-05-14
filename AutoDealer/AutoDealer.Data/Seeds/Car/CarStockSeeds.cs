@@ -10,7 +10,7 @@ namespace AutoDealer.Data.Seeds.Car
         {
             var cars = new[]
             {
-                new CarStock {Id = 1, ModelId = 1, BodyTypeId = 7, ColorId = 3, EngineGearboxId = 2, ComplectationId = 1, Amount = 1, Price = 253000 },
+                new CarStock {Id = 1, ModelId = 1, BodyTypeId = 4, ColorId = 3, EngineGearboxId = 2, ComplectationId = 1, Amount = 1, Price = 253000 },
                 new CarStock {Id = 2, ModelId = 2, BodyTypeId = 4, ColorId = 4, EngineGearboxId = 3, ComplectationId = 2, Amount = 3, Price = 171000 },
                 new CarStock {Id = 3, ModelId = 3, BodyTypeId = 8, ColorId = 1, EngineGearboxId = 4, ComplectationId = 3, Amount = 2, Price = 250000 },
                 new CarStock {Id = 4, ModelId = 4, BodyTypeId = 1, ColorId = 5, EngineGearboxId = 9, ComplectationId = 6, Amount = 4, Price = 29700 },

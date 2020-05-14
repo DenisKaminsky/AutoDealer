@@ -16,9 +16,6 @@ namespace AutoDealer.Data.ModelsConfigurations.Miscellaneous
                 .Property(x => x.FileName)
                 .HasMaxLength(SupplierPhotoConstraints.FileNameMaxLength)
                 .IsRequired();
-
-            modelBuilder.Entity<SupplierPhoto>()
-                .HasCheckConstraint("CK_SupplierPhoto_FileSize", $"\"{nameof(SupplierPhoto.FileSize)}\" > 0");
         }
     }
 }

@@ -6,7 +6,6 @@ using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
-using AutoDealer.Business.Models.Responses.File;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Order;
 using AutoDealer.Business.Models.Responses.User;
@@ -52,6 +51,22 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarComplectationOptionsAssignCommand, IEnumerable<CarComplectationOption>>()
                     .ConstructUsing(src => src.Options
                         .Select(x => new CarComplectationOption { ComplectationId = src.ComplectationId, Name = x }));
+                config.CreateMap<CarStockCreateCommand, CarStock>();
+                config.CreateMap<CarStockUpdateCommand, CarStock>();
+
+                config.CreateMap<UserCreateCommand, User>()
+                    .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
+                config.CreateMap<ClientCreateCommand, Client>();
+                config.CreateMap<ClientUpdateCommand, Client>();
+
+                config.CreateMap<WorkOrderClientCreateCommand, WorkOrderClient>();
+                config.CreateMap<WorkOrderClientUpdateCommand, WorkOrderClient>();
+                config.CreateMap<WorkCreateCommand, Work>();
+                config.CreateMap<WorkOrderCreateCommand, WorkOrder>()
+                    .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)WorkOrderStatuses.InProgress))
+                    .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
                 #endregion
 
                 #region Responses
@@ -78,41 +93,23 @@ namespace AutoDealer.Business.Extensions
                     .ForCtorParam("gearbox", opt => opt.MapFrom(src => src.EngineGearbox.Gearbox))
                     .ForCtorParam("engine", opt => opt.MapFrom(src => src.EngineGearbox.Engine))
                     .ForCtorParam("photos", opt => opt.MapFrom(src => src.Photos.Select(x => x.Id)));
-                config.CreateMap<CarStockCreateCommand, CarStock>();
-                config.CreateMap<CarStockUpdateCommand, CarStock>();
 
                 config.CreateMap<User, UserModel>();
                 config.CreateMap<UserRole, UserRoleModel>();
-                config.CreateMap<UserCreateCommand, User>()
-                    .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
-                    .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
                 config.CreateMap<User, UserSignInModel>();
                 config.CreateMap<User, UserContactInfo>();
-
                 config.CreateMap<Client, ClientModel>();
-                config.CreateMap<ClientCreateCommand, Client>();
-                config.CreateMap<ClientUpdateCommand, Client>();
 
                 config.CreateMap<WorkOrderClient, WorkOrderClientModel>();
-                config.CreateMap<WorkOrderClientCreateCommand, WorkOrderClient>();
-                config.CreateMap<WorkOrderClientUpdateCommand, WorkOrderClient>();
-
                 config.CreateMap<WorkOrderStatus, WorkOrderStatusModel>();
                 config.CreateMap<Work, WorkModel>();
-                config.CreateMap<WorkCreateCommand, Work>();
-
                 config.CreateMap<WorkOrder, WorkOrderModel>()
                     .ForCtorParam("works", opt => opt.MapFrom(src => src.Works.Select(x => x.Work)));
-                config.CreateMap<WorkOrderCreateCommand, WorkOrder>()
-                    .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
-                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int) WorkOrderStatuses.InProgress))
-                    .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
 
                 config.CreateMap<OrderStatus, OrderStatusModel>();
                 config.CreateMap<DeliveryRequestStatus, DeliveryRequestStatusModel>();
                 config.CreateMap<DeliveryRequest, DeliveryRequestModel>()
                     .ForCtorParam("supplierId", opt => opt.MapFrom(src => src.Car.Model.Brand.SupplierId));
-
                 #endregion
             }).CreateMapper();
         }

@@ -16,9 +16,6 @@ namespace AutoDealer.Data.ModelsConfigurations.Car
                 .Property(x => x.FileName)
                 .HasMaxLength(CarPhotoConstraints.FileNameMaxLength)
                 .IsRequired();
-
-            modelBuilder.Entity<CarPhoto>()
-                .HasCheckConstraint("CK_CarPhoto_FileSize", $"\"{nameof(CarPhoto.FileSize)}\" > 0");
         }
     }
 }

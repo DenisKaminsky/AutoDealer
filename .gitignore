@@ -354,5 +354,5 @@ MigrationBackup/
 .config
 *.Web.xml
 Logs/
-Storage/
+FileStorage/
 Migrations

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using AutoDealer.Business.Extensions;
 using AutoDealer.Business.Functionality.QueryFunctionality.Base;

@@ -7,6 +7,5 @@ namespace AutoDealer.Data.Models.Miscellaneous
         public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }
         public string FileName { get; set; }
-        public int FileSize { get; set; }
     }
 }

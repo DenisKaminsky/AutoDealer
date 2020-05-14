@@ -7,6 +7,7 @@ using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Order;
 using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Business.Models.Responses.WorkOrder;
+using AutoDealer.Web.ViewModels.Base;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
 using AutoDealer.Web.ViewModels.Request.User;
@@ -70,6 +71,9 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<CarStockModel, CarStockViewModel>();
                 config.CreateMap<CarStockCreateViewModel, CarStockCreateCommand>();
                 config.CreateMap<CarStockUpdateViewModel, CarStockUpdateCommand>();
+
+                config.CreateMap<CarPhotoCreateViewModel, CarPhotoCreateCommand>()
+                    .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => new FileAttachment(src.Photo)));
                 #endregion
 
                 #region User
@@ -124,7 +128,8 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<SupplierUpdateViewModel, SupplierUpdateCommand>();
                 config.CreateMap<ColorCodeModel, ColorCodeViewModel>();
                 config.CreateMap<ColorCodeCreateViewModel, ColorCodeCreateCommand>();
-
+                config.CreateMap<SupplierPhotoCreateViewModel, SupplierPhotoCreateCommand>()
+                    .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => new FileAttachment(src.Photo)));
                 #endregion
             }).CreateMapper();
         }
