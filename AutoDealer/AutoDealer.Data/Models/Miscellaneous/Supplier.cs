@@ -1,4 +1,5 @@
 ﻿using AutoDealer.Data.Models.Base;
+using System.Collections.Generic;
 
 namespace AutoDealer.Data.Models.Miscellaneous
 {
@@ -15,5 +16,7 @@ namespace AutoDealer.Data.Models.Miscellaneous
         public string Address { get; set; }
         
         public Brand Brand { get; set; }
+
+        public IEnumerable<SupplierPhoto> Photos { get; set; }
     }
 }

@@ -51,6 +51,19 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
+        ///     Gets car photo by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 200 and file.</returns>
+        [HttpGet("Photo/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPhotoById(int id)
+        {
+            var item = await _queryFunctionality.GetPhotoByIdAsync(id);
+            return File(item.Content, "application/jpeg", $"{item.FileName}");
+        }
+
+        /// <summary>
         ///     Adds car to stock (not equals to order)
         /// </summary>
         /// <returns>Status code 201.</returns>

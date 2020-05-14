@@ -1,4 +1,6 @@
-﻿namespace AutoDealer.Business.Models.Responses.Miscellaneous
+﻿using System.Collections.Generic;
+
+namespace AutoDealer.Business.Models.Responses.Miscellaneous
 {
     public class SupplierModel: BaseModel
     {
@@ -14,7 +16,9 @@
         
         public BrandModel Brand { get; }
 
-        public SupplierModel(int id, string companyName, string ein, string phone, string email, string address, BrandModel brand) : base(id)
+        public IEnumerable<int> Photos { get; }
+
+        public SupplierModel(int id, string companyName, string ein, string phone, string email, string address, BrandModel brand, IEnumerable<int> photos) : base(id)
         {
             CompanyName = companyName;
             Ein = ein;
@@ -22,6 +26,7 @@
             Email = email;
             Address = address;
             Brand = brand;
+            Photos = photos;
         }
     }
 }

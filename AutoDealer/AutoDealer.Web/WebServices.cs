@@ -10,14 +10,22 @@ using AutoDealer.Web.Middleware;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Functionality.Factories;
 using AutoDealer.Web.Attributes;
+using Microsoft.Extensions.Configuration;
+using AutoDealer.Miscellaneous.Interfaces;
+using AutoDealer.Miscellaneous.FileSystem;
 
 namespace AutoDealer.Web
 {
     public static class WebServices
     {
-        public static void AddWebServices(this IServiceCollection collection)
+        public static void AddWebServices(this IServiceCollection collection, IConfiguration configuration)
         {
             collection.AddScoped<LogFilterAttribute>();
+            collection.AddScoped<IFileManager>(opt => new FileManager(
+                configuration["FileSysytem:RootFolder"],
+                configuration["FileSysytem:CarStock:Photos"],
+                configuration["FileSysytem:Suppliers:Photos"]));
+
             collection.AddSingleton<ExceptionsHandler>();
             collection.AddSingleton<IMapperFactory>(opt => new MapperFactory(
                 new KeyValuePair<string, IMapper>(nameof(BusinessServices), Business.Extensions.MapperExtensions.GetMapper()),

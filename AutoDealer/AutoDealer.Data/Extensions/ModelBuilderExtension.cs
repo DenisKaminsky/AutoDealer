@@ -97,6 +97,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureCountry();
             modelBuilder.ConfigureSupplier();
             modelBuilder.ConfigureColorCode();
+            modelBuilder.ConfigureSupplierPhoto();
             #endregion
         }
     }

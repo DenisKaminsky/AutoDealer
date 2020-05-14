@@ -1,4 +1,5 @@
 ﻿using AutoDealer.Web.ViewModels.Base;
+using System.Collections.Generic;
 
 namespace AutoDealer.Web.ViewModels.Response.Miscellaneous
 {
@@ -15,5 +16,7 @@ namespace AutoDealer.Web.ViewModels.Response.Miscellaneous
         public string Address { get; set; }
 
         public BrandViewModel Brand { get; set; }
+
+        public IEnumerable<int> Photos { get; set; }
     }
 }

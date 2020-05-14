@@ -51,6 +51,8 @@ namespace AutoDealer.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<ColorCode> ColorCodes { get; set; }
+
+        public DbSet<SupplierPhoto> SupplierPhotos { get; set; }
         #endregion
 
         public DataContext(DbContextOptions options) : base(options) { }

@@ -8,7 +8,8 @@ namespace AutoDealer.Data.RelationsProviders.Miscellaneous
     {
         public string[] JoinBrandAndCountry { get; } =
         {
-            $"{nameof(Supplier.Brand)}.{nameof(Brand.Country)}"
+            $"{nameof(Supplier.Brand)}.{nameof(Brand.Country)}",
+            $"{nameof(Supplier.Photos)}"
         };
     }
 }

@@ -6,6 +6,7 @@ using AutoDealer.Business.Models.Commands.Miscellaneous;
 using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
+using AutoDealer.Business.Models.Responses.File;
 using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Order;
 using AutoDealer.Business.Models.Responses.User;
@@ -56,7 +57,8 @@ namespace AutoDealer.Business.Extensions
                 #region Responses
                 config.CreateMap<Country, CountryModel>();
                 config.CreateMap<Brand, BrandModel>();
-                config.CreateMap<Supplier, SupplierModel>();
+                config.CreateMap<Supplier, SupplierModel>()
+                    .ForCtorParam("photos", opt => opt.MapFrom(src => src.Photos.Select(x => x.Id)));
                 config.CreateMap<ColorCode, ColorCodeModel>();
 
                 config.CreateMap<CarModel, CarModelModel>();
@@ -110,6 +112,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<DeliveryRequestStatus, DeliveryRequestStatusModel>();
                 config.CreateMap<DeliveryRequest, DeliveryRequestModel>()
                     .ForCtorParam("supplierId", opt => opt.MapFrom(src => src.Car.Model.Brand.SupplierId));
+
                 #endregion
             }).CreateMapper();
         }

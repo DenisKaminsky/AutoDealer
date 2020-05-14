@@ -1,6 +1,6 @@
-﻿namespace AutoDealer.Miscellaneous.Constraints.Car
+﻿namespace AutoDealer.Miscellaneous.Constraints.Miscellaneous
 {
-    public static class CarPhotoConstraints
+    public static class SupplierPhotoConstraints
     {
         public const int FileNameMaxLength = 50;
         public const int FileMaxSize = 2 * 1000 * 1000;
