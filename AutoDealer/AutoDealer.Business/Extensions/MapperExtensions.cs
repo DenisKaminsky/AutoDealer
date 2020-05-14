@@ -74,7 +74,8 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarComplectationOption, CarComplectationOptionModel>();
                 config.CreateMap<CarStock, CarStockModel>()
                     .ForCtorParam("gearbox", opt => opt.MapFrom(src => src.EngineGearbox.Gearbox))
-                    .ForCtorParam("engine", opt => opt.MapFrom(src => src.EngineGearbox.Engine));
+                    .ForCtorParam("engine", opt => opt.MapFrom(src => src.EngineGearbox.Engine))
+                    .ForCtorParam("photos", opt => opt.MapFrom(src => src.Photos.Select(x => x.Id)));
                 config.CreateMap<CarStockCreateCommand, CarStock>();
                 config.CreateMap<CarStockUpdateCommand, CarStock>();
 

@@ -24,6 +24,7 @@ namespace AutoDealer.Data
         public DbSet<CarComplectation> CarComplectations { get; set; }
         public DbSet<CarComplectationOption> CarComplectationOptions { get; set; }
         public DbSet<CarStock> CarsStock { get; set; }
+        public DbSet<CarPhoto> CarPhotos { get; set; }
         #endregion
 
         #region User

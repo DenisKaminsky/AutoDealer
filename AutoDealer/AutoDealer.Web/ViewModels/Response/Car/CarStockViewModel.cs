@@ -1,4 +1,5 @@
-﻿using AutoDealer.Web.ViewModels.Base;
+﻿using System.Collections.Generic;
+using AutoDealer.Web.ViewModels.Base;
 using AutoDealer.Web.ViewModels.Response.Miscellaneous;
 
 namespace AutoDealer.Web.ViewModels.Response.Car
@@ -13,5 +14,6 @@ namespace AutoDealer.Web.ViewModels.Response.Car
         public CarComplectationCarStockViewModel Complectation { get; set; }
         public int Amount { get; set; }
         public int Price { get; set; }
+        public IEnumerable<int> Photos { get; set; }
     }
 }

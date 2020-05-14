@@ -1,6 +1,8 @@
-﻿using AutoDealer.Data.Models.Base;
+﻿using System.Collections.Generic;
+using AutoDealer.Data.Models.Base;
 using AutoDealer.Data.Models.Car.Relations;
 using AutoDealer.Data.Models.Miscellaneous;
+using AutoDealer.Data.Models.Order;
 
 namespace AutoDealer.Data.Models.Car
 {
@@ -18,5 +20,7 @@ namespace AutoDealer.Data.Models.Car
         public CarComplectation Complectation { get; set; }
         public int Amount { get; set; }
         public int Price { get; set; }
+        public IEnumerable<DeliveryRequest> DeliveryRequests { get; set; }
+        public IEnumerable<CarPhoto> Photos { get; set; }
     }
 }

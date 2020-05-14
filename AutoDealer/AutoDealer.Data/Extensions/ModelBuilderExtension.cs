@@ -69,6 +69,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureCarComplectation();
             modelBuilder.ConfigureCarComplectationOption();
             modelBuilder.ConfigureCarStock();
+            modelBuilder.ConfigureCarPhoto();
             #endregion
 
             #region User
