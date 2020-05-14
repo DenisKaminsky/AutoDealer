@@ -22,9 +22,9 @@ namespace AutoDealer.Web
         {
             collection.AddScoped<LogFilterAttribute>();
             collection.AddScoped<IFileManager>(opt => new FileManager(
-                configuration["FileSysytem:RootFolder"],
-                configuration["FileSysytem:CarStock:Photos"],
-                configuration["FileSysytem:Suppliers:Photos"]));
+                configuration["FileSystem:RootFolder"],
+                configuration["FileSystem:CarStock:Photos"],
+                configuration["FileSystem:Suppliers:Photos"]));
 
             collection.AddSingleton<ExceptionsHandler>();
             collection.AddSingleton<IMapperFactory>(opt => new MapperFactory(

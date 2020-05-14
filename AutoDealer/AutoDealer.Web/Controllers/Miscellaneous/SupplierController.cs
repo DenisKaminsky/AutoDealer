@@ -53,6 +53,19 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         }
 
         /// <summary>
+        ///     Gets supplier photo by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 200 and file.</returns>
+        [HttpGet("Photo/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPhotoById(int id)
+        {
+            var item = await _supplierQueryFunctionality.GetPhotoByIdAsync(id);
+            return File(item.Content, "application/jpeg", $"{item.FileName}");
+        }
+
+        /// <summary>
         ///     Gets supplier by brand id.
         /// </summary>
         /// <param name="id"></param>
