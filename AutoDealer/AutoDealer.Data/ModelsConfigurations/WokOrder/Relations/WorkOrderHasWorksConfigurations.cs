@@ -8,6 +8,10 @@ namespace AutoDealer.Data.ModelsConfigurations.WokOrder.Relations
         public static void ConfigureWorkOrderHasWorks(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<WorkOrderHasWorks>()
+                .HasIndex(x => new { x.WorkId, x.OrderId })
+                .IsUnique();
+
+            modelBuilder.Entity<WorkOrderHasWorks>()
                 .HasOne(x => x.Order)
                 .WithMany(x => x.Works)
                 .HasForeignKey(x => x.OrderId);

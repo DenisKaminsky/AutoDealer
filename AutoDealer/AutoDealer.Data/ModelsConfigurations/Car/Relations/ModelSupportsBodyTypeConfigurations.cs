@@ -8,6 +8,10 @@ namespace AutoDealer.Data.ModelsConfigurations.Car.Relations
         public static void ConfigureModelSupportsBodyType(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ModelSupportsBodyType>()
+                .HasIndex(x => new { x.ModelId, x.BodyTypeId })
+                .IsUnique();
+
+            modelBuilder.Entity<ModelSupportsBodyType>()
                 .HasOne(x => x.BodyType)
                 .WithMany(x => x.SupportedModels)
                 .HasForeignKey(x => x.BodyTypeId);

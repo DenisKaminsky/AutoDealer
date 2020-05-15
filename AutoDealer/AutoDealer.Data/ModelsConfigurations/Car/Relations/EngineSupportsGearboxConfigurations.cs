@@ -8,6 +8,10 @@ namespace AutoDealer.Data.ModelsConfigurations.Car.Relations
         public static void ConfigureEngineSupportsGearbox(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EngineSupportsGearbox>()
+                .HasIndex(x => new { x.ModelId, x.EngineId, x.GearboxId })
+                .IsUnique();
+
+            modelBuilder.Entity<EngineSupportsGearbox>()
                 .HasOne(x => x.Model)
                 .WithMany(x => x.SupportedEngineGearboxes)
                 .HasForeignKey(x => x.ModelId);

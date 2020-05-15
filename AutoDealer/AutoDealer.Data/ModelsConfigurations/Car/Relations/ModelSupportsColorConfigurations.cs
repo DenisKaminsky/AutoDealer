@@ -8,6 +8,10 @@ namespace AutoDealer.Data.ModelsConfigurations.Car.Relations
         public static void ConfigureModelSupportsColor(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ModelSupportsColor>()
+                .HasIndex(x => new { x.ModelId, x.ColorId })
+                .IsUnique();
+
+            modelBuilder.Entity<ModelSupportsColor>()
                 .HasOne(x => x.Color)
                 .WithMany(x => x.SupportedModels)
                 .HasForeignKey(x => x.ColorId);
