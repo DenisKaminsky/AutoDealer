@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using AutoDealer.Data.Models.Order;
 using AutoDealer.Miscellaneous.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ namespace AutoDealer.Data.Seeds.Order
         public static void SeedOrderStatuses(this ModelBuilder modelBuilder)
         {
             var statuses = Enum.GetValues(typeof(OrderStatuses)).Cast<OrderStatuses>()
-                .Select(x => new OrderStatus { Id = (int)x, Name = x.ToString() }).ToArray();
+                .Select(x => new OrderStatus { Id = (int)x, Name = Regex.Replace(x.ToString(), "(\\B[A-Z])", " $1") }).ToArray();
 
             modelBuilder.Entity<OrderStatus>().HasData(statuses);
 

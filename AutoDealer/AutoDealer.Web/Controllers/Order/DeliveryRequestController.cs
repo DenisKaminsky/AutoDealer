@@ -40,7 +40,7 @@ namespace AutoDealer.Web.Controllers.Order
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("BySupplierManager/Current")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
+        [Authorize(nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetBySupplierManager()
         {
@@ -67,7 +67,7 @@ namespace AutoDealer.Web.Controllers.Order
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByManager/Current")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [Authorize(nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByManager()
         {

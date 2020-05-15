@@ -42,11 +42,11 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Gets work orders, created by current user.
+        ///     Gets work orders, created by current user (for ServiceMan).
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByUser/Current")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.ServiceMan))]
+        [Authorize(nameof(UserRoles.ServiceMan))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByCurrentUser()
         {
@@ -55,7 +55,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Gets work orders by user id.
+        ///     Gets work orders by user id (for Admin).
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status code 200 and view models.</returns>
@@ -83,7 +83,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Adds work order (admin only)
+        ///     Adds work order (for Admin)
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Create/Admin")]
@@ -96,11 +96,11 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         }
 
         /// <summary>
-        ///     Adds work order (for serviceMan).
+        ///     Adds work order (for ServiceMan).
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Create")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.ServiceMan))]
+        [Authorize(nameof(UserRoles.ServiceMan))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkOrderCreateViewModel item)
         {
@@ -122,7 +122,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         public async Task<IActionResult> Complete(int orderId)
         {
             var order = await _queryFunctionality.GetByIdAsync(orderId);
-            if (!CheckPermissionsExtensions.CanCompleteWorkOrder(order.Worker.Id, User, UserRoles.Admin))
+            if (!CheckPermissionsExtensions.UserHasPermissions(order.Worker.Id, User, UserRoles.Admin))
             {
                 return StatusCode(StatusCodes.Status403Forbidden);
             }

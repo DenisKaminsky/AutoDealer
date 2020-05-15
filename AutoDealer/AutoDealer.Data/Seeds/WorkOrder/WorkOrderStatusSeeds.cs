@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using AutoDealer.Data.Models.WorkOrder;
 using AutoDealer.Miscellaneous.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ namespace AutoDealer.Data.Seeds.WorkOrder
         public static void SeedWorkOrderStatuses(this ModelBuilder modelBuilder)
         {
             var statuses = Enum.GetValues(typeof(WorkOrderStatuses)).Cast<WorkOrderStatuses>()
-                .Select(x => new WorkOrderStatus { Id = (int)x, Name = x.ToString() }).ToArray();
+                .Select(x => new WorkOrderStatus { Id = (int)x, Name = Regex.Replace(x.ToString(), "(\\B[A-Z])", " $1") }).ToArray();
 
             modelBuilder.Entity<WorkOrderStatus>().HasData(statuses);
 

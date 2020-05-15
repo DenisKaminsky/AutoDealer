@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoDealer.Web.Controllers.User
 {
+    [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
     public class ClientController : BaseWebApiController
     {
         private readonly IClientQueryFunctionality _queryFunctionality;
@@ -30,7 +31,6 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -44,7 +44,6 @@ namespace AutoDealer.Web.Controllers.User
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager) + "," + nameof(UserRoles.Director))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
@@ -53,12 +52,11 @@ namespace AutoDealer.Web.Controllers.User
         }
 
         /// <summary>
-        ///     Gets client by model passportId.
+        ///     Gets client by passport number.
         /// </summary>
         /// <param name="passportId"></param>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByPassportId/{passportId}")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager) + "," + nameof(UserRoles.Director))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByPassportId(string passportId)
         {
@@ -71,7 +69,6 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 201 and client Id.</returns>
         [HttpPost("Create")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] ClientCreateViewModel item)
         {
@@ -84,14 +81,12 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPut("Update")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Update([FromBody] ClientUpdateViewModel item)
         {
             await _commandFunctionality.UpdateAsync(Mapper.Map<ClientUpdateCommand>(item));
             return StatusCode(StatusCodes.Status201Created);
         }
-
 
         /// <summary>
         ///     Removes client by id

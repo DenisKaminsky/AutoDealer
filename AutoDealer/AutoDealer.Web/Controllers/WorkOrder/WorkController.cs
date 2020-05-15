@@ -57,7 +57,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Create")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.ServiceMan))]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkCreateViewModel item)
         {
