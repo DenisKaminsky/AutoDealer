@@ -67,7 +67,7 @@ namespace AutoDealer.Web.Controllers.Car
         ///     Adds car to stock (not equals to order)
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost("Create")]
+        [HttpPost("Create/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarStockCreateViewModel item)

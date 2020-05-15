@@ -81,6 +81,7 @@ namespace AutoDealer.Web.Controllers.User
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPut("Update")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Update([FromBody] ClientUpdateViewModel item)
         {

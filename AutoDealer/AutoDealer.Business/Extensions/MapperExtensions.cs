@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
+using AutoDealer.Business.Models.Commands.Order;
 using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
@@ -67,6 +68,10 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)WorkOrderStatuses.InProgress))
                     .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
+
+                config.CreateMap<DeliveryRequestFromStockCreateCommand, DeliveryRequest>()
+                    .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened));
                 #endregion
 
                 #region Responses
