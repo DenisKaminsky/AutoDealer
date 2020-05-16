@@ -6,7 +6,6 @@ using AutoDealer.Business.Validators.Base;
 using AutoDealer.Data.Interfaces.QueryFiltersProviders.Car;
 using AutoDealer.Data.Interfaces.Repositories;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace AutoDealer.Business.Validators.Car
 {
@@ -53,15 +52,9 @@ namespace AutoDealer.Business.Validators.Car
                         .MustAsync(ComplectationIsValid)
                         .WithMessage($"The {{PropertyName}} is not compatible with the provided model.");
                 });
-
-            RuleFor(x => x.Amount)
-                .IsPositiveOrZeroWithMessage();
-
-            RuleFor(x => x.Price)
-                .IsPositiveOrZeroWithMessage();
         }
 
-        protected override bool PreValidate(ValidationContext<CarStockCreateCommand> context, ValidationResult result)
+        /*protected override bool PreValidate(ValidationContext<CarStockCreateCommand> context, ValidationResult result)
         {
             var model = context.InstanceToValidate;
             var isExists = ReadRepository.ValidateExists(_carStockFiltersProvider.MatchAll(model.ModelId, model.BodyTypeId, model.ColorId, model.EngineGearboxId, model.ComplectationId));
@@ -72,7 +65,7 @@ namespace AutoDealer.Business.Validators.Car
                 return false;
             }
             return true;
-        }
+        }*/
 
         private async Task<bool> ModelExists(int id, CancellationToken cancellationToken)
         {

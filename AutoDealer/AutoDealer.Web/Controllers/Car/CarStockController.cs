@@ -64,13 +64,13 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
-        ///     Gets car photo by model, color, body type.
+        ///     Gets main car photo by model, color, body type.
         /// </summary>
         /// <param name="modelId"></param>
         /// <param name="colorId"></param>
         /// <param name="bodyTypeId"></param>
         /// <returns>Status code 200 and file.</returns>
-        [HttpGet("Photo/{modelId}_{colorId}_{bodyTypeId}")]
+        [HttpGet("Photo/Main/{modelId}_{colorId}_{bodyTypeId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetPhotoByModelColorBodyType(int modelId, int colorId, int bodyTypeId)
         {
@@ -79,16 +79,16 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
-        ///     Adds car to stock (not equals to order)
+        ///     Registers car in stock. If car exists, it will return the id of existing car
         /// </summary>
-        /// <returns>Status code 201.</returns>
-        [HttpPost("Create/Admin")]
-        [Authorize(Roles = nameof(UserRoles.Admin))]
+        /// <returns>Status code 201 and car id.</returns>
+        [HttpPost("Create")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CarStockCreateViewModel item)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<CarStockCreateCommand>(item));
-            return StatusCode(StatusCodes.Status201Created);
+            var carId = await _commandFunctionality.AddAsync(Mapper.Map<CarStockCreateCommand>(item));
+            return ResponseWithData(StatusCodes.Status201Created, carId);
         }
 
         /// <summary>

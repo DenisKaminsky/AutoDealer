@@ -8,6 +8,7 @@ using AutoDealer.Business.Interfaces.UnitOfWork;
 using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Data.Interfaces.QueryFiltersProviders.Car;
 using AutoDealer.Data.Interfaces.Repositories;
+using AutoDealer.Data.Interfaces.Repositories.Custom.Car;
 using AutoDealer.Data.Models.Car;
 using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Miscellaneous.Exceptions;
@@ -21,12 +22,40 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Car
         private readonly IFileManager _fileManager;
         private readonly IGenericReadRepository _readRepository;
         private readonly ICarPhotoFiltersProvider _carPhotoFiltersProvider;
+        private readonly ICarStockFiltersProvider _carStockFiltersProvider;
+        private readonly ICarStockCommandRepository _carStockCommandRepository;
 
-        public CarStockCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory, IFileManager fileManager, IGenericReadRepository readRepository, ICarPhotoFiltersProvider carPhotoFiltersProvider) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
+        public CarStockCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory, IFileManager fileManager,
+            IGenericReadRepository readRepository, ICarPhotoFiltersProvider carPhotoFiltersProvider, ICarStockFiltersProvider carStockFiltersProvider, ICarStockCommandRepository carStockCommandRepository) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
         {
             _fileManager = fileManager;
             _readRepository = readRepository;
             _carPhotoFiltersProvider = carPhotoFiltersProvider;
+            _carStockFiltersProvider = carStockFiltersProvider;
+            _carStockCommandRepository = carStockCommandRepository;
+        }
+
+        public override async Task<int> AddAsync(CarStockCreateCommand createCommand)
+        {
+            await ValidatorFactory.GetValidator<CarStockCreateCommand>().ValidateAndThrowAsync(createCommand);
+
+            using (await BusinessLocks.CarStockLock.LockAsync())
+            {
+                var car = await _readRepository.GetSingleAsync(_carStockFiltersProvider.MatchAll(createCommand.ModelId,
+                    createCommand.BodyTypeId, createCommand.ColorId, createCommand.EngineGearboxId, createCommand.ComplectationId));
+
+                if (car == null)
+                {
+                    car = Mapper.Map<CarStock>(createCommand);
+                    car.Price = await _carStockCommandRepository.CalculateCarPriceAsync(car.ModelId, car.BodyTypeId,
+                        car.EngineGearboxId, car.ComplectationId);
+
+                    await WriteRepository.AddAsync(car);
+                    await UnitOfWork.CommitAsync();
+                }
+
+                return car.Id;
+            }
         }
 
         public async Task<int> AddPhotoAsync(CarPhotoCreateCommand createCommand)

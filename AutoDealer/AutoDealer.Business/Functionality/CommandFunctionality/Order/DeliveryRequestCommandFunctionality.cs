@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using AutoDealer.Business.Control;
-using AutoDealer.Business.Functionality.CommandFunctionality.Base;
+﻿using AutoDealer.Business.Functionality.CommandFunctionality.Base;
 using AutoDealer.Business.Interfaces.CommandFunctionality.Order;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.UnitOfWork;

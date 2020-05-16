@@ -52,7 +52,8 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarComplectationOptionsAssignCommand, IEnumerable<CarComplectationOption>>()
                     .ConstructUsing(src => src.Options
                         .Select(x => new CarComplectationOption { ComplectationId = src.ComplectationId, Name = x }));
-                config.CreateMap<CarStockCreateCommand, CarStock>();
+                config.CreateMap<CarStockCreateCommand, CarStock>()
+                    .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => 0));
                 config.CreateMap<CarStockUpdateCommand, CarStock>();
 
                 config.CreateMap<UserCreateCommand, User>()

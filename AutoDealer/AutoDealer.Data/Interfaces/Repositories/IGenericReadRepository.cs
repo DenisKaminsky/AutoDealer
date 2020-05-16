@@ -14,6 +14,8 @@ namespace AutoDealer.Data.Interfaces.Repositories
 
         Task<T> GetSingleAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel;
 
+        Task<T> GetByIdAsync<T>(int id, params string[] propertiesToInclude) where T : BaseModel;
+
         Task<T[]> GetAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel;
 
         Task<IQueryable<T>> GetQueryableAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel;

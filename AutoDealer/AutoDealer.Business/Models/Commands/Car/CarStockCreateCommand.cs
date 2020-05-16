@@ -9,7 +9,5 @@ namespace AutoDealer.Business.Models.Commands.Car
         public int ColorId { get; set; }
         public int EngineGearboxId { get; set; }
         public int ComplectationId { get; set; }
-        public int Amount { get; set; }
-        public int Price { get; set; }
     }
 }

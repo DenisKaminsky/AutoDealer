@@ -38,6 +38,14 @@ namespace AutoDealer.Data.Repositories
                 .FirstOrDefaultAsync(filter);
         }
 
+        public Task<T> GetByIdAsync<T>(int id, params string[] propertiesToInclude) where T : BaseModel
+        {
+            return DbContext.Set<T>()
+                .IncludeRange(propertiesToInclude)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public Task<T[]> GetAsync<T>(Expression<Func<T, bool>> filter, params string[] propertiesToInclude) where T : BaseModel
         {
             return DbContext.Set<T>()

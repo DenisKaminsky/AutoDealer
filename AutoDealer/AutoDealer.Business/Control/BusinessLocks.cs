@@ -2,6 +2,6 @@
 {
     public static class BusinessLocks
     {
-        public static readonly object CarStockLock = new object();
+        public static readonly BusinessSemaphore CarStockLock = new BusinessSemaphore(1,1);
     }
 }
