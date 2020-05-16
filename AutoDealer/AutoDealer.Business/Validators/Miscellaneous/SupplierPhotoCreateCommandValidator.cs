@@ -23,16 +23,22 @@ namespace AutoDealer.Business.Validators.Miscellaneous
         public SupplierPhotoCreateCommandValidator(IGenericReadRepository readRepository, ISupplierFiltersProvider supplierFiltersProvider) : base(readRepository)
         {
             _supplierFiltersProvider = supplierFiltersProvider;
-            CascadeMode = CascadeMode.Continue;
 
             RuleFor(x => x.SupplierId)
+                .NotEmptyWithMessage()
                 .MustExistsWithMessageAsync(SupplierExists);
 
             RuleFor(x => x.Photo)
-                .MustAsync(FileSizeIsValid)
-                .WithMessage($"File size should be up to {SupplierPhotoConstraints.FileMaxSize/1000000.0f}MB")
-                .MustAsync(FileTypeIsValid)
-                .WithMessage($"File type is prohibited. Allowed types - {GetSupportedFileTypesString()}");
+                .NotEmptyWithMessage()
+                .DependentRules(() =>
+                {
+                    RuleFor(x => x.Photo)
+                        .Cascade(CascadeMode.Continue)
+                        .MustAsync(FileSizeIsValid)
+                        .WithMessage($"File size should be up to {SupplierPhotoConstraints.FileMaxSize / 1000000.0f}MB")
+                        .MustAsync(FileTypeIsValid)
+                        .WithMessage($"File type is prohibited. Allowed types - {GetSupportedFileTypesString()}");
+                });
         }
 
         private async Task<bool> SupplierExists(int id, CancellationToken cancellationToken)

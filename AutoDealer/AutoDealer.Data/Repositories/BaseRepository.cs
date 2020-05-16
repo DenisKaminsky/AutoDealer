@@ -1,10 +1,10 @@
 ﻿namespace AutoDealer.Data.Repositories
 {
-    public abstract class BaseGenericRepository
+    public abstract class BaseRepository
     {
         protected DataContext DbContext { get; }
 
-        protected BaseGenericRepository(DataContext dataContext)
+        protected BaseRepository(DataContext dataContext)
         {
             DbContext = dataContext;
         }

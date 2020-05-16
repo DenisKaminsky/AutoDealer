@@ -21,6 +21,5 @@ namespace AutoDealer.Data.Models.Car
         public int Amount { get; set; }
         public int Price { get; set; }
         public IEnumerable<DeliveryRequest> DeliveryRequests { get; set; }
-        public IEnumerable<CarPhoto> Photos { get; set; }
     }
 }

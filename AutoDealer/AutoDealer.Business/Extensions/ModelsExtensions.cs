@@ -20,7 +20,8 @@ namespace AutoDealer.Business.Extensions
 
         public static CarPhoto ToCarPhoto(this CarPhotoCreateCommand command, string filename)
         {
-            return new CarPhoto {CarId = command.CarId, FileName = filename};
+            return new CarPhoto { ModelId = command.ModelId, BodyTypeId = command.BodyTypeId, 
+                ColorId = command.ColorId, FileName = filename };
         }
 
         public static SupplierPhoto ToSupplierPhoto(this SupplierPhotoCreateCommand command, string filename)

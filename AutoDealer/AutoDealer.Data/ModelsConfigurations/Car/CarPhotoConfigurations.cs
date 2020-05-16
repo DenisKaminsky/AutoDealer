@@ -7,7 +7,7 @@ namespace AutoDealer.Data.ModelsConfigurations.Car
     public static class CarPhotoConfigurations
     {
         public static void ConfigureCarPhoto(this ModelBuilder modelBuilder)
-        {
+        { 
             modelBuilder.Entity<CarPhoto>()
                 .HasIndex(x => x.FileName)
                 .IsUnique();

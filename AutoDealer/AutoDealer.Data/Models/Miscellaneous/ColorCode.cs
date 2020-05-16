@@ -11,5 +11,6 @@ namespace AutoDealer.Data.Models.Miscellaneous
         public string HexValue { get; set; }
         public IEnumerable<ModelSupportsColor> SupportedModels { get; set; }
         public IEnumerable<CarStock> CarsInStock { get; set; }
+        public IEnumerable<CarPhoto> Photos { get; set; }
     }
 }

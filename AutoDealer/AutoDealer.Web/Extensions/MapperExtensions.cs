@@ -73,7 +73,8 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<CarStockUpdateViewModel, CarStockUpdateCommand>();
 
                 config.CreateMap<CarPhotoCreateViewModel, CarPhotoCreateCommand>()
-                    .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => new FileAttachment(src.Photo)));
+                    .ForMember(dest => dest.Photo, opt => opt
+                        .MapFrom(src => src.Photo != null ? new FileAttachment(src.Photo) : null));
                 #endregion
 
                 #region User
@@ -129,7 +130,8 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<ColorCodeModel, ColorCodeViewModel>();
                 config.CreateMap<ColorCodeCreateViewModel, ColorCodeCreateCommand>();
                 config.CreateMap<SupplierPhotoCreateViewModel, SupplierPhotoCreateCommand>()
-                    .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => new FileAttachment(src.Photo)));
+                    .ForMember(dest => dest.Photo, opt => opt
+                        .MapFrom(src => src.Photo != null ? new FileAttachment(src.Photo) : null));
                 #endregion
             }).CreateMapper();
         }

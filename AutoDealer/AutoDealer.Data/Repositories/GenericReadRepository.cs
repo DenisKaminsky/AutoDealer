@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.Repositories
 {
-    public class GenericReadRepository : BaseGenericRepository, IGenericReadRepository
+    public class GenericReadRepository : BaseRepository, IGenericReadRepository
     {
         public GenericReadRepository(DataContext context) : base(context) { }
         

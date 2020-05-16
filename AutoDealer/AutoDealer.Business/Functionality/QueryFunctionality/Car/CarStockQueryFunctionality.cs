@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoDealer.Business.Extensions;
 using AutoDealer.Business.Functionality.QueryFunctionality.Base;
@@ -74,6 +75,24 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Car
 
             var content = await _fileManager.LoadAsync(item.FileName, FileDestinations.CarPhoto);                      
             return item.ToFileModel(content);
+        }
+
+        public async Task<FileModel> GetFirstPhotoByModelColorBodyTypeAsync(int modelId, int colorId, int bodyTypeId)
+        {
+            var item = await ReadRepository.GetSingleAsync(_carPhotoFiltersProvider.ByModelColorBodyTypeId(modelId, bodyTypeId, colorId));
+
+            if (item == null)
+                throw new NotFoundException("File was not found!");
+
+            var content = await _fileManager.LoadAsync(item.FileName, FileDestinations.CarPhoto);
+            return item.ToFileModel(content);
+        }
+
+        public async Task<IEnumerable<int>> GetAllPhotosIdsByModelColorBodyTypeAsync(int modelId, int colorId, int bodyTypeId)
+        {
+            var item = await ReadRepository.GetQueryableAsync(_carPhotoFiltersProvider.ByModelColorBodyTypeId(modelId, bodyTypeId, colorId));
+
+            return item.Select(x => x.Id).ToArray();
         }
     }
 }

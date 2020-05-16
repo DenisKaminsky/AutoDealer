@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Data.Repositories
 {
-    public class GenericWriteRepository : BaseGenericRepository, IGenericWriteRepository
+    public class GenericWriteRepository : BaseRepository, IGenericWriteRepository
     {
         public GenericWriteRepository(DataContext dataContext) : base(dataContext) { }
 

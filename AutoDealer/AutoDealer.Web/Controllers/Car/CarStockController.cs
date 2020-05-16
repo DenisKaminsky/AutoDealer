@@ -64,6 +64,21 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
+        ///     Gets car photo by model, color, body type.
+        /// </summary>
+        /// <param name="modelId"></param>
+        /// <param name="colorId"></param>
+        /// <param name="bodyTypeId"></param>
+        /// <returns>Status code 200 and file.</returns>
+        [HttpGet("Photo/{modelId}_{colorId}_{bodyTypeId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPhotoByModelColorBodyType(int modelId, int colorId, int bodyTypeId)
+        {
+            var item = await _queryFunctionality.GetFirstPhotoByModelColorBodyTypeAsync(modelId, colorId, bodyTypeId);
+            return File(item.Content, "application/jpeg", $"{item.FileName}");
+        }
+
+        /// <summary>
         ///     Adds car to stock (not equals to order)
         /// </summary>
         /// <returns>Status code 201.</returns>

@@ -11,5 +11,7 @@ namespace AutoDealer.Business.Interfaces.QueryFunctionality.Car
         Task<IEnumerable<CarStockModel>> GetAllInStockAsync();
         Task<CarStockModel> GetInStockByIdAsync(int id);
         Task<FileModel> GetPhotoByIdAsync(int id);
+        Task<FileModel> GetFirstPhotoByModelColorBodyTypeAsync(int modelId, int colorId, int bodyTypeId);
+        Task<IEnumerable<int>> GetAllPhotosIdsByModelColorBodyTypeAsync(int modelId, int colorId, int bodyTypeId);
     }
 }

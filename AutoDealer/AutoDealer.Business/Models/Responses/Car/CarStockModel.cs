@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoDealer.Business.Models.Responses.Miscellaneous;
+﻿using AutoDealer.Business.Models.Responses.Miscellaneous;
 
 namespace AutoDealer.Business.Models.Responses.Car
 {
@@ -13,9 +12,8 @@ namespace AutoDealer.Business.Models.Responses.Car
         public CarComplectationCarStockModel Complectation { get; }
         public int Amount { get; }
         public int Price { get; }
-        public IEnumerable<int> Photos { get; }
 
-        public CarStockModel(int id, CarBodyTypeModel bodyType, ColorCodeModel color, CarComplectationCarStockModel complectation, int amount, int price, CarEngineModel engine, GearboxModel gearbox, IEnumerable<int> photos) : base(id)
+        public CarStockModel(int id, CarBodyTypeModel bodyType, ColorCodeModel color, CarComplectationCarStockModel complectation, int amount, int price, CarEngineModel engine, GearboxModel gearbox) : base(id)
         {
             BodyType = bodyType;
             Color = color;
@@ -24,7 +22,6 @@ namespace AutoDealer.Business.Models.Responses.Car
             Price = price;
             Engine = engine;
             Gearbox = gearbox;
-            Photos = photos;
         }
     }
 }

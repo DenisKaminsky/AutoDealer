@@ -14,7 +14,6 @@ namespace AutoDealer.Data.RelationsProviders.Car
             $"{nameof(CarStock.BodyType)}",
             $"{nameof(CarStock.Color)}",
             $"{nameof(CarStock.Complectation)}",
-            $"{nameof(CarStock.Photos)}",
             $"{nameof(CarStock.EngineGearbox)}.{nameof(EngineSupportsGearbox.Gearbox)}",
             $"{nameof(CarStock.EngineGearbox)}.{nameof(EngineSupportsGearbox.Engine)}.{nameof(CarEngine.Type)}"
         };

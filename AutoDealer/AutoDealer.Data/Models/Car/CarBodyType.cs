@@ -9,5 +9,6 @@ namespace AutoDealer.Data.Models.Car
         public string Name { get; set; }
         public IEnumerable<ModelSupportsBodyType> SupportedModels { get; set; }
         public IEnumerable<CarStock> CarsInStock { get; set; }
+        public IEnumerable<CarPhoto> Photos { get; set; }
     }
 }
