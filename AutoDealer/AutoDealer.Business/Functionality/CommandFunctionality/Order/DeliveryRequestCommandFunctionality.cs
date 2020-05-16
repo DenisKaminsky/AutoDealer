@@ -14,5 +14,12 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Order
         public DeliveryRequestCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
         {
         }
+
+        public void AddWithOrder()
+        {
+
+        }
+
+
     }
 }

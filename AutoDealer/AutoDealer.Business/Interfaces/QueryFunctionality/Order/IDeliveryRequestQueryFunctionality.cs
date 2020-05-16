@@ -9,5 +9,6 @@ namespace AutoDealer.Business.Interfaces.QueryFunctionality.Order
     {
         Task<IEnumerable<DeliveryRequestModel>> GetByManagerAsync(int managerId);
         Task<IEnumerable<DeliveryRequestModel>> GetBySupplierManagerAsync(int supplierManagerId);
+        Task<IEnumerable<DeliveryRequestModel>> GetByStatusIdAsync(int statusId);
     }
 }

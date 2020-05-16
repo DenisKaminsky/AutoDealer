@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoDealer.Data.Models.Base;
 
 namespace AutoDealer.Data.Models.User
@@ -13,5 +14,6 @@ namespace AutoDealer.Data.Models.User
         public string Address { get; set; }
         public bool IsMale { get; set; }
         public DateTime Birthday { get; set; }
+        public IEnumerable<Order.Order> Orders { get; set; }
     }
 }

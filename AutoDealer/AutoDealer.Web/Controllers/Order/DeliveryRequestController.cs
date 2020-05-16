@@ -23,15 +23,28 @@ namespace AutoDealer.Web.Controllers.Order
         }
 
         /// <summary>
-        ///     Gets all delivery requests.
+        ///     Gets all delivery requests (for admin).
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
             var items = await _queryFunctionality.GetAllAsync();
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<DeliveryRequestViewModel>>(items));
+        }
+        
+        /// <summary>
+        ///     Gets all opened delivery requests.
+        /// </summary>
+        /// <returns>Status code 200 and view models.</returns>
+        [HttpGet("Opened")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllOpened()
+        {
+            var items = await _queryFunctionality.GetByStatusIdAsync((int)DeliveryRequestStatuses.Opened);
             return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<DeliveryRequestViewModel>>(items));
         }
 

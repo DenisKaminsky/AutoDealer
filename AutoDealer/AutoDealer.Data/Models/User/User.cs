@@ -22,5 +22,6 @@ namespace AutoDealer.Data.Models.User
         public IEnumerable<WorkOrder.WorkOrder> WorkOrders { get; set; }
         public IEnumerable<DeliveryRequest> CreatedDeliveryRequests { get; set; }
         public IEnumerable<DeliveryRequest> AssignedDeliveryRequests { get; set; }
+        public IEnumerable<Order.Order> Orders { get; set; }
     }
 }

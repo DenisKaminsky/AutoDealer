@@ -11,7 +11,8 @@ namespace AutoDealer.Data.RelationsProviders.Order
         {
             $"{nameof(DeliveryRequest.Car)}.{nameof(CarStock.Model)}.{nameof(CarModel.Brand)}",
             $"{nameof(DeliveryRequest.Manager)}",
-            $"{nameof(DeliveryRequest.SupplierManager)}"
+            $"{nameof(DeliveryRequest.SupplierManager)}",
+            $"{nameof(DeliveryRequest.Status)}"
         };
     }
 }

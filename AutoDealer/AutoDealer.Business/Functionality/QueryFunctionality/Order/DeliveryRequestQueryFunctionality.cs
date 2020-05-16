@@ -51,5 +51,11 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
             var items = await ReadRepository.GetAsync(_filtersProvider.BySupplierManagerId(supplierManagerId), _relationsProvider.JoinDeliveryRequestInfo);
             return Mapper.Map<IEnumerable<DeliveryRequestModel>>(items);
         }
+
+        public async Task<IEnumerable<DeliveryRequestModel>> GetByStatusIdAsync(int statusId)
+        {
+            var items = await ReadRepository.GetAsync(_filtersProvider.ByStatusId(statusId), _relationsProvider.JoinDeliveryRequestInfo);
+            return Mapper.Map<IEnumerable<DeliveryRequestModel>>(items);
+        }
     }
 }

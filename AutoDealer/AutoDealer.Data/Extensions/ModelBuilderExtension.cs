@@ -90,6 +90,7 @@ namespace AutoDealer.Data.Extensions
             modelBuilder.ConfigureOrderStatus();
             modelBuilder.ConfigureDeliveryRequestStatus();
             modelBuilder.ConfigureDeliveryRequest();
+            modelBuilder.ConfigureOrder();
             #endregion
 
             #region Miscellaneous
