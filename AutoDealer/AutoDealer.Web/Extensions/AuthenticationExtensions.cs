@@ -15,7 +15,8 @@ namespace AutoDealer.Web.Extensions
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 {
                     options.Cookie.SameSite = SameSiteMode.None;
-                    options.Events = new CookieAuthenticationEvents()
+
+                    options.Events = new CookieAuthenticationEvents
                     {
                         OnRedirectToAccessDenied = redirectContext =>
                         {

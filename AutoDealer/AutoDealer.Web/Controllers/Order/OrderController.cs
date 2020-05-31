@@ -89,5 +89,41 @@ namespace AutoDealer.Web.Controllers.Order
             var item = await _queryFunctionality.GetByIdAsync(id);
             return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<OrderViewModel>(item));
         }
+
+        /// <summary>
+        ///     Creates order.
+        /// </summary>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpPost("Create")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Add()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        ///     Changes the order status.
+        /// </summary>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpPost("ChangeStatus")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> ChangeStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        ///     Removes order.
+        /// </summary>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpPost("Remove")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Remove()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
