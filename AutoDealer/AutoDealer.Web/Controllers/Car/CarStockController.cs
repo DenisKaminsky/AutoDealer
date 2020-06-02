@@ -38,6 +38,19 @@ namespace AutoDealer.Web.Controllers.Car
         }
 
         /// <summary>
+        ///     Gets car in stock by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpGet("Stock/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetInStockById(int id)
+        {
+            var item = await _queryFunctionality.GetInStockByIdAsync(id);
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<CarStockViewModel>(item));
+        }
+
+        /// <summary>
         ///     Gets car by id.
         /// </summary>
         /// <param name="id"></param>
@@ -46,7 +59,7 @@ namespace AutoDealer.Web.Controllers.Car
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = await _queryFunctionality.GetInStockByIdAsync(id);
+            var item = await _queryFunctionality.GetByIdAsync(id);
             return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<CarStockViewModel>(item));
         }
 

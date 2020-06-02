@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoDealer.Business.Interfaces.CommandFunctionality.Order;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.Order;
+using AutoDealer.Business.Models.Commands.Order;
 using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
+using AutoDealer.Web.ViewModels.Request.Order;
 using AutoDealer.Web.ViewModels.Response.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,10 +19,11 @@ namespace AutoDealer.Web.Controllers.Order
     public class DeliveryRequestController : BaseWebApiController
     {
         private readonly IDeliveryRequestQueryFunctionality _queryFunctionality;
-
-        public DeliveryRequestController(IMapperFactory mapperFactory, IDeliveryRequestQueryFunctionality queryFunctionality) : base(mapperFactory)
+        private readonly IDeliveryRequestCommandFunctionality _commandFunctionality;
+        public DeliveryRequestController(IMapperFactory mapperFactory, IDeliveryRequestQueryFunctionality queryFunctionality, IDeliveryRequestCommandFunctionality commandFunctionality) : base(mapperFactory)
         {
             _queryFunctionality = queryFunctionality;
+            _commandFunctionality = commandFunctionality;
         }
 
         /// <summary>
@@ -117,6 +121,35 @@ namespace AutoDealer.Web.Controllers.Order
         }
 
         /// <summary>
+        ///     Creates delivery request (for Admin).
+        /// </summary>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpPost("Create/Admin")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> Add(DeliveryRequestCreateAdminViewModel item)
+        {
+            await _commandFunctionality.AddAsync(Mapper.Map<DeliveryRequestCreateCommand>(item));
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
+        ///     Creates delivery request (for Manager).
+        /// </summary>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpPost("Create")]
+        [Authorize(Roles = nameof(UserRoles.Manager))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> Add(DeliveryRequestCreateViewModel item)
+        {
+            var command = Mapper.Map<DeliveryRequestCreateCommand>(item);
+            command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
+
+            await _commandFunctionality.AddAsync(command);
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
         ///     Assigns delivery request to supplier manager.
         /// </summary>
         /// <returns>Status code 200 and view model.</returns>
@@ -141,15 +174,17 @@ namespace AutoDealer.Web.Controllers.Order
         }
 
         /// <summary>
-        ///     Removes delivery request.
+        ///     Removes delivery request by id.
         /// </summary>
+        /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpPost("Remove")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Remove()
+        public async Task<IActionResult> Remove(int id)
         {
-            throw new NotImplementedException();
+            await _commandFunctionality.RemoveAsync(id);
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }

@@ -70,7 +70,7 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)WorkOrderStatuses.InProgress))
                     .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
 
-                config.CreateMap<DeliveryRequestFromStockCreateCommand, DeliveryRequest>()
+                config.CreateMap<DeliveryRequestCreateCommand, DeliveryRequest>()
                     .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened));
                 #endregion

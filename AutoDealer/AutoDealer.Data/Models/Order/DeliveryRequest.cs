@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoDealer.Data.Models.Base;
 using AutoDealer.Data.Models.Car;
 

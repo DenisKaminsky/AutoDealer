@@ -10,12 +10,12 @@ using AutoDealer.Miscellaneous.Enums;
 
 namespace AutoDealer.Business.Validators.Order
 {
-    public class DeliveryRequestFromStockCreateCommandValidator : BaseValidator<DeliveryRequestFromStockCreateCommand>
+    public class DeliveryRequestCreateCommandValidator : BaseValidator<DeliveryRequestCreateCommand>
     {
         private readonly ICarStockFiltersProvider _carStockFiltersProvider;
         private readonly IUserFiltersProvider _userFiltersProvider;
 
-        public DeliveryRequestFromStockCreateCommandValidator(IGenericReadRepository readRepository, ICarStockFiltersProvider carStockFiltersProvider, IUserFiltersProvider userFiltersProvider) : base(readRepository)
+        public DeliveryRequestCreateCommandValidator(IGenericReadRepository readRepository, ICarStockFiltersProvider carStockFiltersProvider, IUserFiltersProvider userFiltersProvider) : base(readRepository)
         {
             _carStockFiltersProvider = carStockFiltersProvider;
             _userFiltersProvider = userFiltersProvider;

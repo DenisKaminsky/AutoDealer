@@ -1,5 +1,6 @@
 ﻿using AutoDealer.Business.Models.Commands.Car;
 using AutoDealer.Business.Models.Commands.Miscellaneous;
+using AutoDealer.Business.Models.Commands.Order;
 using AutoDealer.Business.Models.Commands.User;
 using AutoDealer.Business.Models.Commands.WorkOrder;
 using AutoDealer.Business.Models.Responses.Car;
@@ -10,6 +11,7 @@ using AutoDealer.Business.Models.Responses.WorkOrder;
 using AutoDealer.Web.ViewModels.Base;
 using AutoDealer.Web.ViewModels.Request.Car;
 using AutoDealer.Web.ViewModels.Request.Miscellaneous;
+using AutoDealer.Web.ViewModels.Request.Order;
 using AutoDealer.Web.ViewModels.Request.User;
 using AutoDealer.Web.ViewModels.Request.WorkOrder;
 using AutoDealer.Web.ViewModels.Response.Car;
@@ -115,7 +117,10 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<OrderStatusModel, OrderStatusViewModel>();
                 config.CreateMap<DeliveryRequestStatusModel, DeliveryRequestStatusViewModel>();
                 config.CreateMap<DeliveryRequestModel, DeliveryRequestViewModel>();
+                config.CreateMap<DeliveryRequestCreateViewModel, DeliveryRequestCreateCommand>();
+                config.CreateMap<DeliveryRequestCreateAdminViewModel, DeliveryRequestCreateCommand>();
                 config.CreateMap<OrderModel, OrderViewModel>();
+                
                 #endregion
 
                 #region Miscellaneous

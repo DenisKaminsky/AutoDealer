@@ -9,17 +9,10 @@ using FluentValidation;
 
 namespace AutoDealer.Business.Functionality.CommandFunctionality.Order
 {
-    public class DeliveryRequestCommandFunctionality : BaseGenericCreateDeleteCommandFunctionality<DeliveryRequestFromStockCreateCommand, DeliveryRequest>, IDeliveryRequestCommandFunctionality
+    public class DeliveryRequestCommandFunctionality : BaseGenericCreateDeleteCommandFunctionality<DeliveryRequestCreateCommand, DeliveryRequest>, IDeliveryRequestCommandFunctionality
     {
         public DeliveryRequestCommandFunctionality(IUnitOfWork unitOfWork, IMapperFactory mapperFactory, IGenericWriteRepository writeRepository, IValidatorFactory validatorFactory) : base(unitOfWork, mapperFactory, writeRepository, validatorFactory)
         {
         }
-
-        public void AddWithOrder()
-        {
-
-        }
-
-
     }
 }
