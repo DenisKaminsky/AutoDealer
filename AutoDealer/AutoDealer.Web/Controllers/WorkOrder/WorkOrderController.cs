@@ -46,7 +46,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet("ByUser/Current")]
-        [Authorize(nameof(UserRoles.ServiceMan))]
+        [Authorize(Roles = nameof(UserRoles.ServiceMan))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByCurrentUser()
         {
@@ -100,7 +100,7 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         /// </summary>
         /// <returns>Status code 201.</returns>
         [HttpPost("Create")]
-        [Authorize(nameof(UserRoles.ServiceMan))]
+        [Authorize(Roles = nameof(UserRoles.ServiceMan))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkOrderCreateViewModel item)
         {
