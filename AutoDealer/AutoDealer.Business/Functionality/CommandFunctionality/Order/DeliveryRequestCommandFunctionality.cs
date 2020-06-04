@@ -44,7 +44,7 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.Order
                 await ValidatorFactory.GetValidator<DeliveryRequestPromoteCommand>().ValidateAndThrowAsync(command);
 
                 var deliveryRequest = await _readRepository.GetByIdAsync<DeliveryRequest>(command.DeliveryRequestId);
-                var newStatus = deliveryRequest.StatusId++;
+                var newStatus = deliveryRequest.StatusId + 1;
                 if (newStatus == (int)DeliveryRequestStatuses.Closed)
                 {
                     deliveryRequest.CompletedDate = DateTime.UtcNow;

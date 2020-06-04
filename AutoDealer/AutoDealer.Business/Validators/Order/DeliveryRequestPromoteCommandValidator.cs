@@ -23,7 +23,7 @@ namespace AutoDealer.Business.Validators.Order
             RuleFor(x => x.DeliveryRequestId)
                 .NotEmptyWithMessage()
                 .MustExistsWithMessageAsync(DeliveryRequestExists)
-                .Custom(async (deliveryRequestId, context) =>
+                .CustomAsync(async (deliveryRequestId, context, cancellationToken) =>
                 {
                     var query = await ReadRepository.GetQueryableAsync(deliveryRequestFiltersProvider.ById(deliveryRequestId));
                     var deliveryRequestStatus = (DeliveryRequestStatuses)await query.Select(x => x.StatusId).FirstOrDefaultAsync();
