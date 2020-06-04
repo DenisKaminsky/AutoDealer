@@ -8,6 +8,7 @@ using AutoDealer.Business.Interfaces.QueryFunctionality.Order;
 using AutoDealer.Business.Models.Commands.Order;
 using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
+using AutoDealer.Web.Extensions;
 using AutoDealer.Web.ViewModels.Request.Order;
 using AutoDealer.Web.ViewModels.Response.Order;
 using Microsoft.AspNetCore.Authorization;
@@ -20,6 +21,7 @@ namespace AutoDealer.Web.Controllers.Order
     {
         private readonly IDeliveryRequestQueryFunctionality _queryFunctionality;
         private readonly IDeliveryRequestCommandFunctionality _commandFunctionality;
+
         public DeliveryRequestController(IMapperFactory mapperFactory, IDeliveryRequestQueryFunctionality queryFunctionality, IDeliveryRequestCommandFunctionality commandFunctionality) : base(mapperFactory)
         {
             _queryFunctionality = queryFunctionality;
@@ -123,61 +125,90 @@ namespace AutoDealer.Web.Controllers.Order
         /// <summary>
         ///     Creates delivery request (for Admin).
         /// </summary>
-        /// <returns>Status code 200 and view model.</returns>
+        /// <returns>Status code 201.</returns>
         [HttpPost("Create/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Add(DeliveryRequestCreateAdminViewModel item)
+        public async Task<IActionResult> Add(DeliveryRequestCreateAdminViewModel request)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<DeliveryRequestCreateCommand>(item));
+            await _commandFunctionality.AddAsync(Mapper.Map<DeliveryRequestCreateCommand>(request));
             return StatusCode(StatusCodes.Status201Created);
         }
 
         /// <summary>
         ///     Creates delivery request (for Manager).
         /// </summary>
-        /// <returns>Status code 200 and view model.</returns>
+        /// <returns>Status code 201.</returns>
         [HttpPost("Create")]
         [Authorize(Roles = nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Add(DeliveryRequestCreateViewModel item)
+        public async Task<IActionResult> Add(DeliveryRequestCreateViewModel request)
         {
-            var command = Mapper.Map<DeliveryRequestCreateCommand>(item);
+            var command = Mapper.Map<DeliveryRequestCreateCommand>(request);
             command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
 
-            await _commandFunctionality.AddAsync(command);
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(command);
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>
-        ///     Assigns delivery request to supplier manager.
+        ///     Assigns delivery request to supplier manager (for Admin).
         /// </summary>
-        /// <returns>Status code 200 and view model.</returns>
+        /// <returns>Status code 200.</returns>
+        [HttpPost("Assign/Admin")]
+        [Authorize(Roles = nameof(UserRoles.Admin))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Assign(DeliveryRequestAssignAdminViewModel request)
+        {
+            await _commandFunctionality.AssignAsync(Mapper.Map<DeliveryRequestAssignCommand>(request));
+            return StatusCode(StatusCodes.Status200OK);
+        }
+
+        /// <summary>
+        ///     Assigns delivery request to supplier manager (for SupplierManager).
+        /// </summary>
+        /// <param name="deliveryRequestId"></param>
+        /// <returns>Status code 200.</returns>
         [HttpPost("Assign")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [Authorize(Roles = nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Assign(int deliveryRequestId)
         {
-            throw new NotImplementedException();
+            var userId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
+            await _commandFunctionality.AssignAsync(new DeliveryRequestAssignCommand
+            {
+                DeliveryRequestId = deliveryRequestId,
+                SupplierManagerId = userId
+            });
+
+            return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>
-        ///     Changes the delivery request status.
+        ///     Promote the delivery request (change status).
         /// </summary>
+        /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
-        [HttpPost("ChangeStatus")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Manager))]
+        [HttpPost("Promote")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> ChangeStatus()
+        public async Task<IActionResult> Promote(int id)
         {
-            throw new NotImplementedException();
+            var supplierManagerId = await _queryFunctionality.GetAssignedSupplierManagerByDeliveryRequestId(id);
+            if (supplierManagerId.HasValue && !CheckPermissionsExtensions.UserHasPermissions(supplierManagerId.Value, User, UserRoles.Admin))
+            {
+                return StatusCode(StatusCodes.Status403Forbidden);
+            }
+
+            await _commandFunctionality.Promote(new DeliveryRequestPromoteCommand {DeliveryRequestId = id});
+            return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>
         ///     Removes delivery request by id.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Status code 200 and view model.</returns>
+        /// <returns>Status code 204</returns>
         [HttpPost("Remove")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]

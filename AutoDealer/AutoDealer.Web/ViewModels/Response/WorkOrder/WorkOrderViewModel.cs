@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoDealer.Web.ViewModels.Base;
 using AutoDealer.Web.ViewModels.Response.User;
 
 namespace AutoDealer.Web.ViewModels.Response.WorkOrder
 {
-    public class WorkOrderViewModel
+    public class WorkOrderViewModel : BaseViewModel
     {
         public DateTime CreatedDate { get; set; }
         public DateTime? CompletedDate { get; set; }

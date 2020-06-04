@@ -22,5 +22,10 @@ namespace AutoDealer.Data.QueryFiltersProviders.Order
         {
             return item => item.StatusId == id;
         }
+
+        public Expression<Func<DeliveryRequest, bool>> ByIdAndStatus(int id, int statusId)
+        {
+            return item => item.Id == id && item.StatusId == id;
+        }
     }
 }

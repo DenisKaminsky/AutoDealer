@@ -57,7 +57,7 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarStockUpdateCommand, CarStock>();
 
                 config.CreateMap<UserCreateCommand, User>()
-                    .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
                 config.CreateMap<ClientCreateCommand, Client>();
                 config.CreateMap<ClientUpdateCommand, Client>();
@@ -66,12 +66,12 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<WorkOrderClientUpdateCommand, WorkOrderClient>();
                 config.CreateMap<WorkCreateCommand, Work>();
                 config.CreateMap<WorkOrderCreateCommand, WorkOrder>()
-                    .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)WorkOrderStatuses.InProgress))
                     .ForMember(dest => dest.Works, opt => opt.MapFrom(src => src.WorksIds.Distinct().Select(x => new WorkOrderHasWorks { WorkId = x })));
 
                 config.CreateMap<DeliveryRequestCreateCommand, DeliveryRequest>()
-                    .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow.Date))
+                    .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened));
                 #endregion
 

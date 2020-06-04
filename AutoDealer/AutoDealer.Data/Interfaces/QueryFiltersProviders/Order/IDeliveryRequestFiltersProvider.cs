@@ -10,5 +10,6 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Order
         Expression<Func<DeliveryRequest, bool>> ByManagerId(int id);
         Expression<Func<DeliveryRequest, bool>> BySupplierManagerId(int id);
         Expression<Func<DeliveryRequest, bool>> ByStatusId(int id);
+        Expression<Func<DeliveryRequest, bool>> ByIdAndStatus(int id, int statusId);
     }
 }

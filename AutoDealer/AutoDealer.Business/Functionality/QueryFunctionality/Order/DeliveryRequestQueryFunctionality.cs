@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoDealer.Business.Functionality.QueryFunctionality.Base;
 using AutoDealer.Business.Interfaces.Factories;
@@ -10,6 +11,7 @@ using AutoDealer.Data.Interfaces.RelationsProviders.Order;
 using AutoDealer.Data.Interfaces.Repositories;
 using AutoDealer.Data.Models.Order;
 using AutoDealer.Miscellaneous.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
 {
@@ -56,6 +58,12 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
         {
             var items = await ReadRepository.GetAsync(_filtersProvider.ByStatusId(statusId), _relationsProvider.JoinDeliveryRequestInfo);
             return Mapper.Map<IEnumerable<DeliveryRequestModel>>(items);
+        }
+
+        public async Task<int?> GetAssignedSupplierManagerByDeliveryRequestId(int id)
+        {
+            var query = await ReadRepository.GetQueryableAsync(_filtersProvider.ById(id));
+            return await query.Select(x => x.SupplierManagerId).FirstOrDefaultAsync();
         }
     }
 }

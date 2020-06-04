@@ -91,8 +91,8 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkOrderCreateAdminViewModel item)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<WorkOrderCreateCommand>(item));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(Mapper.Map<WorkOrderCreateCommand>(item));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>
@@ -107,8 +107,8 @@ namespace AutoDealer.Web.Controllers.WorkOrder
             var command = Mapper.Map<WorkOrderCreateCommand>(item);
             command.WorkerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
 
-            await _commandFunctionality.AddAsync(command);
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(command);
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>

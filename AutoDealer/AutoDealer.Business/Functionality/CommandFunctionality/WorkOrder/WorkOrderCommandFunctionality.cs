@@ -47,7 +47,7 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.WorkOrder
             if (item == null)
                 throw new NotFoundException("Item was not found!");
 
-            item.CompletedDate = DateTime.UtcNow.Date;
+            item.CompletedDate = DateTime.UtcNow;
             item.StatusId = (int)WorkOrderStatuses.Completed;
 
             await WriteRepository.UpdateAsync(item);
