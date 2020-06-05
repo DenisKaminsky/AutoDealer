@@ -14,5 +14,11 @@ namespace AutoDealer.Data.RelationsProviders.Order
             $"{nameof(DeliveryRequest.SupplierManager)}",
             $"{nameof(DeliveryRequest.Status)}"
         };
+
+        public string[] JoinInfoForPromotion { get; } =
+        {
+            $"{nameof(DeliveryRequest.Order)}",
+            $"{nameof(DeliveryRequest.Car)}"
+        };
     }
 }

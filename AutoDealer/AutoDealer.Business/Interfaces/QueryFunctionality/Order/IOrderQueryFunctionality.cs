@@ -12,5 +12,7 @@ namespace AutoDealer.Business.Interfaces.QueryFunctionality.Order
         Task<IEnumerable<OrderModel>> GetByClientAsync(int clientId);
 
         Task<IEnumerable<OrderModel>> GetByStatusIdAsync(int statusId);
+
+        Task<int?> GetAssignedManagerByOrderId(int id);
     }
 }

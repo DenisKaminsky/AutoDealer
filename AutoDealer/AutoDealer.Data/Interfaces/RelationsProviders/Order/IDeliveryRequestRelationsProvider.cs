@@ -3,5 +3,6 @@
     public interface IDeliveryRequestRelationsProvider
     {
         string[] JoinDeliveryRequestInfo { get; }
+        string[] JoinInfoForPromotion { get; }
     }
 }

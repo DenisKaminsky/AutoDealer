@@ -131,8 +131,8 @@ namespace AutoDealer.Web.Controllers.Order
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add(DeliveryRequestCreateAdminViewModel request)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<DeliveryRequestCreateCommand>(request));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(Mapper.Map<DeliveryRequestCreateCommand>(request));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace AutoDealer.Web.Controllers.Order
         /// <returns>Status code 204</returns>
         [HttpPost("Remove")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Remove(int id)
         {
             await _commandFunctionality.RemoveAsync(id);

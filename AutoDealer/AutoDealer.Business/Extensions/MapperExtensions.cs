@@ -73,6 +73,15 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<DeliveryRequestCreateCommand, DeliveryRequest>()
                     .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened));
+
+                config.CreateMap<OrderCreateCommand, Order>()
+                    .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
+                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)OrderStatuses.Opened));
+
+                config.CreateMap<OrderCreateCommand, DeliveryRequest>()
+                    .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
+                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened))
+                    .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => 1));
                 #endregion
 
                 #region Responses
