@@ -12,6 +12,7 @@ namespace AutoDealer.Web.ViewModels.Response.Order
         public int ClientId { get; set; }
         public OrderStatusViewModel Status { get; set; }
         public int? DeliveryRequestId { get; set; }
+        public bool CanPromote { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? CompletedDate { get; set; }
     }

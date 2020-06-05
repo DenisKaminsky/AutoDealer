@@ -74,11 +74,15 @@ namespace AutoDealer.Business.Extensions
                     .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened));
 
-                config.CreateMap<OrderCreateCommand, Order>()
+                config.CreateMap<OrderWithDeliveryRequestCreateCommand, Order>()
                     .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)OrderStatuses.Opened));
 
-                config.CreateMap<OrderCreateCommand, DeliveryRequest>()
+                config.CreateMap<OrderFromStockCreateCommand, Order>()
+                    .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
+                    .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)OrderStatuses.Opened));
+
+                config.CreateMap<OrderWithDeliveryRequestCreateCommand, DeliveryRequest>()
                     .ForMember(dest => dest.CreateDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(dest => dest.StatusId, opt => opt.MapFrom(src => (int)DeliveryRequestStatuses.Opened))
                     .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => 1));
@@ -125,7 +129,9 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<DeliveryRequest, DeliveryRequestModel>()
                     .ForCtorParam("supplierId", opt => opt.MapFrom(src => src.Car.Model.Brand.SupplierId));
 
-                config.CreateMap<Order, OrderModel>();
+                config.CreateMap<Order, OrderModel>()
+                    .ForCtorParam("canPromote", opt => opt
+                        .MapFrom(src => src.StatusId != (int)OrderStatuses.Completed && (src.DeliveryRequest == null || src.DeliveryRequest.StatusId == (int)DeliveryRequestStatuses.Closed)));
                 #endregion
             }).CreateMapper();
         }

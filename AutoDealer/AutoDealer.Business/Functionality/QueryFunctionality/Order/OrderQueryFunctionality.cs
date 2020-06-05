@@ -27,13 +27,13 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
 
         public async Task<IEnumerable<OrderModel>> GetAllAsync()
         {
-            var items = await ReadRepository.GetAllQueryableAsync<Data.Models.Order.Order>(_relationsProvider.JoinOrderInfo);
+            var items = await ReadRepository.GetAllQueryableAsync<Data.Models.Order.Order>(_relationsProvider.JoinOrderDetails);
             return Mapper.Map<IEnumerable<OrderModel>>(items);
         }
 
         public async Task<OrderModel> GetByIdAsync(int id)
         {
-            var item = await ReadRepository.GetSingleAsync(_filtersProvider.ById(id), _relationsProvider.JoinOrderInfo);
+            var item = await ReadRepository.GetSingleAsync(_filtersProvider.ById(id), _relationsProvider.JoinOrderDetails);
 
             if (item == null)
                 throw new NotFoundException("Item was not found!");
@@ -43,19 +43,19 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
 
         public async Task<IEnumerable<OrderModel>> GetByManagerAsync(int managerId)
         {
-            var items = await ReadRepository.GetAsync(_filtersProvider.ByManagerId(managerId), _relationsProvider.JoinOrderInfo);
+            var items = await ReadRepository.GetAsync(_filtersProvider.ByManagerId(managerId), _relationsProvider.JoinOrderDetails);
             return Mapper.Map<IEnumerable<OrderModel>>(items);
         }
 
         public async Task<IEnumerable<OrderModel>> GetByClientAsync(int clientId)
         {
-            var items = await ReadRepository.GetAsync(_filtersProvider.ByClientId(clientId), _relationsProvider.JoinOrderInfo);
+            var items = await ReadRepository.GetAsync(_filtersProvider.ByClientId(clientId), _relationsProvider.JoinOrderDetails);
             return Mapper.Map<IEnumerable<OrderModel>>(items);
         }
 
         public async Task<IEnumerable<OrderModel>> GetByStatusIdAsync(int statusId)
         {
-            var items = await ReadRepository.GetAsync(_filtersProvider.ByStatusId(statusId), _relationsProvider.JoinOrderInfo);
+            var items = await ReadRepository.GetAsync(_filtersProvider.ByStatusId(statusId), _relationsProvider.JoinOrderDetails);
             return Mapper.Map<IEnumerable<OrderModel>>(items);
         }
 

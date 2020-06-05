@@ -105,7 +105,7 @@ namespace AutoDealer.Web.Controllers.Order
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Add(OrderCreateAdminViewModel request)
         {
-            var id = await _commandFunctionality.AddAsync(Mapper.Map<OrderCreateCommand>(request));
+            var id = await _commandFunctionality.AddAsync(Mapper.Map<OrderFromStockCreateCommand>(request));
             return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
@@ -118,7 +118,7 @@ namespace AutoDealer.Web.Controllers.Order
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Add(OrderCreateViewModel request)
         {
-            var command = Mapper.Map<OrderCreateCommand>(request);
+            var command = Mapper.Map<OrderFromStockCreateCommand>(request);
             command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
 
             var id = await _commandFunctionality.AddAsync(command);
@@ -126,36 +126,36 @@ namespace AutoDealer.Web.Controllers.Order
         }
 
         /// <summary>
-        ///     Creates order.
+        ///     Creates order with delivery request (for Admin).
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost("Create/WithOrder/Admin")]
+        [HttpPost("Create/WithDeliveryRequest/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AddWithOrder(OrderCreateAdminViewModel request)
+        public async Task<IActionResult> AddWithDeliveryRequest(OrderCreateAdminViewModel request)
         {
-            var id = await _commandFunctionality.AddWithOrderAsync(Mapper.Map<OrderCreateCommand>(request));
+            var id = await _commandFunctionality.AddWithDeliveryRequestAsync(Mapper.Map<OrderWithDeliveryRequestCreateCommand>(request));
             return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>
-        ///     Creates order.
+        ///     Creates order with delivery request (for Manager).
         /// </summary>
         /// <returns>Status code 201.</returns>
-        [HttpPost("Create/WithOrder")]
+        [HttpPost("Create/WithDeliveryRequest")]
         [Authorize(Roles = nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AddWithOrder(OrderCreateViewModel request)
+        public async Task<IActionResult> AddWithDeliveryRequest(OrderCreateViewModel request)
         {
-            var command = Mapper.Map<OrderCreateCommand>(request);
+            var command = Mapper.Map<OrderWithDeliveryRequestCreateCommand>(request);
             command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
 
-            var id = await _commandFunctionality.AddWithOrderAsync(command);
+            var id = await _commandFunctionality.AddWithDeliveryRequestAsync(command);
             return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>
-        ///     Promotes the order (change status).
+        ///     Promotes the order (changes status).
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status code 200.</returns>
@@ -170,9 +170,8 @@ namespace AutoDealer.Web.Controllers.Order
                 return StatusCode(StatusCodes.Status403Forbidden);
             }
 
-
-
-            throw new NotImplementedException();
+            await _commandFunctionality.Promote(new OrderPromoteCommand { OrderId = id });
+            return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>

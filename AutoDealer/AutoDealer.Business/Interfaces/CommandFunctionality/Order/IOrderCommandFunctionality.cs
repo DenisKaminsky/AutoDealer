@@ -4,8 +4,9 @@ using AutoDealer.Business.Models.Commands.Order;
 
 namespace AutoDealer.Business.Interfaces.CommandFunctionality.Order
 {
-    public interface IOrderCommandFunctionality : IBaseGenericCreateDeleteCommandFunctionality<OrderCreateCommand>
+    public interface IOrderCommandFunctionality : IBaseGenericCreateDeleteCommandFunctionality<OrderFromStockCreateCommand>
     {
-        Task<int> AddWithOrderAsync(OrderCreateCommand command);
+        Task Promote(OrderPromoteCommand command);
+        Task<int> AddWithDeliveryRequestAsync(OrderWithDeliveryRequestCreateCommand command);
     }
 }

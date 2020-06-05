@@ -2,6 +2,7 @@
 {
     public interface IOrderRelationsProvider
     {
-        string[] JoinOrderInfo { get; }
+        string[] JoinOrderDetails { get; }
+        string[] JoinDeliveryRequest { get; }
     }
 }

@@ -11,10 +11,11 @@ namespace AutoDealer.Business.Models.Responses.Order
         public int ClientId { get; }
         public OrderStatusModel Status { get; }
         public int? DeliveryRequestId { get; }
+        public bool CanPromote { get; }
         public DateTime CreateDate { get; }
         public DateTime? CompletedDate { get; }
 
-        public OrderModel(int id, int carId, int managerId, UserContactInfo manager, int clientId, OrderStatusModel status, int? deliveryRequestId, DateTime createDate, DateTime? completedDate) : base(id)
+        public OrderModel(int id, int carId, int managerId, UserContactInfo manager, int clientId, OrderStatusModel status, int? deliveryRequestId, DateTime createDate, DateTime? completedDate, bool canPromote) : base(id)
         {
             CarId = carId;
             ManagerId = managerId;
@@ -24,6 +25,7 @@ namespace AutoDealer.Business.Models.Responses.Order
             DeliveryRequestId = deliveryRequestId;
             CreateDate = createDate;
             CompletedDate = completedDate;
+            CanPromote = canPromote;
         }
     }
 }

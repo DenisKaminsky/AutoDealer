@@ -11,12 +11,12 @@ namespace AutoDealer.Data.QueryFiltersProviders.User
     {
         public Expression<Func<Client, bool>> ByPassportId(string passportId)
         {
-            return item => EF.Functions.ILike(item.Email, passportId);
+            return item => EF.Functions.ILike(item.PassportId, passportId);
         }
 
         public Expression<Func<Client, bool>> OthersWithPassportId(int id, string passportId)
         {
-            return item => item.Id != id && EF.Functions.ILike(item.Email, passportId);
+            return item => item.Id != id && EF.Functions.ILike(item.PassportId, passportId);
         }
     }
 }
