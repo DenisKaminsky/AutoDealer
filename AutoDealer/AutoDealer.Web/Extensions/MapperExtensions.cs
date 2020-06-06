@@ -81,6 +81,8 @@ namespace AutoDealer.Web.Extensions
 
                 #region User
                 config.CreateMap<UserModel, UserViewModel>();
+                config.CreateMap<UserSignInModel, UserSignInViewModel>();
+                config.CreateMap<UserModel, UserSignInViewModel>();
                 config.CreateMap<UserRoleModel, UserRoleViewModel>();
                 config.CreateMap<UserCreateViewModel, UserCreateCommand>()
                     .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));

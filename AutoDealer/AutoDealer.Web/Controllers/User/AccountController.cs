@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoDealer.Business.Interfaces.CommandFunctionality.User;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.User;
@@ -7,6 +9,7 @@ using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.Interfaces;
 using AutoDealer.Web.ViewModels.Request.User;
+using AutoDealer.Web.ViewModels.Response.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +21,29 @@ namespace AutoDealer.Web.Controllers.User
         private readonly IAccountCommandFunctionality _accountCommandFunctionality;
         private readonly IAccountQueryFunctionality _accountQueryFunctionality;
         private readonly ICookieAuthenticationManager _authenticationManager;
+        private readonly IUserQueryFunctionality _userQueryFunctionality;
 
-        public AccountController(IMapperFactory mapperFactory, IAccountCommandFunctionality accountCommandFunctionality, IAccountQueryFunctionality accountQueryFunctionality, ICookieAuthenticationManager authenticationManager) : base(mapperFactory)
+        public AccountController(IMapperFactory mapperFactory, IAccountCommandFunctionality accountCommandFunctionality, 
+            IAccountQueryFunctionality accountQueryFunctionality, ICookieAuthenticationManager authenticationManager, IUserQueryFunctionality userQueryFunctionality) : base(mapperFactory)
         {
             _accountCommandFunctionality = accountCommandFunctionality;
             _accountQueryFunctionality = accountQueryFunctionality;
             _authenticationManager = authenticationManager;
+            _userQueryFunctionality = userQueryFunctionality;
+        }
+
+        /// <summary>
+        ///     Get currently authorized user info
+        /// </summary>
+        /// <returns>Status code 200 and view model.</returns>
+        [HttpGet("UserInfo/Current")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Current()
+        {
+            var userId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
+            var user = await _userQueryFunctionality.GetActiveByIdAsync(userId);
+
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<UserSignInViewModel>(user));
         }
 
         /// <summary>
@@ -42,15 +62,14 @@ namespace AutoDealer.Web.Controllers.User
             }
 
             await _authenticationManager.SignInAsync(HttpContext, registeredUser);
-            return StatusCode(StatusCodes.Status200OK);
-        }
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<UserSignInViewModel>(registeredUser));
+        }          
 
         /// <summary>
         ///     Log out users from system
         /// </summary>
         /// <returns>Status code 201</returns>
         [HttpPost("SignOut")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> SignOut()
         {
