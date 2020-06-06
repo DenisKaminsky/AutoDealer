@@ -114,11 +114,17 @@ namespace AutoDealer.Web.Controllers.Order
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager))]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {
             var item = await _queryFunctionality.GetByIdAsync(id);
+            if ((item.SupplierManager == null || !CheckPermissionsExtensions.UserHasPermissions(item.SupplierManager.Id, User, UserRoles.Admin)) 
+                && !CheckPermissionsExtensions.UserHasPermissions(item.Manager.Id, User, UserRoles.Admin))
+            {
+                return StatusCode(StatusCodes.Status403Forbidden);
+            }
+
             return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<DeliveryRequestViewModel>(item));
         }
 

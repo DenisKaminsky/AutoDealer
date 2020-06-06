@@ -16,16 +16,16 @@ namespace AutoDealer.Business.Validators.Car
         private readonly IModelSupportsColorFiltersProvider _modelColorFiltersProvider;
         private readonly ICarComplectationFiltersProvider _complectationFiltersProvider;
         private readonly IEngineSupportsGearboxFiltersProvider _engineGearboxFiltersProvider;
-        private readonly ICarStockFiltersProvider _carStockFiltersProvider;
 
-        public CarStockCreateCommandValidator(IGenericReadRepository readRepository, IModelSupportsBodyTypeFiltersProvider modelBodyTypeFiltersProvider, ICarModelFiltersProvider modelFiltersProvider, IModelSupportsColorFiltersProvider modelColorFiltersProvider, ICarComplectationFiltersProvider complectationFiltersProvider, IEngineSupportsGearboxFiltersProvider engineGearboxFiltersProvider, ICarStockFiltersProvider carStockFiltersProvider) : base(readRepository)
+        public CarStockCreateCommandValidator(IGenericReadRepository readRepository, IModelSupportsBodyTypeFiltersProvider modelBodyTypeFiltersProvider, 
+            ICarModelFiltersProvider modelFiltersProvider, IModelSupportsColorFiltersProvider modelColorFiltersProvider, 
+            ICarComplectationFiltersProvider complectationFiltersProvider, IEngineSupportsGearboxFiltersProvider engineGearboxFiltersProvider) : base(readRepository)
         {
             _modelBodyTypeFiltersProvider = modelBodyTypeFiltersProvider;
             _modelFiltersProvider = modelFiltersProvider;
             _modelColorFiltersProvider = modelColorFiltersProvider;
             _complectationFiltersProvider = complectationFiltersProvider;
             _engineGearboxFiltersProvider = engineGearboxFiltersProvider;
-            _carStockFiltersProvider = carStockFiltersProvider;
 
             RuleFor(x => x.ModelId)
                 .NotEmptyWithMessage()
@@ -53,20 +53,7 @@ namespace AutoDealer.Business.Validators.Car
                         .WithMessage($"The {{PropertyName}} is not compatible with the provided model.");
                 });
         }
-
-        /*protected override bool PreValidate(ValidationContext<CarStockCreateCommand> context, ValidationResult result)
-        {
-            var model = context.InstanceToValidate;
-            var isExists = ReadRepository.ValidateExists(_carStockFiltersProvider.MatchAll(model.ModelId, model.BodyTypeId, model.ColorId, model.EngineGearboxId, model.ComplectationId));
-
-            if (isExists)
-            {
-                result.Errors.Add(new ValidationFailure("", "Item is already exist!"));
-                return false;
-            }
-            return true;
-        }*/
-
+        
         private async Task<bool> ModelExists(int id, CancellationToken cancellationToken)
         {
             return await Task.Run(() => ReadRepository.ValidateExists(_modelFiltersProvider.ById(id)), cancellationToken);

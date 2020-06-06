@@ -16,7 +16,7 @@ namespace AutoDealer.Data
 
         public static void AddDataServices(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<DataContext>(options => options
+            services.AddDbContextPool<DataContext>(options => options
                 //.UseLoggerFactory(LoggerFactory)
                 .UseNpgsql(connectionString));
 

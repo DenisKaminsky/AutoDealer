@@ -26,7 +26,7 @@ namespace AutoDealer.Business.Validators.Order
                 .CustomAsync(async (deliveryRequestId, context, cancellationToken) =>
                 {
                     var query = await ReadRepository.GetQueryableAsync(deliveryRequestFiltersProvider.ById(deliveryRequestId));
-                    var deliveryRequestStatus = (DeliveryRequestStatuses)await query.Select(x => x.StatusId).FirstOrDefaultAsync();
+                    var deliveryRequestStatus = (DeliveryRequestStatuses)query.Select(x => x.StatusId).FirstOrDefault();
 
                     string errorMessage;
                     switch (deliveryRequestStatus)

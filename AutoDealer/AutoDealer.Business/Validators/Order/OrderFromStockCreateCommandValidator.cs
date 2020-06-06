@@ -27,7 +27,7 @@ namespace AutoDealer.Business.Validators.Order
         private async Task<bool> CarAmountIsValid(OrderFromStockCreateCommand command, CancellationToken cancellationToken)
         {
             var query = await ReadRepository.GetQueryableAsync(_carStockFiltersProvider.ById(command.CarId));
-            var amount = await query.Select(x => x.Amount).FirstOrDefaultAsync(cancellationToken);
+            var amount = query.Select(x => x.Amount).FirstOrDefault();
 
             return amount >= 1;
         }

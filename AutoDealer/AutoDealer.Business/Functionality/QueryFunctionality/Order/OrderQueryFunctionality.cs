@@ -62,7 +62,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
         public async Task<int?> GetAssignedManagerByOrderId(int id)
         {
             var query = await ReadRepository.GetQueryableAsync(_filtersProvider.ById(id));
-            return await query.Select(x => x.ManagerId).FirstOrDefaultAsync();
+            return query.Select(x => x.ManagerId).FirstOrDefault();
         }
     }
 }

@@ -9,7 +9,6 @@ using AutoDealer.Data.Interfaces.QueryFiltersProviders.User;
 using AutoDealer.Data.Interfaces.Repositories;
 using AutoDealer.Miscellaneous.Enums;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 
 namespace AutoDealer.Business.Validators.Order
 {
@@ -28,7 +27,7 @@ namespace AutoDealer.Business.Validators.Order
                 .CustomAsync(async (deliveryRequestId, context, cancellationToken) =>
                 {
                     var query = await ReadRepository.GetQueryableAsync(_deliveryRequestFiltersProvider.ById(deliveryRequestId));
-                    var deliveryRequestStatus = (DeliveryRequestStatuses)await query.Select(x => x.StatusId).FirstOrDefaultAsync();
+                    var deliveryRequestStatus = (DeliveryRequestStatuses)query.Select(x => x.StatusId).FirstOrDefault();
 
                     string errorMessage;
                     switch (deliveryRequestStatus)

@@ -27,13 +27,13 @@ namespace AutoDealer.Business.Validators.Order
                 .CustomAsync(async (orderId, context, cancellationToken) =>
                 {
                     var query = await ReadRepository.GetQueryableAsync(_orderFiltersProvider.ById(orderId), orderRelationsProvider.JoinDeliveryRequest);
-                    var orderInfo = await query
+                    var orderInfo = query
                         .Select(x => new
                         {
                             OrderStatus = x.StatusId, 
                             DeliveryRequestStatus = x.DeliveryRequest != null ? x.DeliveryRequest.StatusId : (int?)null
                         })
-                        .FirstOrDefaultAsync();
+                        .FirstOrDefault();
 
                     if ((OrderStatuses)orderInfo.OrderStatus == OrderStatuses.Completed)
                     {
