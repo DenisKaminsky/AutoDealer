@@ -37,7 +37,7 @@ namespace AutoDealer.Business.Validators.Order
 
         private async Task<bool> CarExists(int id, CancellationToken cancellationToken)
         {
-            return await Task.Run(() => ReadRepository.ValidateExists(_carStockFiltersProvider.InStockById(id)), cancellationToken);
+            return await Task.Run(() => ReadRepository.ValidateExists(_carStockFiltersProvider.ById(id)), cancellationToken);
         }
 
         private async Task<bool> ManagerIsValid(int id, CancellationToken cancellationToken)
