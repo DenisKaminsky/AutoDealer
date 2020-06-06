@@ -88,8 +88,8 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] SupplierCreateViewModel supplier)
         {
-            await _supplierCommandFunctionality.AddAsync(Mapper.Map<SupplierCreateCommand>(supplier));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _supplierCommandFunctionality.AddAsync(Mapper.Map<SupplierCreateCommand>(supplier));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>

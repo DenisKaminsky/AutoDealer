@@ -61,8 +61,8 @@ namespace AutoDealer.Web.Controllers.WorkOrder
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] WorkCreateViewModel item)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<WorkCreateCommand>(item));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(Mapper.Map<WorkCreateCommand>(item));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>

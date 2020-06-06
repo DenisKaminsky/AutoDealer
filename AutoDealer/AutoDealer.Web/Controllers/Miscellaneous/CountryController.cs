@@ -60,8 +60,8 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] CountryCreateViewModel country)
         {
-            await _countryCommandFunctionality.AddAsync(Mapper.Map<CountryCreateCommand>(country));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _countryCommandFunctionality.AddAsync(Mapper.Map<CountryCreateCommand>(country));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
 

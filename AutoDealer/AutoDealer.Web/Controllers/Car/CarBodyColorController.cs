@@ -75,8 +75,8 @@ namespace AutoDealer.Web.Controllers.Car
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] ColorCodeCreateViewModel color)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<ColorCodeCreateCommand>(color));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(Mapper.Map<ColorCodeCreateCommand>(color));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
         
         /// <summary>

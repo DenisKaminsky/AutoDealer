@@ -85,8 +85,8 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] BrandCreateViewModel brand)
         {
-            await _brandCommandFunctionality.AddAsync(Mapper.Map<BrandCreateCommand>(brand));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _brandCommandFunctionality.AddAsync(Mapper.Map<BrandCreateCommand>(brand));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
         
         /// <summary>
@@ -101,8 +101,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
             await _brandCommandFunctionality.UpdateAsync(Mapper.Map<BrandUpdateCommand>(brand));
             return StatusCode(StatusCodes.Status200OK);
         }
-
-
+        
         /// <summary>
         ///     Removes brand by id
         /// </summary>

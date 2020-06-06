@@ -59,8 +59,8 @@ namespace AutoDealer.Web.Controllers.Car
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Add([FromBody] GearboxCreateViewModel gearbox)
         {
-            await _commandFunctionality.AddAsync(Mapper.Map<GearboxCreateCommand>(gearbox));
-            return StatusCode(StatusCodes.Status201Created);
+            var id = await _commandFunctionality.AddAsync(Mapper.Map<GearboxCreateCommand>(gearbox));
+            return ResponseWithData(StatusCodes.Status201Created, id);
         }
 
         /// <summary>
