@@ -135,7 +135,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Create/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Add(DeliveryRequestCreateAdminViewModel request)
+        public async Task<IActionResult> Add([FromBody] DeliveryRequestCreateAdminViewModel request)
         {
             var id = await _commandFunctionality.AddAsync(Mapper.Map<DeliveryRequestCreateCommand>(request));
             return ResponseWithData(StatusCodes.Status201Created, id);
@@ -148,7 +148,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Create")]
         [Authorize(Roles = nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Add(DeliveryRequestCreateViewModel request)
+        public async Task<IActionResult> Add([FromBody] DeliveryRequestCreateViewModel request)
         {
             var command = Mapper.Map<DeliveryRequestCreateCommand>(request);
             command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
@@ -164,7 +164,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Assign/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Assign(DeliveryRequestAssignAdminViewModel request)
+        public async Task<IActionResult> Assign([FromBody] DeliveryRequestAssignAdminViewModel request)
         {
             await _commandFunctionality.AssignAsync(Mapper.Map<DeliveryRequestAssignCommand>(request));
             return StatusCode(StatusCodes.Status200OK);

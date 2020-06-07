@@ -103,7 +103,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Create/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Add(OrderCreateAdminViewModel request)
+        public async Task<IActionResult> Add([FromBody] OrderCreateAdminViewModel request)
         {
             var id = await _commandFunctionality.AddAsync(Mapper.Map<OrderFromStockCreateCommand>(request));
             return ResponseWithData(StatusCodes.Status201Created, id);
@@ -116,7 +116,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Create")]
         [Authorize(Roles = nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Add(OrderCreateViewModel request)
+        public async Task<IActionResult> Add([FromBody] OrderCreateViewModel request)
         {
             var command = Mapper.Map<OrderFromStockCreateCommand>(request);
             command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
@@ -132,7 +132,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Create/WithDeliveryRequest/Admin")]
         [Authorize(Roles = nameof(UserRoles.Admin))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AddWithDeliveryRequest(OrderCreateAdminViewModel request)
+        public async Task<IActionResult> AddWithDeliveryRequest([FromBody] OrderCreateAdminViewModel request)
         {
             var id = await _commandFunctionality.AddWithDeliveryRequestAsync(Mapper.Map<OrderWithDeliveryRequestCreateCommand>(request));
             return ResponseWithData(StatusCodes.Status201Created, id);
@@ -145,7 +145,7 @@ namespace AutoDealer.Web.Controllers.Order
         [HttpPost("Create/WithDeliveryRequest")]
         [Authorize(Roles = nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AddWithDeliveryRequest(OrderCreateViewModel request)
+        public async Task<IActionResult> AddWithDeliveryRequest([FromBody] OrderCreateViewModel request)
         {
             var command = Mapper.Map<OrderWithDeliveryRequestCreateCommand>(request);
             command.ManagerId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
