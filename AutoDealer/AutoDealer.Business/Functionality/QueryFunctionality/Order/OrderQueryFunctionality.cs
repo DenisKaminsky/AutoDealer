@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoDealer.Business.Functionality.QueryFunctionality.Base;
 using AutoDealer.Business.Interfaces.Factories;
 using AutoDealer.Business.Interfaces.QueryFunctionality.Order;
 using AutoDealer.Business.Interfaces.UnitOfWork;
+using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Order;
 using AutoDealer.Data.Interfaces.QueryFiltersProviders.Order;
 using AutoDealer.Data.Interfaces.RelationsProviders.Order;
@@ -63,6 +65,27 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
         {
             var query = await ReadRepository.GetQueryableAsync(_filtersProvider.ById(id));
             return query.Select(x => x.ManagerId).FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<StatisticsDateCountModel>> GetStatisticsForLastDays(uint daysCount)
+        {
+            var endDate = DateTime.UtcNow.Date;
+            var startDate = endDate.AddDays(-daysCount);
+            var query = await ReadRepository.GetQueryableAsync(_filtersProvider.ByCreatedDate(startDate, endDate));
+            var items = await query
+                .GroupBy(x => x.CreatedDate.Date)
+                .Select(x => new { Date = x.Key, Count = x.Count() })
+                .ToDictionaryAsync(x => x.Date, x => x.Count);
+
+            for (var date = startDate; date < endDate; date = date.AddDays(1))
+            {
+                if (!items.ContainsKey(date))
+                    items.Add(date, 0);
+            }
+
+            return items
+                .Select(x => new StatisticsDateCountModel { Date = x.Key, Count = x.Value })
+                .OrderBy(x => x.Date);
         }
     }
 }

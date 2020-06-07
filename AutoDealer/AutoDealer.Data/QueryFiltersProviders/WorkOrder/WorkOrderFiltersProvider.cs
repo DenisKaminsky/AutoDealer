@@ -11,5 +11,10 @@ namespace AutoDealer.Data.QueryFiltersProviders.WorkOrder
         {
             return item => item.WorkerId == id;
         }
+
+        public Expression<Func<Models.WorkOrder.WorkOrder, bool>> ByCreatedDate(DateTime startDate, DateTime endDate)
+        {
+            return item => item.CreatedDate >= startDate && item.CreatedDate <= endDate;
+        }
     }
 }

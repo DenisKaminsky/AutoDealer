@@ -10,6 +10,7 @@ using AutoDealer.Miscellaneous.Enums;
 using AutoDealer.Web.Controllers.Base;
 using AutoDealer.Web.Extensions;
 using AutoDealer.Web.ViewModels.Request.Order;
+using AutoDealer.Web.ViewModels.Response.Miscellaneous;
 using AutoDealer.Web.ViewModels.Response.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -40,7 +41,20 @@ namespace AutoDealer.Web.Controllers.Order
             var items = await _queryFunctionality.GetAllAsync();
             return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<DeliveryRequestViewModel>>(items));
         }
-        
+
+        /// <summary>
+        ///     Gets delivery request statistics.
+        /// </summary>
+        /// <returns>Status code 200 and view models.</returns>
+        [HttpGet("Statistics")]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.Director))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetStatistics()
+        {
+            var items = await _queryFunctionality.GetStatisticsForLastDays(30);
+            return ResponseWithData(StatusCodes.Status200OK, Mapper.Map<IEnumerable<StatisticsDateCountViewModel>>(items));
+        }
+
         /// <summary>
         ///     Gets all opened delivery requests.
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoDealer.Business.Interfaces.QueryFunctionality.Base;
+using AutoDealer.Business.Models.Responses.Miscellaneous;
 using AutoDealer.Business.Models.Responses.Order;
 
 namespace AutoDealer.Business.Interfaces.QueryFunctionality.Order
@@ -14,5 +15,7 @@ namespace AutoDealer.Business.Interfaces.QueryFunctionality.Order
         Task<IEnumerable<OrderModel>> GetByStatusIdAsync(int statusId);
 
         Task<int?> GetAssignedManagerByOrderId(int id);
+
+        Task<IEnumerable<StatisticsDateCountModel>> GetStatisticsForLastDays(uint daysCount);
     }
 }

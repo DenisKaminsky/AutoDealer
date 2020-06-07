@@ -7,5 +7,6 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.WorkOrder
     public interface IWorkOrderFiltersProvider : IBaseFiltersProvider<Models.WorkOrder.WorkOrder>
     {
         Expression<Func<Models.WorkOrder.WorkOrder, bool>> ByWorkerId(int id);
+        Expression<Func<Models.WorkOrder.WorkOrder, bool>> ByCreatedDate(DateTime startDate, DateTime endDate);
     }
 }

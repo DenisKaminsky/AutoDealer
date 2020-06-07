@@ -145,6 +145,7 @@ namespace AutoDealer.Web.Extensions
                 config.CreateMap<SupplierPhotoCreateViewModel, SupplierPhotoCreateCommand>()
                     .ForMember(dest => dest.Photo, opt => opt
                         .MapFrom(src => src.Photo != null ? new FileAttachment(src.Photo) : null));
+                config.CreateMap<StatisticsDateCountModel, StatisticsDateCountViewModel>();
                 #endregion
             }).CreateMapper();
         }
