@@ -30,7 +30,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// </summary>
         /// <returns>Status code 200 and view models.</returns>
         [HttpGet]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager) + "," + nameof(UserRoles.Director))]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager) + "," + nameof(UserRoles.Director) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
@@ -44,7 +44,7 @@ namespace AutoDealer.Web.Controllers.Miscellaneous
         /// <param name="id"></param>
         /// <returns>Status code 200 and view model.</returns>
         [HttpGet("{id}")]
-        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager) + "," + nameof(UserRoles.Director))]
+        [Authorize(Roles = nameof(UserRoles.Admin) + "," + nameof(UserRoles.SupplierManager) + "," + nameof(UserRoles.Director) + "," + nameof(UserRoles.Manager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(int id)
         {

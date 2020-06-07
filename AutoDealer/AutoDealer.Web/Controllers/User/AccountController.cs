@@ -104,6 +104,21 @@ namespace AutoDealer.Web.Controllers.User
         }
 
         /// <summary>
+        ///     Updates user password
+        /// </summary>
+        /// <returns>Status code 200.</returns>
+        [HttpPut("UpdatePassword")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> UpdatePassword([FromBody] UserUpdatePasswordViewModel item)
+        {
+            var command = Mapper.Map<UserUpdatePasswordCommand>(item);
+            command.UserId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
+
+            await _accountCommandFunctionality.UpdatePasswordAsync(command);
+            return StatusCode(StatusCodes.Status200OK);
+        }
+
+        /// <summary>
         ///     Activates or deactivates user (admin only)
         /// </summary>
         /// <returns>Status code 200.</returns>

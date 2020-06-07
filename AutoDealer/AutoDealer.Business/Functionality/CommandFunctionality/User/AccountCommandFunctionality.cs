@@ -47,6 +47,17 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.User
             await UnitOfWork.CommitAsync();
         }
 
+        public async Task UpdatePasswordAsync(UserUpdatePasswordCommand command)
+        {
+            await ValidatorFactory.GetValidator<UserUpdatePasswordCommand>().ValidateAndThrowAsync(command);
+
+            var user = await _readRepository.GetSingleAsync(_userFiltersProvider.ById(command.UserId));
+            user.PasswordHash = command.NewPasswordHash;
+
+            await WriteRepository.UpdateAsync(user);
+            await UnitOfWork.CommitAsync();
+        }
+
         public async Task ResetPasswordAsync(UserResetPasswordCommand command)
         {
             await ValidatorFactory.GetValidator<UserResetPasswordCommand>().ValidateAndThrowAsync(command);

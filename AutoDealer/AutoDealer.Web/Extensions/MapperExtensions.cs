@@ -98,6 +98,7 @@ namespace AutoDealer.Web.Extensions
                     .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
                 config.CreateMap<ClientUpdateViewModel, ClientUpdateCommand>()
                     .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => src.Birthday.Date));
+                config.CreateMap<UserUpdatePasswordViewModel, UserUpdatePasswordCommand>();
                 #endregion
 
                 #region WorkOrder

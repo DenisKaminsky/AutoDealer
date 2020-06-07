@@ -9,5 +9,6 @@ namespace AutoDealer.Business.Interfaces.CommandFunctionality.User
         Task UpdateAsync(UserUpdateCommand command);
         Task UpdateActiveStatusAsync(UserUpdateActiveStatusCommand command);
         Task ResetPasswordAsync(UserResetPasswordCommand command);
+        Task UpdatePasswordAsync(UserUpdatePasswordCommand command);
     }
 }
