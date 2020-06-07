@@ -72,7 +72,7 @@ namespace AutoDealer.Business.Extensions
 
         public static IRuleBuilderOptions<T, string> IsValidMD5HashWithMessage<T>(this IRuleBuilder<T, string> options)
         {
-            return options.Matches(@"^[a-f0-9]{32}$")
+            return options.Matches(@"^[a-fA-F0-9]{32}$")
                 .WithMessage($"The value of the field {{PropertyName}} has invalid MD5 hash format");
         }
 

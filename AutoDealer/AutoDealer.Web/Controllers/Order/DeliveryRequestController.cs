@@ -187,17 +187,17 @@ namespace AutoDealer.Web.Controllers.Order
         /// <summary>
         ///     Assigns delivery request to supplier manager (for SupplierManager).
         /// </summary>
-        /// <param name="deliveryRequestId"></param>
+        /// <param name="id"></param>
         /// <returns>Status code 200.</returns>
         [HttpPost("Assign")]
         [Authorize(Roles = nameof(UserRoles.SupplierManager))]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Assign(int deliveryRequestId)
+        public async Task<IActionResult> Assign(int id)
         {
             var userId = Convert.ToInt32(User.Claims.First(c => c.Type == "Id").Value);
             await _commandFunctionality.AssignAsync(new DeliveryRequestAssignCommand
             {
-                DeliveryRequestId = deliveryRequestId,
+                DeliveryRequestId = id,
                 SupplierManagerId = userId
             });
 
