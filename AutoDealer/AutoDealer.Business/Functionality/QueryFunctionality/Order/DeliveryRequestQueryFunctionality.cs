@@ -74,7 +74,7 @@ namespace AutoDealer.Business.Functionality.QueryFunctionality.Order
             var startDate = endDate.AddDays(-daysCount);
             var query = await ReadRepository.GetQueryableAsync(_filtersProvider.ByCreatedDate(startDate, endDate));
             var items = await query
-                .GroupBy(x => x.CreatedDate.Date)
+                .GroupBy(x => x.CreateDate.Date)
                 .Select(x => new { Date = x.Key, Count = x.Count() })
                 .ToDictionaryAsync(x => x.Date, x => x.Count);
 

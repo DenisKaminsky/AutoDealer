@@ -11,6 +11,6 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Order
         Expression<Func<DeliveryRequest, bool>> BySupplierManagerId(int id);
         Expression<Func<DeliveryRequest, bool>> ByStatusId(int id);
         Expression<Func<DeliveryRequest, bool>> ByIdAndStatus(int id, int statusId);
-        Expression<Func<Models.WorkOrder.WorkOrder, bool>> ByCreatedDate(DateTime startDate, DateTime endDate);
+        Expression<Func<DeliveryRequest, bool>> ByCreatedDate(DateTime startDate, DateTime endDate);
     }
 }

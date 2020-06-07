@@ -9,6 +9,6 @@ namespace AutoDealer.Data.Interfaces.QueryFiltersProviders.Order
         Expression<Func<Models.Order.Order, bool>> ByManagerId(int id);
         Expression<Func<Models.Order.Order, bool>> ByClientId(int id);
         Expression<Func<Models.Order.Order, bool>> ByStatusId(int id);
-        Expression<Func<Models.WorkOrder.WorkOrder, bool>> ByCreatedDate(DateTime startDate, DateTime endDate);
+        Expression<Func<Models.Order.Order, bool>> ByCreatedDate(DateTime startDate, DateTime endDate);
     }
 }

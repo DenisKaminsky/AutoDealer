@@ -28,9 +28,9 @@ namespace AutoDealer.Data.QueryFiltersProviders.Order
             return item => item.Id == id && item.StatusId == id;
         }
 
-        public Expression<Func<Models.WorkOrder.WorkOrder, bool>> ByCreatedDate(DateTime startDate, DateTime endDate)
+        public Expression<Func<DeliveryRequest, bool>> ByCreatedDate(DateTime startDate, DateTime endDate)
         {
-            return item => item.CreatedDate >= startDate && item.CreatedDate <= endDate;
+            return item => item.CreateDate >= startDate && item.CreateDate <= endDate;
         }
     }
 }
