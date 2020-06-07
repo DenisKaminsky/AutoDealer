@@ -57,10 +57,13 @@ namespace AutoDealer.Business.Extensions
                 config.CreateMap<CarStockUpdateCommand, CarStock>();
 
                 config.CreateMap<UserCreateCommand, User>()
+                    .ForMember(x => x.Birthday, opt => opt.MapFrom(src => DateTime.SpecifyKind(src.Birthday.Date, DateTimeKind.Utc)))
                     .ForMember(x => x.CreatedDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                     .ForMember(x => x.IsActive, opt => opt.MapFrom(src => true));
-                config.CreateMap<ClientCreateCommand, Client>();
-                config.CreateMap<ClientUpdateCommand, Client>();
+                config.CreateMap<ClientCreateCommand, Client>()
+                    .ForMember(x => x.Birthday, opt => opt.MapFrom(src => DateTime.SpecifyKind(src.Birthday.Date, DateTimeKind.Utc)));
+                config.CreateMap<ClientUpdateCommand, Client>()
+                    .ForMember(x => x.Birthday, opt => opt.MapFrom(src => DateTime.SpecifyKind(src.Birthday.Date, DateTimeKind.Utc)));
 
                 config.CreateMap<WorkOrderClientCreateCommand, WorkOrderClient>();
                 config.CreateMap<WorkOrderClientUpdateCommand, WorkOrderClient>();

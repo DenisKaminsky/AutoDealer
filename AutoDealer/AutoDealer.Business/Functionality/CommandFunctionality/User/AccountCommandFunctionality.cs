@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoDealer.Business.Functionality.CommandFunctionality.Base;
 using AutoDealer.Business.Interfaces.CommandFunctionality.User;
 using AutoDealer.Business.Interfaces.Factories;
@@ -29,7 +30,7 @@ namespace AutoDealer.Business.Functionality.CommandFunctionality.User
             user.FirstName = command.FirstName;
             user.LastName = command.LastName;
             user.Phone = command.Phone;
-            user.Birthday = command.Birthday;
+            user.Birthday = DateTime.SpecifyKind(command.Birthday.Date, DateTimeKind.Utc);
             user.Salary = command.Salary;
 
             await WriteRepository.UpdateAsync(user);
