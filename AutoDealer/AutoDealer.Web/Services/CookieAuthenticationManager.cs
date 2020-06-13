@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoDealer.Business.Models.Responses.User;
 using AutoDealer.Web.Interfaces;
@@ -20,7 +21,11 @@ namespace AutoDealer.Web.Services
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var authProperties = new AuthenticationProperties() { IsPersistent = true };
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true, 
+                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(2),
+            };
 
             return httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity), authProperties);

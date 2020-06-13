@@ -15,6 +15,9 @@ namespace AutoDealer.Web.Extensions
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                 {
                     options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.HttpOnly = false;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+                    options.Cookie.Name = "AutoDealerCookie";
 
                     options.Events = new CookieAuthenticationEvents
                     {

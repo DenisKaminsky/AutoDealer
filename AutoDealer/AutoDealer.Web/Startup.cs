@@ -45,20 +45,20 @@ namespace AutoDealer.Web
             }
 
             app.UseMiddleware<ExceptionsHandler>();
-            app.UseSwaggerMiddleware();
             app.UseHttpsRedirection();
             app.UseCors(builder => builder
                 .WithOrigins(Configuration.GetSection("AllowedHosts").Get<string[]>())
                 .AllowCredentials()
                 .AllowAnyHeader()
                 .AllowAnyMethod());
-            app.UseCookiePolicy();
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCookiePolicy();
+            app.UseSwaggerMiddleware();
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            
             app.InitializeMigrations();
         }
     }
