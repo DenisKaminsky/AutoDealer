@@ -11,6 +11,10 @@
     <DocumentationFile>obj\Debug\netcoreapp3.1\AutoDealer.Web.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Projects\AutoDealer\AutoDealer\AutoDealer.Web\AutoDealer.Web.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />

@@ -14,11 +14,11 @@ namespace AutoDealer.Web
         {
             return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseKestrel(opts =>
+                /*.UseKestrel(opts =>
                 {
                     opts.ListenAnyIP(5002, x => x.UseHttps());
                     opts.ListenLocalhost(5003, x => x.UseHttps());
-                });
+                })*/;
         }
     }
 }
